@@ -1,0 +1,38 @@
+﻿Version 2 30
+{
+	PROPR_HELP_BARHE = 您已購買雞窩酒吧。~n~聖安地列斯的人們可以來這裡喝點小酒。
+	PROPR_HELP_BARHE2 = 每週可獲利µ920µ元。
+	PROPR_HELP_BARHO = 您已購買胡奇酒吧。~n~聖安地列斯的人們可以來這裡喝點小酒。
+	PROPR_HELP_BARHO2 = 每週可獲利µ4,700µ元。
+	PROPR_HELP_BARPI = 您已購買大水罐酒吧。~n~聖安地列斯的人們可以來這裡喝點小酒。
+	PROPR_HELP_BARPI2 = 每週可獲利µ7,100µ元。
+	PROPR_HELP_BARTE = 您已購買龍舌蘭蘭酒吧。~n~聖安地列斯的人們可以來這裡喝點小酒。
+	PROPR_HELP_BARTE2 = 每週可獲利µ16,500µ元。
+	PROPR_HELP_CIND = 您已購買一毛錢劇院。~n~聖安地列斯的人們可以來這裡看電影。
+	PROPR_HELP_CIND2 = 每週可獲利µ264,000µ元。
+	PROPR_HELP_CINM = 您已購買得福列劇院。~n~聖安地列斯的人們可以來這裡看電影。
+	PROPR_HELP_CINM2 = 每週可獲利µ142,300µ元。
+	PROPR_HELP_CINV = 您已購買多普勒劇院。~n~聖安地列斯的人們可以來這裡看電影。
+	PROPR_HELP_CINV2 = 每週可獲利µ132,200µ元。
+	PROPR_HELP_CMSH = 您已購買洛聖都改車王。~n~這家店提供車輛改裝服務。
+	PROPR_HELP_CMSH2 = 每週可獲利µ1,600µ元。
+	PROPR_HELP_CMSH3 = 您現在享有免費改車優惠。
+	PROPR_HELP_CSCR = 您已購買廢車場。~n~這家公司會回收舊汽車的零件和配件。
+	PROPR_HELP_CSCR2 = 每週的獲利多寡，取決於聖安地列斯當週摧毀的車輛數。
+	PROPR_HELP_GOLF = 您已購買洛聖都高爾夫俱樂部。~n~聖安地列斯的人們可以來這裡打高爾夫球。
+	PROPR_HELP_GOLF2 = 每週可獲利µ264,500µ元。~n~您現在可以開始免費打高爾夫球，而且沒有服裝限制。
+	PROPR_HELP_MANH = 經理有時會與您聯絡，請求您協助營運事宜。
+	PROPR_HELP_SOCO = 您已購買聲納打撈碼頭。~n~這家公司會在聖安地列斯海域幫助搜尋核廢料。
+	PROPR_HELP_SOCO2 = 每找到一塊核廢料，您便可獲得µ23,000µ元。
+	PROPR_HELP_SOCO3 = 使用潛水艇搜尋核廢料。
+	PROPR_HELP_TAXI = 您已購買市中心計程車行。~n~這家公司在聖安地列斯提供計程車服務。
+	PROPR_HELP_TAXI2 = 每週可獲利µ2,000µ元。~n~您現在可以免費搭計程車。
+	PROPR_HELP_TOWI = 您已購買拖吊場。~n~拖吊場會為有需要的人提供拖吊服務。
+	PROPR_HELP_TOWI2 = 每拖一輛車您可獲得µ500µ元。如果損壞車輛，佣金會被扣除一些作為懲罰。
+	PROPR_HELP_TOWI3 = 使用拖吊車提供拖吊服務。
+	PROPR_HELP_TRAF = 您已購買麥肯錫機庫 。~n~這家公司會運送和收取武器出入聖安地列斯。
+	PROPR_HELP_TRAF2 = 每趟陸運貨物可獲得µ5,000µ元，空運貨物則可獲得µ7,000µ元，如果做得好還有獎勵。
+	PROPR_HELP_TRAF3 = 登上飛機 ~BLIP_ARMS_DEALING_AIR~ 或越野車 ~BLIP_ARMS_DEALING~ 來運送貨物。
+	PROPR_HELP_WEED = 您已購買吞雲吐霧會館。~n~這家公司會販賣醫藥等級的大麻給持處方的病人。
+	PROPR_HELP_WEED2 = 每週可獲利µ9,300µ元。
+}

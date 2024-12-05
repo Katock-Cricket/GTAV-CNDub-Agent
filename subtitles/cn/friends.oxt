@@ -1,0 +1,29 @@
+﻿Version 2 30
+{
+	0x3CE69D1A = 您把朋友留在那裡了。
+	0x4F36DB79 = 您的朋友被嚇跑了。
+	0xC4B520D5 = 朋友活動已經取消。
+	0xD7A20ED0 = 您的朋友受傷了。
+	FR_GETBACK = ~s~回去找~b~~a~~s~。
+	FR_GETBACK2 = ~s~回去找您的~b~朋友~s~。
+	FR_H_ACTIV1 = 有很多活動可以與朋友一起參加，例如~HUD_COLOUR_YELLOW~~BLIP_CINEMA~~s~、~HUD_COLOUR_YELLOW~~BLIP_TENNIS~~s~和~HUD_COLOUR_YELLOW~~BLIP_BAR~~s~
+	FR_H_ACTIV2 = 距離最近的活動會一直顯示在雷達上。打開大地圖來查看所有已開放的活動。
+	FR_H_BUDF_A = 富蘭克林即將抵達，雷達上的 ~HUD_COLOUR_BLUE~~BLIP_FRANKLIN_FAMILY~~s~ 會顯示他的位置。
+	FR_H_BUDM_A = 麥可即將抵達，雷達上的 ~HUD_COLOUR_BLUE~~BLIP_MICHAEL_FAMILY~~s~ 會顯示他的位置。
+	FR_H_BUDT_A = 崔佛即將抵達，雷達上的 ~HUD_COLOUR_BLUE~~BLIP_TREVOR_FAMILY~~s~ 會顯示他的位置。
+	FR_H_BUD_SW = 叫來支援的朋友們只要進入範圍內，就可以選擇並切換。
+	FR_H_DROPOFF0 = 載~a~回去，或帶他參加更多活動。
+	FR_H_DROPOFF1 = 載~a~回去，或帶她參加更多活動。
+	FR_H_DROPOFF2 = 載朋友回去，或帶他們參加更多活動。
+	FR_H_PKUP = 和~a~在 ~BLIP_FRIEND~ 碰面。
+	FR_H_PKUPF = 和~a~在 ~BLIP_FRIEND~ 碰面。
+	FR_H_WAIT = ~a~即將抵達~BLIP_FRIEND~；在那裡等著與他碰面。
+	FR_H_WAITF = ~a~即將抵達~BLIP_FRIEND~；在那裡等著與她碰面。
+	FR_X_ATAC_1F = ~a~遭到攻擊。
+	FR_X_ATAC_1M = ~a~遭到攻擊。
+	FR_X_FLEE_1F = ~a~受到驚嚇。
+	FR_X_FLEE_1M = ~a~受到驚嚇。
+	FR_X_LATE = 您無法及時與~a~碰面。朋友活動已經取消。
+	FR_X_LOST_1F = ~a~被拋棄了。
+	FR_X_LOST_1M = ~a~被拋棄了。
+}

@@ -1,0 +1,24 @@
+﻿Version 2 30
+{
+	0x1FB7490F = 前往~y~直升機坪~s~。
+	0x4A3E3A61 = 切換至崔佛。
+	0x7CD31F96 = 切換至麥可。
+	0xE933345D = 任務失敗
+	0xF68713A6 = 去~y~出口~s~。
+	M3_02 = 下樓走進~y~花園~s~。
+	M3_04 = 逃到~y~摩寧塢~s~。
+	M3_04A = 繼續到~y~摩寧塢~s~。
+	M3_05 = 擺脫~r~敵方直升機~s~。
+	M3_DVABDN = 戴夫被拋棄了。
+	M3_DVDEAD = 戴夫死了。
+	M3_DVWARN = 回去找~b~戴夫~s~。
+	M3_FMDEAD = 麥可死了。
+	M3_FTDEAD = 崔佛死了。
+	M3_OBJCYKIL = 保護~b~戴夫~s~。
+	M3_OBJFRSTA = 從~y~陽台~s~逃離柯茲中心。
+	M3_OBJHELI = 射擊~r~駕駛~s~。
+	M3_OBJHELPD = 幫~b~戴夫~s~清掉樓梯上的敵人。
+	M3_OBJPLOT = 去~y~停車場~s~。
+	M3_OBJSVDV = 殺掉 ~r~FIB 探員~s~。
+	M3_WLKDV = 和~b~戴夫~s~碰面。
+}

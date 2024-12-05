@@ -1,0 +1,37 @@
+﻿Version 2 30
+{
+	0x1CF04D0F = ~s~任務完成~s~
+	0x358DBC4D = 富蘭克林、麥可和崔佛抵達洛聖都改車王。~n~德凡和他的律師告訴他們要偷的車，是幾個有錢小鬼的兩輛車。~n~富蘭克林向他們挑戰，要去人煙稀少的地方來個街頭競速。~n~麥可和崔佛打扮成高速公路警察，以在高速公路上超速為由叫他們停車。~n~富蘭克林開著德凡提供的車離開。~s~
+	0x45129B9B = ~s~騎上~b~機車~s~。
+	0xF0453C63 = 德凡和他的律師在車庫。~n~下一輛車的車主，是個遺世獨立的音樂製作人。~n~利用他駕照上的晶片把他找出來。~n~德凡的警方聯絡人有可以掃描晶片簽章的直升機，~n~但是需要有人在地面執行操作。~n~崔佛開直升機，富蘭克林留在地面。~n~德凡告訴他們除非完成偷車任務，否則不會付錢。~s~
+	S3_BLIPVEH = 載具
+	S3_COP = ~s~停下他們並把~b~車~s~搶過來。
+	S3_DRIVE = ~s~開往~y~車庫~s~。
+	S3_FAIL = ~s~任務失敗~s~
+	S3_FBIKEABAN = ~s~機車被放棄了。~s~
+	S3_FBIKEDAMT = ~s~崔佛的機車受損了。
+	S3_FBIKEDEST = ~s~機車毀壞了。
+	S3_FBIKEDESTT = ~s~崔佛的機車毀壞了。
+	S3_FCARABAN = ~s~車子被放棄了。~s~
+	S3_FDEVINCAR = ~s~德凡的車子毀壞了~s~。
+	S3_FDEVINDIED = ~s~德凡死了。
+	S3_FDISRACE = ~s~你把車手撞飛了。
+	S3_FDMGCAR = ~s~車子受損了。
+	S3_FLOSTRACE = ~s~車手逃走了。~s~
+	S3_FRACERDIED = ~s~一名車手死了。~s~
+	S3_FRACERLEFT = ~s~車手已經離開加油站。
+	S3_FSHOTDEVCAR = ~s~德凡的車子受損了~s~。
+	S3_FSHOTDEVIN = ~s~德凡受傷了~s~。
+	S3_FSHOTRACER = ~s~車手受傷了。
+	S3_FSHOTTREVOR = ~s~崔佛受傷了。
+	S3_FSPKDRACER = ~s~車手受到驚嚇。
+	S3_FSTUCKCAR = ~s~車子卡住了。
+	S3_GOTO = ~s~前往~y~加油站~s~。
+	S3_HELP1 = ~s~按住µ~INPUT_VEH_CIN_CAM~µ使用追逐攝影機。~s~
+	S3_HELP2 = ~s~按 ~INPUT_VEH_CIN_CAM~ 將鏡頭切換到車手。~s~
+	S3_OVER = ~s~同時按µ~INPUT_SPECIAL_ABILITY~µ+µ~INPUT_SPECIAL_ABILITY_SECONDARY~µ啟用富蘭克林的特殊能力。~s~
+	S3_OVER_KM = ~s~按µ~INPUT_SPECIAL_ABILITY_PC~µ可啟用富蘭克林的特殊能力。~s~
+	S3_RACE = ~s~跟~b~這兩台車~s~飆車。
+	S3_RACEHOME = ~s~使用切換功能選擇要飆車回去的角色。~s~
+	S3_STOP = ~s~把車停在路邊，停在~b~那些車~s~的後面。
+}

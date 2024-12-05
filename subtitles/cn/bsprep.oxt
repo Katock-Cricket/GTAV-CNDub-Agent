@@ -1,0 +1,28 @@
+﻿Version 2 30
+{
+	0x39A43C78 = ~s~將平板拖車放到~b~拖車~s~上。
+	0x627CFF0C = ~s~等富蘭克林解開~b~火車頭~s~。
+	0x98536ABC = ~s~等崔佛解開~b~火車頭~s~。
+	0xA97491A0 = ~s~等麥可解開~b~火車頭~s~。
+	BSD_GETINCHOP = ~s~登上~b~吊掛直升機~s~。
+	BSPD_ABANDON = 沒有偷到火車。
+	BSPD_CREWDEAD = 其中一個夥伴被殺了。
+	BSPD_SW_M = 切換至麥可。
+	BSPD_SW_T = 切換至崔佛。
+	BSPD_TRUCKDEAD = 貨車毀壞了。
+	BSPD_WAIT = 等待火車停入側線。
+	FAILGUARD = ~s~警察得到了通知。
+	FAILHELI = ~s~直升機已遭摧毀。
+	FAILTRAIN = ~s~火車已遭摧毀。
+	FLIPSWITCH = ~s~按µ~INPUT_CONTEXT~µ來改變軌道路線。
+	GETCARRIAGE = ~s~夾起~b~平板拖車~s~。
+	GETENGINE = ~s~夾起~b~火車頭~s~。
+	GOTOBOX = ~s~前往~y~號誌控制器 ~s~。
+	KILLGUARDS = ~s~撂倒~r~鐵路工人~s~。
+	MAGNETOFF = ~s~按µ~INPUT_VEH_GRAPPLING_HOOK~µ停用電磁鐵。
+	MAGNETON = ~s~按µ~INPUT_VEH_GRAPPLING_HOOK~µ啟動電磁鐵。
+	NOFLIP = ~s~在有火車的時候無法改變側線。
+	TAKEENGINE = ~s~把火車頭送到~y~崔佛的小機場~s~。
+	TAKEENGINE2 = ~s~將火車頭放到~b~拖車~s~上。
+	TAKEFLATBED = ~s~把平板拖車送到~y~崔佛的小機場~s~。
+}

@@ -1,0 +1,11 @@
+﻿Version 2 30
+{
+	JHP1A_ABAN = 麥可放棄了任務。
+	JHP1A_BKIN = 回到~b~除蟲大師廂型車~s~上。
+	JHP1A_BKINANY = 回到其中一台~b~除蟲大師廂型車~s~上。
+	JHP1A_STEAL_BSV = 偷走並運送一輛~b~除蟲大師廂型車~s~。
+	JHP1A_VANS_DEAD = 所有除蟲大師廂型車都不能開。
+	JHP1A_VAN_ABAN = 麥可放棄了除蟲大師廂型車。
+	JHP1A_VAN_DEAD = 除蟲大師廂型車毀壞了。
+	JHP1A_VAN_STUCK = 除蟲大師廂型車卡住了。
+}

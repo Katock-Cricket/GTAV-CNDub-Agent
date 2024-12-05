@@ -1,0 +1,14 @@
+﻿Version 2 30
+{
+	RHP_BK = ~s~回到運載~b~裝備~s~的載具上。
+	RHP_EXIT = ~s~下車。
+	RHP_FABN = ~w~裝備被放棄了。~s~
+	RHP_FDES = ~w~運輸貨車毀壞了。~s~
+	RHP_FEND = ~w~隊伍已經抵達基地。~s~
+	RHP_GOODS = ~s~攔截~b~軍事裝備~s~。
+	RHP_HELP = ~s~裝備絕對不能遭到摧毀。
+	RHP_KILL = ~s~幹掉剩餘的~r~守衛~s~。
+	RHP_LWARN = ~s~不要留下~b~裝備~s~。
+	RHP_RTN = ~s~前往~y~製毒場~s~。
+	RHP_TRKSTCK = ~s~運輸貨車卡住了。
+}

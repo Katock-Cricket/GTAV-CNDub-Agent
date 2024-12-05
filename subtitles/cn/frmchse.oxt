@@ -1,0 +1,38 @@
+﻿Version 2 30
+{
+	0x0C6E2CD2 = 任務完成
+	0x6A1C0935 = 汽油倒光了。
+	0xA2FAF85F = 汽油倒光了。點燃安非他命實驗室內的汽油並逃離房舍。
+	0xBA73C597 = 選擇潛入或正面衝突。
+	0xC85C3081 = 歐尼爾的農舍有守衛保護。想辦法進去並摧毀它。
+	0xD002CEA0 = 崔佛抓狂了，他特殊能力橫條的填充速度會是正常情況的µ2µ倍。
+	CHFAIL = 任務失敗~s~
+	CHFAIL1 = 汽油用完了。
+	CHFAIL2 = 農場被放棄了。
+	FRMBLIP = 製毒場
+	FRMBLIPB = 汽油桶
+	FRMCHI = 陳先生被殺。
+	FRMCHI2 = 翻譯員被殺。
+	FRMCHSE_1 = 前往~y~歐尼爾兄弟的農場~s~。
+	FRMCHSE_5 = 到山丘上的~y~有利位置~s~ 。
+	FRMFLC = 撿起~g~汽油桶~s~。
+	FRMFLE = 先殺了發現您的守衛，以免他警告他的同伴。
+	FRMFRG = 回農舍去完成汽油痕跡。
+	FRMFRH = 走之前利用汽油痕跡來燒掉那房子。
+	FRMGASF = 汽油桶遭到破壞。
+	FRMIGN = 朝汽油痕跡開槍以點燃汽油。
+	FRMLEAVE = 離開農舍。
+	FRMLK = ~r~守衛~s~正在搜索您。
+	FRMMISS = 如果汽油痕跡有中斷，雷達上仍舊會標示出需要補足的地方。
+	FRMPET2 = 如要潑灑汽油，裝備汽油桶並按住µ~INPUT_ATTACK~。
+	FRMSHP = 到農舍~y~前方外面~s~。
+	FRMSNP = 摧毀~g~歐尼爾的安非他命實驗室~s~。
+	FRMSOON = 崔佛沒有逃出農舍。
+	FRMSTLTH = ~s~在潛行模式下，按住µ~INPUT_SPRINT~µ可以更快地移動。
+	FRMSTLTH_KM = ~s~在潛行模式下，按µ~INPUT_SPRINT~µ可以更快地移動。
+	FRMTRAI = 汽油痕跡有中斷。
+	FRMTRL = 倒出一條通往外面的~y~汽油痕跡~s~。
+	FRMTRL2 = 雷達上的標記代表潑灑汽油的位置。
+	USESPEC = ~s~當特殊能力滿格時，~n~按µ~INPUT_SPECIAL_ABILITY~µ+µ~INPUT_SPECIAL_ABILITY_SECONDARY~µ即可啟用。
+	USESPEC_KM = ~s~當特殊能力滿格時，按µ~INPUT_SPECIAL_ABILITY_PC~µ即可啟用。
+}

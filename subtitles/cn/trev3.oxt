@@ -1,0 +1,28 @@
+﻿Version 2 30
+{
+	TRV3_1 = ~s~前往~y~拖車公園~s~。
+	TRV3_2 = ~s~去~y~偉德表哥的公寓~s~。
+	TRV3_3 = 把黏彈裝在~y~拖車~s~上。
+	TRV3_4 = ~s~使用µ~INPUT_DETONATE~µ引爆黏彈。
+	TRV3_4B = ~s~裝上黏彈以後，就可以使用µ~INPUT_DETONATE~µ引爆。
+	TRV3_5A = 按住µ~INPUT_SELECT_WEAPON~µ然後使用µ~INPUTGROUP_WHEEL~µ選擇黏彈。
+	TRV3_5B = 靠近拖車，使用µ~INPUT_AIM~µ瞄準，然後按µ~INPUT_ATTACK~µ丟出炸彈。
+	TRV3_7 = 按µ~INPUT_ATTACK~µ在地上或垂直的表面上安裝炸彈。
+	TRV3_8 = Mission Passed (mocap soon)
+	TRV3_9 = ~s~前往~y~洛聖都~s~。
+	TRV3_12 = 在離開拖車公園前引爆炸彈。
+	TRV3_13 = 偉德被拋棄了。
+	TRV3_15 = 偉德死了。
+	TRV3_16 = 黏彈已經用完。
+	TRV3_19 = 回去找~b~偉德~s~。
+	TRV3_20 = 跟著~b~偉德~s~。
+	TRV3_21 = 回到拖車公園。
+	TRV3_BDY1 = ~s~回去找~b~偉德~s~。
+	TRV3_END1 = ~s~弗洛伊德的公寓現在可當做藏身處使用。您可以把車停在車道上來保留車輛。
+	TRV3_F01 = 沒有提供失敗的原因。
+	TRV3_F04 = 拖車公園已經空無一人。
+	TRV3_F05 = 偉德被拋棄了。
+	TRV3_F06 = 黏彈剩餘數量不足。
+	TRV3_F07 = 太早驚動失落摩托車的人。
+	TRV3_FAR = 拖車公園已經空無一人。
+}

@@ -1,0 +1,31 @@
+﻿Version 2 30
+{
+	0x8BAC4118 = ~s~使用µ~INPUTGROUP_LOOK~µ四處觀看，並使用µ~INPUTGROUP_MOVE~µ拉近或放遠。
+	0x2183A3A8 = ~s~任務被放棄了。~s~
+	0x824348C7 = ~s~富蘭克林死了。~s~
+	0xC5A56E2E = 工地
+	ASS_CS_BASE = 基本報酬
+	ASS_CS_BDESC = 禁航區獎勵
+	ASS_CS_CASH = 賺取金額
+	ASS_CS_COMP = 完成
+	ASS_CS_COMPB = 圓滿度：銅牌
+	ASS_CS_COMPG = 圓滿度：金牌
+	ASS_CS_COMPN = 圓滿度：無獎牌
+	ASS_CS_COMPS = 圓滿度：銀牌
+	ASS_CS_CONT = 繼續
+	ASS_CS_EHELP1 = ~s~找電梯好上屋頂去。~s~
+	ASS_CS_ELEHELP = ~s~按µ~INPUT_CONTEXT~µ啟動電梯。~s~
+	ASS_CS_ESCAPED = ~s~目標逃走了。~s~
+	ASS_CS_GOSITE = ~s~前往~y~工地~s~。
+	ASS_CS_KILL = ~s~暗殺~r~目標~s~。
+	ASS_CS_PARA = ~s~離開這個區域。~s~
+	ASS_CS_PARA2 = ~s~在空中時按µ~INPUT_PARACHUTE_DEPLOY~µ打開降落傘。~s~
+	ASS_CS_PASSED = 任務完成
+	ASS_CS_REMIND = ~s~您已暗殺目標。請離開此地，必要時可採取任何手段。~s~
+	ASS_CS_ROOF = ~s~到~y~屋頂上~s~。
+	ASS_CS_RTNR = ~s~回去尋找目標~s~。
+	ASS_CS_RTNY = ~s~回去~y~工地~s~。
+	ASS_CS_STATION = 工地
+	ASS_CS_TARGET = 目標
+	ASS_CS_TIMER = 花費時間
+}

@@ -1,0 +1,35 @@
+﻿Version 2 30
+{
+	0x42DBE328 = ~s~有更多~r~梅利威瑟~s~的人來到房子前面。
+	0x62DC6EEF = ~s~進去~y~房子~s~裡。
+	0x547B1F2C = ~s~去找~b~崔西~s~。
+	0x922EAA9D = 雷茲羅．瓊斯
+	0xA06FC71F = 雷茲羅的紅毯真相
+	0xC278A014 = ~s~按µ~INPUT_SCRIPT_PAD_RIGHT~µ切換禮車鏡頭。
+	MIC4_COPS = 你把警察引去麥可家了。
+	MIC4_DISRUPT = 電影首映被搞砸了。
+	MIC4_DRIVERDEAD = 禮車司機死了。
+	MIC4_LIMOCAM = ~s~按µ~INPUT_VEH_CIN_CAM~µ以切換禮車鏡頭。
+	MIC4_LIMODEAD = 禮車毀壞了。
+	MIC4_SA = 試著用麥可的特殊能力在戰鬥時助您一臂之力。特殊能力橫條有些能量時，同時按下µ~INPUT_SPECIAL_ABILITY~µ和µ~INPUT_SPECIAL_ABILITY_SECONDARY~。~s~
+	MIC4_SA_KM = 試著用麥可的特殊能力在戰鬥時助您一臂之力。特殊能力橫條有些能量時，按下µ~INPUT_SPECIAL_ABILITY_PC~。~s~
+	SOL5_ADIED = ~s~亞曼達死了。
+	SOL5_DEVTXT = 豬頭，你還有µ2µ分鐘的時間可以犧牲自己好救你的家人！
+	SOL5_FAILTUX = 膨風精品關門了。
+	SOL5_GET2HSE = ~s~救您的~b~家人~s~。
+	SOL5_INLIMO = 上~b~禮車~s~。
+	SOL5_JDIED = ~s~吉米死了。
+	SOL5_KILLBAD = ~s~清空房子裡的~r~梅利威瑟~s~。
+	SOL5_KILLBAD2 = ~s~殺光外頭的~r~梅利威瑟手下~s~。
+	SOL5_LEAVE = ~s~麥可的家人被拋棄了。
+	SOL5_MISSED = 您錯過首映會了。
+	SOL5_MTJIM = 和~b~吉米~s~碰面。
+	SOL5_NOLIMO = 您離開了禮車。
+	SOL5_REDCARPET = 前往~y~紅毯區~s~。
+	SOL5_RENDEZV = ~s~去找您的~b~家人~s~。
+	SOL5_SAVEAM = ~s~殺掉~r~綁匪~s~。
+	SOL5_TDIED = ~s~崔西死了。
+	SOL5_TIMEUP = ~s~沒有及時拯救麥可的家人。
+	SOL5_TUX1 = 在~y~膨風精品~s~換上您的燕尾服以參加《崩潰危機》首映會。
+	SOL5_TUX2 = 在~y~膨風精品~s~購買燕尾服以參加《崩潰危機》的首映會。
+}

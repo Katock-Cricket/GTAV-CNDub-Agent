@@ -1,0 +1,15 @@
+﻿Version 2 30
+{
+	0x08638754 = 爬上~r~梯子~s~去抓麥可。
+	0x27FC9A92 = ~s~離開這個區域~s~。
+	0x9860A5E1 = 徒步追~r~麥可~s~。
+	0xC2BC9AFE = 找一輛車或機車。
+	0xF071A1E1 = 前往µ~y~68µ號道路~s~出口與麥可碰面。
+	0xF2911ED3 = 這輛車不適合。
+	FIN2_CHASE = 追~r~麥可~s~。
+	FIN2_DROP = 按µ~INPUT_SCRIPT_RDOWN~µ甩掉麥可。~n~按µ~INPUT_SCRIPT_RRIGHT~µ救麥可。
+	FIN2_FAIL1 = ~w~麥可逃走了。
+	FIN2_FAILDF = ~w~預設。
+	FIN2_LOST = 麥可快逃走了。
+	FIN2_SPOT = 前往~y~麥可最後出現的位置~s~。
+}

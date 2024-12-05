@@ -1,0 +1,25 @@
+﻿Version 2 30
+{
+	SOL1_ALARM = 殺掉已被驚動的敵人，以免他們警告洛科。
+	SOL1_BEAT = 毆打~r~洛科~s~。
+	SOL1_ELS = 前往~y~東洛聖都~s~。
+	SOL1_FAILABND = ~w~密爾頓和安東被拋棄了。~s~
+	SOL1_FAILACT = ~w~密爾頓死了。~s~
+	SOL1_FAILALRM = ~w~已經驚動洛科。~s~
+	SOL1_FAILDD = ~w~安東死了。~s~
+	SOL1_FAILHE = ~w~直升機毀壞了。~s~
+	SOL1_FAILLF = ~w~麥可離開了任務區域。~s~
+	SOL1_FAILROC = ~w~洛科死了。~s~
+	SOL1_FAILSCRD = ~w~密爾頓和安東受到驚嚇。~s~
+	SOL1_FIGHTRT = ~s~回去跟~r~洛科~s~戰鬥。
+	SOL1_HELI = 在不驚動洛科的情況下抵達~y~直升機停機坪~s~。
+	SOL1_HELP1 = ~s~提升力量後，近戰攻擊時造成的傷害會更大、爬樓梯的速度會更快、可承受的傷害程度會提高，同時運動時的表現也會更好。
+	SOL1_HELP2 = ~s~進行近戰格鬥和運動都可提升力量。
+	SOL1_RTNANT = ~s~回去找~b~安東~s~。
+	SOL1_RTNM = ~s~返回任務區域~s~。
+	SOL1_RTNMILT = ~s~回去找~b~密爾頓~s~。
+	SOL1_SCARE = ~s~亂飛好讓密爾頓和安東改變主意。~s~
+	SOL1_SCAREHLP = ~s~以高速、橋下穿越或緊貼建築物飛行的特技嚇密爾頓和安東。~s~
+	SOL1_SOLDIED = ~w~所羅門死了。~s~
+	SOL1_STUDIO = 回到~y~片場~s~。
+}

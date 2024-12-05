@@ -1,0 +1,5 @@
+﻿Version 2 30
+{
+	INT_LEAVE = 離開這個區域。
+	INT_THREAT = 麥可受到威脅。
+}

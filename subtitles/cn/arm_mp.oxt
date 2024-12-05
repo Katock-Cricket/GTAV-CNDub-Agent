@@ -1,0 +1,43 @@
+﻿Version 2 30
+{
+	0x218C559F = 您在本場遊戲中獲勝
+	0x441B9CB7 = 您在本場遊戲中落敗
+	0x60819E44 = 準備好開始比腕力
+	0xAC71E7D8 = 您輸了這回合的腕力比賽。
+	0xC0655159 = ~INPUT_SCRIPT_LEFT_AXIS_X~µ或µ~INPUT_SCRIPT_RIGHT_AXIS_X~µ比腕力~n~~INPUT_SCRIPT_SELECT~µ退出
+	0xC3D312CC = 您贏了這回合的腕力比賽。
+	0xDAC297B6 = 歡迎來到比腕力。您可以和您的夥伴們一起較勁。按µ~INPUT_FRONTEND_ACCEPT~µ開始比試。
+	0xE872E16B = 歡迎來到比腕力。您可以在線上模式中和任何玩家同樂。按µ~INPUT_FRONTEND_ACCEPT~µ開始比試。
+	ARMMP_END_QT = 退出
+	ARMMP_HOW_TO_1 = 歡迎來與µ~a~µ~s~比腕力。
+	ARMMP_HOW_TO_2 = 把對手的手臂壓在桌上即可獲得勝利。
+	ARMMP_HOW_TO_3 = 要把對手的手臂壓在比賽桌上，您需要快速並以水平方向搖動µ~INPUT_SCRIPT_LEFT_AXIS_X~µ或µ~INPUT_SCRIPT_RIGHT_AXIS_X~。
+	ARMMP_HOW_TO_4 = 要把對手的手臂壓在比賽桌上，您需要快速點按µ~INPUT_SCRIPT_LEFT_AXIS_X~。
+	ARMMP_HOW_TO_12 = 歡迎來到比腕力。
+	ARMMP_QUITUI_D = 確定要退出比腕力？
+	ARMMP_REGAME = 歡迎回來與µ~a~µ~s~比腕力。
+	ARMMP_REGAME2 = 歡迎回來比腕力。
+	ARMMP_REMATCH = 再比一次
+	ARMMP_REQ_RM = ~a~ 要求再比一次。
+	ARMMP_REQ_RM2 = 對方要求再比一場。
+	ARMMP_SC_LOSE = 輸家
+	ARMMP_SC_TSCORE = 對方的勝場
+	ARMMP_SC_USCORE = 您的勝場
+	ARMMP_SC_WIN = 獲勝
+	ARMMP_TABLE1 = 好麥塢腕力賽
+	ARMMP_TABLE2 = 布羅腕力賽
+	ARMMP_TABLE3 = 聖安地列斯腕力賽
+	ARMMP_TABLE4 = 安樂腕力賽
+	ARMMP_TABLE5 = 塞諾拉腕力賽
+	ARMMP_TABLE6 = 塞諾拉腕力賽
+	ARMMP_TABLE7 = 和美尼腕力賽
+	ARMMP_TABLE8 = 佩立托灣腕力賽
+	ARMMP_TABLE9 = 葡萄籽腕力賽
+	ARMMP_TABLE10 = 塞諾拉腕力賽
+	ARMMP_TUT_1 = 快速從左向右移動µ~INPUT_SCRIPT_LEFT_AXIS_X~µ或µ~INPUT_SCRIPT_RIGHT_AXIS_X~µ來比腕力。
+	ARMMP_TUT_2 = 快速點按µ~INPUT_SCRIPT_LEFT_AXIS_X~µ來比腕力。
+	ARMMP_WAIT_RD = 正在等其他玩家準備就緒......
+	ARMMP_WAIT_RM = 等待對手中......
+	ARMMP_WRESTLE = 比腕力
+	ARMMP_XPT = ~g~+~1~ ~a~:~s~ 比腕力獲勝。
+}

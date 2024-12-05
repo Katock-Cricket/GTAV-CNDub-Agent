@@ -1,0 +1,28 @@
+﻿Version 2 30
+{
+	0x1FD5E62C = ~s~富蘭克林死了。~s~
+	0xD9C59117 = ~s~返回這個區域。
+	ASS_HK_ABAND = ~s~任務被放棄了。~s~
+	ASS_HK_BASE = 基本報酬
+	ASS_HK_BDESC = 俐落逃脫獎勵
+	ASS_HK_CASH = 賺取金額
+	ASS_HK_COMP = 完成
+	ASS_HK_COMPB = 圓滿度：銅牌
+	ASS_HK_COMPG = 圓滿度：金牌
+	ASS_HK_COMPN = 圓滿度：無獎牌
+	ASS_HK_COMPS = 圓滿度：銀牌
+	ASS_HK_CONT = 繼續
+	ASS_HK_COPS = ~s~甩掉警察。~s~
+	ASS_HK_COVER = ~s~富蘭克林的形跡敗露。~s~
+	ASS_HK_DESTBLIP = 外圍車道
+	ASS_HK_HELP1 = ~s~靠那麼近的話，目標不會接近妓女。離那個女孩遠一點，讓目標接近她。~s~
+	ASS_HK_IDT = ~s~妓女會進入目標的車。注意她進去哪一輛車並把司機殺掉。~s~
+	ASS_HK_LEAVE = ~s~離開這個區域。~s~
+	ASS_HK_LOST = ~s~目標逃走了。~s~
+	ASS_HK_NAME = 敗德暗殺行動
+	ASS_HK_PASSED = 任務完成
+	ASS_HK_RT = ~s~回去找那~b~女孩~s~。
+	ASS_HK_TIMER = 花費時間
+	ASS_HK_WAIT = ~s~監視~b~妓女~s~。
+	ASS_HK_WAIT2 = ~s~暗殺~r~目標~s~。
+}

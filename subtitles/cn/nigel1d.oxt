@@ -1,0 +1,15 @@
+﻿Version 2 30
+{
+	0x9E8A758D = 追上~r~馬克．佛森堡~s~。
+	0x256CF194 = 回到~y~高爾夫球場~s~。
+	0xD4AD44CE = 高爾夫球場內禁止使用武器及載具。
+	N1D_CLUBDES = 高爾夫球桿被毀壞了。
+	N1D_CLUBLOST = 高爾夫球桿被放棄了。
+	N1D_COLLECT = 拿取~g~高爾夫球桿~s~。
+	N1D_ESCAPE = 馬克．佛森堡逃跑了。
+	N1D_LOSESEC = 避開~r~保全~s~。
+	N1D_NOLOCATE = 沒能找到馬克．佛森堡。
+	N1D_RETPICKUP = 回到~g~高爾夫球桿~s~的位置。
+	N1D_TAKE = 偷走~r~馬克．佛森堡~s~的高爾夫球桿。
+	N1D_WANTED = 甩掉警察。
+}

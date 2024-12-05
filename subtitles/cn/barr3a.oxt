@@ -1,0 +1,15 @@
+﻿Version 2 30
+{
+	0x9BA6AA4A = 回到~b~貨車~s~上。
+	B3ADELV = 前往巴瑞的~y~公寓~s~。
+	B3AEXIT = 離開貨車。
+	B3AGETIN = 上~b~貨車~s~。
+	B3ALEAVE = 離開這個區域。
+	B3ANOTDELV = 貨車沒有送到。
+	B3ARTV = 回到~b~貨車~s~上。
+	B3ATIME = 時間
+	B3ATIMEOUT = 貨車沒有及時送到。
+	B3AVHDEST = 貨車毀壞了。
+	B3AVHSTUCK = 貨車卡住了。
+	B3AWAN1 = 甩掉警察。
+}

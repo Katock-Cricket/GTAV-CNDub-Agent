@@ -1,0 +1,10 @@
+﻿Version 2 30
+{
+	NIG1A_F_01 = ~w~威利死了。~s~
+	NIG1A_OBJ_01 = 進去~y~俱樂部~s~找出威利。~s~
+	NIG1A_OBJ_02 = 痛毆~r~威利~s~。
+	NIG1A_OBJ_03 = 拾取威利的~g~金牙~s~。
+	NIG1A_OBJ_04 = 離開這個區域。~s~
+	NIG1A_OBJ_05 = 甩掉警察。
+	NIG1A_TP_BLIP = 金牙
+}

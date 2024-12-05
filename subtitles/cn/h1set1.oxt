@@ -1,0 +1,25 @@
+﻿Version 2 30
+{
+	0x52B57C8C = 按µ~INPUT_VEH_CIN_CAM~µ將鏡頭對準清潔工。
+	0x84467AA5 = ~s~注射~r~清潔工~s~。
+	S1_ABAND = 萊斯特被拋棄了。~s~
+	S1_BACKUP = 您太靠近~b~清潔工~s~了。
+	S1_BKINCAR = ~s~回到~b~車~s~上。
+	S1_BKTOAPT = 回去找~b~清潔工~s~。
+	S1_FAILED = 清潔工逃走了。~s~
+	S1_FAILED_C = 清潔工不能回家。~s~
+	S1_FAILED_K = 清潔工死了。~s~
+	S1_FAILLV = 離開了任務區域。~s~
+	S1_FOCUS = ~s~按µ~INPUT_VEH_CIN_CAM~µ將鏡頭對準目標車牌。
+	S1_FOLLOW = ~s~跟蹤~b~清潔工~s~。
+	S1_FOLLOW2 = ~s~跟著~b~清潔工~s~進他的公寓。
+	S1_GETTOBANK = ~s~前往 ~y~FIB 大樓~s~。
+	S1_GOTOSH = ~s~前往~y~成衣工廠~s~。
+	S1_JSPOOK = 清潔工受到驚嚇。~s~
+	S1_LESFAIL = 萊斯特死了。~s~
+	S1_LOSECOPS = ~s~甩掉警察。~s~
+	S1_SECFAIL = 已經驚動保全。~s~
+	S1_UPSTAIRS = ~s~前往~y~辦公室~s~。
+	S1_VEHSTUCK = ~s~車子卡住了。~s~
+	S1_WAIT = ~s~等清潔工的車。
+}

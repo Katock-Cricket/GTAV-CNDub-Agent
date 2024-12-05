@@ -1,0 +1,36 @@
+﻿Version 2 30
+{
+	0x03C99886 = ~s~回到~y~飯店~s~。
+	0x49AEF5F4 = 飯店暗殺行動
+	0xC68B1167 = ~s~消除通緝等級。~s~
+	0xD65A7B0E = ~s~富蘭克林死了。~s~
+	ASS_VA_ABAND = ~s~任務被放棄了。~s~
+	ASS_VA_BASE = 基本報酬
+	ASS_VA_BDESC = 狙擊暗殺獎勵
+	ASS_VA_CASH = 賺取金額
+	ASS_VA_COMP = 完成
+	ASS_VA_COMPB = 圓滿度：銅牌
+	ASS_VA_COMPG = 圓滿度：金牌
+	ASS_VA_COMPN = 圓滿度：無獎牌
+	ASS_VA_COMPS = 圓滿度：銀牌
+	ASS_VA_CONT = 繼續
+	ASS_VA_COVER = ~s~富蘭克林的形跡敗露。~s~
+	ASS_VA_DESTBLIP = 飯店
+	ASS_VA_ESCAPED = ~s~目標逃走了。~s~
+	ASS_VA_FAILED = ~s~沒有成功暗殺目標。~s~
+	ASS_VA_GO = ~s~離開這個區域。~s~
+	ASS_VA_GOHOTEL = ~s~前往~y~飯店~s~。
+	ASS_VA_KILL = ~s~暗殺~r~目標~s~。
+	ASS_VA_LATTACK = ~s~萊斯特遭到攻擊。~s~
+	ASS_VA_LOSECOPS = ~s~甩掉警察。~s~
+	ASS_VA_PASSED = 任務完成
+	ASS_VA_PLANT = ~s~暗殺目標。~s~
+	ASS_VA_RHOTEL = ~s~回到~y~飯店~s~。
+	ASS_VA_SNIPE1 = ~s~護衛隊已經抵達飯店準備接走目標，他應該很快就會離開。~s~
+	ASS_VA_SNIPE2 = ~s~迅速規劃攻擊行動，並找一個能明顯看到飯店的有利位置。~s~
+	ASS_VA_TIMELEFT = ~s~退房~s~
+	ASS_VA_TIMER = 花費時間
+	ASS_VA_TIMERED = ~r~退房~s~
+	ASS_VA_VEHICLE = ~s~載具已經驚動護衛隊。~s~
+	ASS_VA_WANTED = ~s~富蘭克林因為被通緝而形跡敗露。~s~
+}

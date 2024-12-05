@@ -1,0 +1,7 @@
+﻿Version 2 30
+{
+	O1_FAILHURT = 歐米伽受傷了。
+	O1_FAILKILL = 歐米伽死了。
+	O1_FAILSCARE = 歐米伽受到驚嚇。
+	O1_LEAVEAREA = 離開這個區域。
+}

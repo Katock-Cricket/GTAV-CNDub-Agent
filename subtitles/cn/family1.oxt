@@ -1,0 +1,35 @@
+﻿Version 2 30
+{
+	0x02FB1F97 = ~s~幹，別讓這混蛋阻礙我！！
+	0x2DDB7EC8 = ~s~黃色橫條表示麥可的狂怒等級，等它充滿後，麥可就能使用他的特殊能力。
+	0x533D8191 = ~s~跟著~b~富蘭克林~s~。
+	0x2579A772 = ~s~朝~r~竊賊~s~開火，以免他先抓到吉米。
+	0x54652249 = ~s~按µ~INPUT_VEH_AIM~µ可邊開車邊射擊。按住µ~INPUT_VEH_AIM~µ可瞄準敵人。
+	0xEE4BB820 = ~s~麥可有特殊能力。同時按下µ~n~~INPUT_SPECIAL_ABILITY~µ+µ~INPUT_SPECIAL_ABILITY_SECONDARY~µ可加強麥可的射擊能力。
+	YB_BLEWCOV = ~s~富蘭克林的形跡敗露。
+	YB_BLEWSHOP = ~s~您沒修好車子。
+	YB_CARAPP = ~s~將車輛儲存到你的藏身處車庫，即可上傳到µiFruitµ應用程式修改。
+	YB_FAIL = ~s~麥可沒能及時救出所有人。
+	YB_FAIL1 = ~s~吉米死了。
+	YB_FAIL2 = ~s~亞曼達的車被放棄了。
+	YB_FAIL3 = ~s~跟丟遊艇了。
+	YB_FOCUS = ~s~按 ~INPUT_VEH_CIN_CAM~ 將鏡頭對準遊艇。
+	YB_GETIN = ~s~上~b~亞曼達的車~s~。
+	YB_GETTO = ~s~前往~y~太平崖~s~。
+	YB_HELP1 = ~s~把車子開穩一點，好讓富蘭克林跳上去。
+	YB_HELP3 = ~s~按 ~INPUT_VEH_CIN_CAM~ 切換電影特效鏡頭。
+	YB_HELP4 = ~s~按住 ~INPUT_VEH_AIM~ 可邊開車邊射擊。使用 ~INPUTGROUP_LOOK~ 可瞄準。
+	YB_HELP4ALT = ~s~按住µ~INPUT_VEH_AIM~µ時使用µ~INPUTGROUP_LOOK~µ可邊開車邊瞄準。按住µ~INPUT_VEH_ATTACK~µ可開槍。
+	YB_HELPJ = ~s~開到吉米下方，並保持車子穩定。
+	YB_MODAPP = ~s~您可以下載µiFruitµ應用程式到您的智慧型手機或平板電腦，來改裝您的車和創建特製車牌。如需更詳細的資料，請造訪 www.rockstargames.com/V/downloads/
+	YB_OBJ1 = ~s~追~b~遊艇~s~。
+	YB_OBJ1B = ~s~讓富蘭克林靠~b~遊艇~s~近一點。
+	YB_OBJ2 = ~s~向~r~竊賊~s~開火。
+	YB_OBJ3 = ~s~接住~b~吉米~s~。
+	YB_OBJ4 = ~s~接住~b~富蘭克林~s~。
+	YB_OBJ5 = ~s~前往~y~洛聖都改車王~s~。
+	YB_OBJ6 = ~s~把亞曼達的車拿去修理。
+	YB_OBJ7 = ~s~去~y~麥可家~s~。
+	YB_TAXI = ~s~按µ~INPUT_CONTEXT~µ可把計程車招過來。
+	YB_WARN1 = ~s~~b~遊艇~s~要被載走了。
+}

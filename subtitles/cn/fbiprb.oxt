@@ -1,0 +1,12 @@
+﻿Version 2 30
+{
+	PRB_FFAR = 拖吊車被放棄了。
+	PRB_FSTUCK = 拖吊車卡住了。
+	PRB_FWRECK = 拖吊車被撞壞了。
+	PRB_GOVAN = 偷~b~拖吊車~s~。
+	PRB_LEVAREA = 離開這個區域。
+	PRB_LEVVEH = 離開拖吊車。
+	PRB_LOSETOW = 甩掉~r~技工~s~。
+	PRB_RETVEH = 回到~b~拖吊車~s~上。
+	PRB_TAKBACK = 把拖吊車開去 ~y~FIB 會合點~s~。
+}

@@ -1,0 +1,30 @@
+﻿Version 2 30
+{
+	0x07B328F9 = 任務失敗
+	0x4F802CD1 = 任務完成
+	0x5C7E43FD = ~s~按µ~input_jump~µ往上跳。~s~
+	0x7EE0373C = ~s~跳進~y~洗衣店的貨車~s~。
+	0x8DD1CD38 = ~s~拿~r~探員~s~的武器。~s~
+	0x96A466C4 = ~s~到~y~頂樓~s~去。
+	0x555CB5BA = ~s~電梯暫停使用。~s~
+	0x975EE052 = ~s~從~y~袋子~s~裡拿取您的財物。
+	0x253503E7 = ~s~打倒~r~ IAA 探員~s~。
+	0xA4758266 = ~s~離開載具。~s~
+	0xB43721E9 = ~s~逃出~y~大樓~s~。
+	0xE94C1343 = ~s~黃色橫條表示麥可的特殊能力等級。按µ~INPUT_SPECIAL_ABILITY_PC~µ可讓時間慢下來。~s~
+	FBI1_FAIL_0 = ~s~富蘭克林死了。~s~
+	FBI1_FAIL_1 = 追捕的條子太多，無法完成任務。~s~
+	FBI1_FAIL_2 = ~s~麥可的形跡敗露。~s~
+	FBI1_FAIL_3 = ~s~麥可死了。~s~
+	FBI1_GOD_1 = ~s~到停屍間搜尋~g~屍體~s~。
+	FBI1_GOD_4 = ~s~從~y~窗戶~s~逃走。
+	FBI1_GOD_6 = ~s~前往~y~油井~s~。
+	FBI1_GOD_7 = ~s~逃出~y~大樓~s~。
+	FBI1_GOD_12 = ~s~射破~y~窗戶~s~然後逃走。~s~
+	FBI1_GOD_13 = 屍體
+	FBI1_GOD_14 = 從~y~窗戶~s~爬出去。
+	FBI1_HELP1 = ~s~按µ~INPUT_SKIP_CUTSCENE~µ醒來。~s~
+	FBI1_HELP4 = ~s~黃色橫條表示麥可的特殊能力等級。同時按µ~INPUT_SPECIAL_ABILITY~µ+µ~INPUT_SPECIAL_ABILITY_SECONDARY~µ可讓時間慢下來。~s~
+	FBI1_HELP5 = ~s~當麥可做出爆頭和潛行制敵等致命動作，便可填充他的特殊能力橫條。
+	FBI1_HELP6 = ~s~按µ~input_jump~µ從窗戶爬出去。~s~
+}

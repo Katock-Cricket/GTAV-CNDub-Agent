@@ -1,0 +1,42 @@
+﻿Version 2 30
+{
+	FC_APPHLP = 您可以下載µiFruitµ應用程式到您的智慧型手機或平板電腦來改善小查的行為。~n~您可以在遊戲中訓練小查以協助您。如需更詳細的資料，請造訪 www.rockstargames.com/V/downloads/
+	FC_BOXHLP = 按 ~INPUT_CONTEXT~ 打開列車的車廂門。
+	FC_CALLHLP = 按 ~INPUT_CONTEXT~ 叫小查回來。
+	FC_CHASE = 追~r~ D~s~。
+	FC_CHOPHLP = 切換到小查，以牠的視角來查看。
+	FC_CLOSER = 去~b~小查~s~那裡拉開牠。
+	FC_DOWNLHLP = 您可以下載µiFruitµ應用程式到您的智慧型手機或平板電腦。~n~這個應用程式可以讓您調教小查的行為，並教牠一些特技。如需更詳細的資料，請造訪 www.rockstargames.com/V/downloads/
+	FC_FAIL1 = 拉瑪死了。
+	FC_FAIL2 = Dµ離開了。
+	FC_FAIL3 = D 死了。
+	FC_FAIL4 = 小查死了。
+	FC_FAIL5 = 廂型車毀壞了。
+	FC_FAIL6 = D 受到驚嚇。
+	FC_FAIL7 = 拉瑪被拋棄了。
+	FC_FAIL8 = 廂型車被放棄了。
+	FC_FAIL9 = 警察被誘往富蘭克林家附近。
+	FC_FAIL10 = 廂型車卡住了。
+	FC_FAIL11 = 小查被拋棄了。
+	FC_FOLLAM = 跟著~b~拉瑪~s~。
+	FC_GOBOX = 打開~y~列車車廂~s~看看 D 是否躲在裡面。
+	FC_GOCHOP = 跟著~b~小查~s~。
+	FC_GOHOUSE1 = 帶 D 去~y~拉瑪家~s~。
+	FC_GOREC = 在~y~娛樂中心~s~放拉瑪下車。
+	FC_GOVAN1 = 上~b~廂型車~s~。
+	FC_GOVAN2 = 回到~b~廂型車~s~上。
+	FC_GOVINEW = 前往~y~好麥塢大道~s~。
+	FC_JUMHLP = 按 ~INPUT_JUMP~ 攀爬。
+	FC_LEAVE = 回去找~b~拉瑪~s~。
+	FC_LETOUT = 停下廂型車讓 D 下車。
+	FC_POSHLP = 找個更好的位置讓µDµ下車。
+	FC_QSWHLP = 點按µ~INPUT_CHARACTER_WHEEL~µ可快速切換到與當時行動最相關的角色。
+	FC_RUNHLP1 = 跑步會改善您的綜合體力。~n~提升您的綜合體力可以讓您衝刺的更久一點。
+	FC_RUNHLP2 = 衝刺的時間若超過體力負荷，會導致生命值下降。
+	FC_SLDHLP = 跑向車子引擎蓋時按 ~INPUT_JUMP~ 可滑過引擎蓋。
+	FC_SPCHLP = 同時按 ~INPUT_SPECIAL_ABILITY~ + ~INPUT_SPECIAL_ABILITY_SECONDARY~ 可啟用富蘭克林的特殊能力。
+	FC_SPCHLP_KM = 按µ~INPUT_SPECIAL_ABILITY_PC~µ可啟用富蘭克林的特殊能力。
+	FC_SWFHLP1 = 切換回富蘭克林去把小查叫回來。
+	FC_SWFHLP2 = 切換回富蘭克林去搜尋列車車廂。
+	FC_WAIT = 等~b~拉瑪~s~。
+}

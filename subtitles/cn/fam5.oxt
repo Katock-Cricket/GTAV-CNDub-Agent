@@ -1,0 +1,15 @@
+﻿Version 2 30
+{
+	0x7598BAC1 = ~s~車子不能開了。
+	FAM5_FAIL = ~s~任務失敗
+	FAM5_F_B1 = ~s~法比恩死了。
+	FAM5_F_CLB = ~s~麥可的車被丟下了。
+	FAM5_F_E0 = ~s~吉米的朋友遭到攻擊。
+	FAM5_F_E1 = ~s~吉米的朋友受到驚嚇。
+	FAM5_F_E2 = ~s~吉米的朋友死了。
+	FAM5_F_Y1 = ~s~麥可沒有開悟到。
+	FAM5_GT2 = ~s~去~y~吉米房間~s~。
+	FAM5_GT3 = ~s~前往~y~吃得飽漢堡~s~。
+	FAM5_GT4 = ~s~回~y~麥可家~s~。
+	FAM5_HCAM = 按µ~INPUT_VEH_CIN_CAM~µ切換到電影特效鏡頭。
+}

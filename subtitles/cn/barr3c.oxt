@@ -1,0 +1,20 @@
+﻿Version 2 30
+{
+	B3CCBDEST = 運兵直升機毀壞了。
+	B3CCBSTUCK = 運兵直升機卡住了。
+	B3CDELV = 前往巴瑞的~y~公寓~s~。
+	B3CENTV = 上~b~存放車~s~。
+	B3CGBTB = 重新吊起~b~存放車~s~。
+	B3CLEAVE = 離開這個區域。
+	B3CNOGO = 想辦法移動~b~存放車~s~。
+	B3CREVRS = 鉤住~b~存放車~s~。
+	B3CRTCB = 回到~b~運兵直升機~s~上。
+	B3CRTTT = 回到~b~拖吊車~s~上。
+	B3CTTHA = 按住 ~INPUT_VEH_HEADLIGHT~ 放開被拖吊的車輛。
+	B3CTTHB = 對齊車子的正前方或正後方以便鉤住。使用 ~INPUT_VEH_MOVE_UD~ 升降起重機。
+	B3CTWDEST = 拖吊車毀壞了。
+	B3CTWSTUCK = 拖吊車卡住了。
+	B3CVHDEST = 存放車毀壞了。
+	B3CVHSTUCK = 存放車卡住了。
+	B3CWAN1 = 甩掉警察。
+}

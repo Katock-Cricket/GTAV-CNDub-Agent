@@ -1,0 +1,23 @@
+﻿Version 2 30
+{
+	0x8E1EB706 = 富蘭克林攻擊了一名競速對手。
+	0x39FBB3AD = 找一輛新車。
+	0xB38681DD = 富蘭克林放棄了這場競速。
+	0xDFEA5AA4 = 一名競速對手死了。
+	0xEFECFAA9 = 富蘭克林的車子毀壞了。
+	BIKE_BACK = ~s~回到~b~機車上。
+	CAR_BACK = ~s~回到~b~車上。
+	HAO1_1 = 去弄一輛車來競速。
+	HAO1_2 = 前往~y~競速~s~。
+	HAO1_3 = 找一輛適合競速的車。
+	HAO1_4 = 這輛車不適合。
+	HAO1_6 = 甩掉警察。
+	HAO1_ABILITY_HELP = ~s~黃色橫條表示富蘭克林的特殊能力等級。同時按µ~INPUT_SPECIAL_ABILITY~µ+µ~INPUT_SPECIAL_ABILITY_SECONDARY~µ可強化富蘭克林的駕駛技能。
+	HAO1_ABILITY_HELP_KM = ~s~黃色橫條表示富蘭克林的特殊能力等級。按µ~INPUT_SPECIAL_ABILITY_PC~µ可強化富蘭克林的駕駛技能。
+	HAO1_FAIL1 = 阿浩死了。
+	HAO1_FAIL2 = 阿浩受到驚嚇。
+	HAO1_FAIL3 = 富蘭克林沒有獲勝。
+	HAO1_LAP_HELP = 按住µ~INPUT_MULTIPLAYER_INFO~µ查看圈數表。
+	HAO1_LOOK_HELP = ~s~按住µ~INPUT_VEH_LOOK_BEHIND~µ往後看~s~。
+	SEA_BACK = ~s~回到~b~小海鯊~s~上。
+}

@@ -1,0 +1,43 @@
+﻿Version 2 30
+{
+	0x16B39CE9 = 使用µ~INPUTGROUP_SCRIPT_LSTICK_ALL~µ和µ~INPUT_SCRIPT_RDOWN~µ以選擇刑求武器。
+	0xD1E4F18A = 按住µ~INPUT_AIM~µ使用瞄準鏡，按µ~INPUT_SNIPER_ZOOM~µ可放大。
+	F_ABAN_D = 戴夫被拋棄了。
+	F_ABAN_MRK = K 先生被拋棄了。
+	F_COPS = 警察發現了倉庫。
+	F_DDEAD = 戴夫死了。
+	F_KDEAD = K 先生死了。
+	F_MDEAD = 麥可死了。
+	F_PHOTO_INN = 一名無辜的路人被殺。
+	F_PHOTO_SPOOK = 還沒辨識出身分目標就先嚇跑了。
+	F_PRTY_INN = 一名無辜的派對賓客被殺。
+	F_PRTY_INN_ID = 還沒辨識出身分，一名派對賓客就被殺死了。
+	F_PRTY_SEEN = 麥可出現在派對中。
+	F_PRTY_SPOOK = 賓客受到驚嚇，目標也逃走了。
+	F_TDEAD = 崔佛死了。
+	F_TRUCKDEAD_M = 崔佛的貨車不能開了。
+	F_TRUCKDEAD_T = 貨車毀壞了。
+	F_TRUCKSTUCK_M = 崔佛的貨車卡住了。
+	F_TRUCKSTUCK_T = 您的貨車卡住了。
+	HLP_BATTERY = 按住µ~INPUT_SCRIPT_LT~µ夾住左電鉗，按住µ~INPUT_SCRIPT_RT~µ夾住右電鉗。按µ~INPUT_SCRIPT_RDOWN~µ讓電鉗通電。
+	HLP_CHAIR = 按µ~INPUT_SCRIPT_RT~µ掀翻椅子。
+	HLP_MENU = 使用µ~INPUTGROUP_SCRIPT_LSTICK_ALL~µ/µ~INPUTGROUP_SCRIPT_DPAD_ALL~µ和µ~INPUT_SCRIPT_RDOWN~µ選擇刑求武器。
+	HLP_PLIER1 = 按住µ~INPUT_SCRIPT_RT~µ鉗住一顆牙齒。
+	HLP_PLIER2 = 旋轉µ~PAD_RSTICK_ROTATE~µ把牙齒拔下來。
+	HLP_PLIER2_KM = 順時鐘方向旋轉µ~INPUTGROUP_SCRIPT_RSTICK_ALL~µ把牙齒拔下來。
+	HLP_POUR = 按住µ~INPUT_MOVE_UP_ONLY~µ倒水。
+	HLP_POUR_KM = 按住µ~INPUT_SCRIPT_RT~µ倒水。
+	HLP_SYRINGE = 按µ~INPUT_SCRIPT_RT~µ使用針筒。
+	HLP_TOR1 = 刑求µKµ先生以問出目標。
+	HLP_TOR2 = 從架子上選一個武器。
+	HLP_TOR3 = 在每次刑求之間，使用µ~INPUT_SCRIPT_RRIGHT~µ查看心電圖，了解µKµ先生的健康狀況及心跳速率。
+	HLP_TOR4 = 如果µKµ先生快死了，可能需要注射腎上腺素。
+	HLP_WRENCH = 按µ~INPUT_SCRIPT_RT~µ揮舞扳手。
+	TFT_DRIVE1 = ~s~前往~y~房子~s~。
+	TFT_DRIVE2 = ~s~前往~y~丘瑪墟~s~。
+	TFT_DRIVE3 = ~s~前往~y~機場~s~。
+	TFT_GOTOW = ~s~前往~y~倉庫~s~。
+	TFT_HTSWPTREV = ~s~切換至崔佛。~s~
+	TFT_RTNDAV = ~s~回去找~b~戴夫~s~。
+	TFT_SHOOT = ~s~尋找目標。~s~
+}

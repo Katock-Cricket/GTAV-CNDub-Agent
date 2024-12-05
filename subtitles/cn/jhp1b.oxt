@@ -1,0 +1,16 @@
+﻿Version 2 30
+{
+	0x02D00C89 = ~w~警車卡住了。~s~
+	0x9A2B83AC = ~s~下車。~s~
+	JHP1B_ABAN = 麥可沒有拿到警車。
+	JHP1B_BACK_VAN = ~s~回到~b~貨車~s~上。
+	JHP1B_HLP_SPCL1 = ~s~黃色橫條表示麥可的特殊能力等級。同時按µ~INPUT_SPECIAL_ABILITY~µ+µ~INPUT_SPECIAL_ABILITY_SECONDARY~µ可讓時間慢下來。~s~
+	JHP1B_HLP_SPCL1_KM = ~s~黃色橫條表示麥可的特殊能力等級。同時按µ~INPUT_SPECIAL_ABILITY_PC~µ可讓時間慢下來。~s~
+	JHP1B_HLP_SPCL2 = ~s~當麥可做出爆頭和潛行制敵等致命動作，便可填充他的特殊能力橫條。
+	JHP1B_RTNVAN = ~s~前往~y~成衣工廠~s~。
+	JHP1B_STAT = ~w~警車已經抵達警察局。
+	JHP1B_STEAL_VAN = ~s~偷~b~洛聖都特警隊的警車~s~。
+	JHP1B_VAN_DEAD = ~w~警車毀壞了。~s~
+	JHP1B_WARN_ESC = ~s~別讓那台~b~警車~s~逃走。
+	JHP1B_WARN_LVE = ~s~不要把~b~警車~s~留在那裡。
+}

@@ -1,0 +1,7 @@
+﻿Version 2 30
+{
+	EPS3_FAILHURT = 馬爾尼受傷了。
+	EPS3_FAILKILL = 馬爾尼死了。
+	EPS3_FAILSCARE = 馬爾尼受到驚嚇。
+	EPS3_LEAVE = 離開這個區域。
+}

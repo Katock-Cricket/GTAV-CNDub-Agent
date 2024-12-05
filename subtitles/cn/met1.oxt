@@ -1,0 +1,25 @@
+﻿Version 2 30
+{
+	0x935B42B5 = 崔西受傷了。
+	MET1ABANDON = 崔西被拋棄了。
+	MET1CHASE = 停下跟蹤狂的~r~車子~s~。
+	MET1CPSTALK = 警察嚇走了跟蹤狂。
+	MET1DLT = 回去找~b~崔西~s~。
+	MET1ESCAPE = 跟蹤狂逃走了。
+	MET1GETBKT = 回崔西的~b~車~s~上。
+	MET1HOME = 帶崔西~y~回家~s~。
+	MET1HOTEL = 帶崔西去~y~飯店~s~。
+	MET1INITDRV = 去找~b~崔西~s~。
+	MET1KSTKBLU = 解決~b~跟蹤狂~s~。
+	MET1KSTKRED = 解決~r~跟蹤狂~s~。
+	MET1LBSTALK = 跟蹤狂
+	MET1LBTRAC = 崔西
+	MET1STUCK = 崔西的車子卡住了。
+	MET1TCAR = 上崔西的~b~車~s~。
+	MET1TOOLATE = 未能及時跟崔西見面。
+	MET1TRAKILL = 崔西死了。
+	MET1TRASCARE = 崔西受到驚嚇。
+	MET1TWRECK = 崔西的車子毀壞了。
+	MET1WAIT = 等~b~崔西~s~。
+	MET1WANT = 甩掉警察。
+}

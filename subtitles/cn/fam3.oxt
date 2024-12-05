@@ -1,0 +1,23 @@
+﻿Version 2 30
+{
+	FAM3_CATTA = ~s~網球教練遭到攻擊。
+	FAM3_CDEAD = ~s~網球教練死了。
+	FAM3_CSPOOK = ~s~網球教練受到驚嚇。
+	FAM3_DCAN = 開到~y~峽谷~s~。
+	FAM3_DHOUSE = 回~y~麥可家~s~。
+	FAM3_FAIL = ~s~任務失敗
+	FAM3_FTC = 跟著~r~網球教練~s~。
+	FAM3_GBIT = 回到~b~貨車~s~裡。
+	FAM3_GIT = 上~b~貨車~s~。
+	FAM3_HCAM = 按 ~INPUT_VEH_CIN_CAM~ 將鏡頭對準網球教練。~s~
+	FAM3_HPASS1 = 作為乘客時，按住µ~INPUT_VEH_PASSENGER_AIM~µ可瞄準，按µ~INPUT_VEH_PASSENGER_ATTACK~µ可從載具裡射擊。~s~
+	FAM3_HPASS2 = 在載具內時，按µ~INPUT_VEH_SELECT_NEXT_WEAPON~µ可選擇其他武器。~s~
+	FAM3_HPASS3 = 在載具內時，按µ~INPUT_VEH_SELECT_NEXT_WEAPON~µ可選擇其他武器。~s~
+	FAM3_HPULL = 按住 ~INPUT_VEH_ACCELERATE~ 可加速。~s~
+	FAM3_HSTAT1 = 武器的準確度，最大彈匣容量，上彈速度和準星移動會隨著射擊能力而改善。~s~
+	FAM3_HSTAT2 = 成功射殺敵人可提高射擊能力。去靶場練習或將敵人爆頭可加快能力提升的速度。~s~
+	FAM3_HSWITCH = 可在麥可及富蘭克林之間切換。~s~
+	FAM3_LGOONS = 甩掉~r~瑪德拉索的人。
+	FAM3_TDEST = ~s~貨車毀壞了。
+	FAM3_TUND = ~s~貨車卡住了。
+}

@@ -1,0 +1,16 @@
+﻿Version 2 30
+{
+	0xFAD908D1 = 進入軍火專賣店。
+	PRE_BLIP = 連身工作服
+	PRE_BUYF = 幫富蘭克林買連身工作服。
+	PRE_BUYM = 幫麥可買連身工作服。
+	PRE_BUYT = 幫崔佛買連身工作服。
+	PRE_CASH = 資金不足，無法購買所需的連身工作服。
+	PRE_COPS = 警察被驚動了。
+	PRE_FKICKOFF = 無法購買需要的連身工作服。
+	PRE_FLEFT = 離開武裝國度太遠了。
+	PRE_GCLOTH = 買三件~g~連身工作服~s~。
+	PRE_LEAVE = 離開武裝國度。
+	PRE_RETSHOP = 回去~y~商店~s~。
+	PRE_SHOP = 商店
+}

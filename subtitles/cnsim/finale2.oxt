@@ -1,0 +1,15 @@
+﻿Version 2 30
+{
+	0x08638754 = 攀爬~r~梯子~s~找到麦克。
+	0x27FC9A92 = ~s~离开该区域。
+	0x9860A5E1 = 步行追逐~r~麦克~s~。
+	0xC2BC9AFE = 找一辆汽车或摩托车。
+	0xF071A1E1 = 去到µ~y~68µ号道路~s~与麦克会面。
+	0xF2911ED3 = 该载具不合适。
+	FIN2_CHASE = 追逐~r~麦克~s~。
+	FIN2_DROP = 按µ~INPUT_SCRIPT_RDOWN~µ丢下麦克。~n~按~INPUT_SCRIPT_RRIGHT~µ救下麦克。
+	FIN2_FAIL1 = ~w~麦克逃走了。
+	FIN2_FAILDF = ~w~默认。
+	FIN2_LOST = 麦克要跑了。
+	FIN2_SPOT = 前往~y~麦克最后出现的地点~s~。
+}

@@ -1,0 +1,6 @@
+﻿Version 2 30
+{
+	ENTER_BUS = 按µ~INPUT_ENTER~µ以乘客身分登上導覽巴士，導覽費用為µ40µ元。
+	NO_BUS_MONEY = 你的錢不夠，無法參加巴士導覽行程。此導覽行程要價µ40µ元。
+	TOUR_HELP = 按 ~INPUT_ENTER~ 離開導覽。~n~按 ~INPUT_SCRIPT_RDOWN~ 跳至下一個目的地。~n~按 ~INPUT_SCRIPT_RRIGHT~ 切換為第一人稱視角。
+}

@@ -1,0 +1,34 @@
+﻿Version 2 30
+{
+	0x02445E3C = ~s~按µ~PAD_B~µ把他甩掉。~s~
+	0x0D71AEF3 = ~s~保護麥可不受~r~敵人~s~攻擊。
+	0x2DEB808D = ~s~麥可被綁架了。~s~
+	0x4FA20E67 = ~s~在屠宰場外面使用切換功能，可以找出前往麥可位置的方法。~s~
+	0x5A7AA8A4 = ~s~切換至麥可，查看他的位置。~s~
+	0x5F02FE1A = ~s~切換至富蘭克林以到前方偵查。~s~
+	0x7E56461C = ~s~按住µ~INPUT_AIM~µ瞄準。按µ~INPUT_ATTACK~µ開火。~s~
+	0x262FCAD5 = ~s~進入~y~麥可家。~s~
+	0x705E9D64 = ~s~找個~g~武器~s~。
+	0x3886666B = ~s~按µ~INPUT_CONTEXT~µ將麥可從鉤子上放下來。~s~
+	0xA3E83BCC = ~s~朝~b~麥可~s~腳的上方射擊，把他從軌道上放下來。~s~
+	0xA8D815CD = ~s~快速點按µ~INPUT_SPRINT~µ可更快站起來。~s~
+	0xBECB7DD3 = ~s~靠近~b~麥可~s~並丟一件武器給他。~s~
+	0xC3C57C64 = ~s~拾取麥可的藏匿武器，這些武器在他被捕時也被拿走了。~s~
+	0xE97A70DC = ~s~可在麥可及富蘭克林之間切換。~s~
+	0xE450732C = ~s~收到 Trackify 追蹤程式。~s~
+	MCH2_ABATTF = ~s~找出進入屠宰場的方法。~s~
+	MCH2_BLIPVEH = 載具
+	MCH2_ESCABA = ~s~逃出~y~屠宰場~s~。
+	MCH2_FAMMO = ~s~沒彈藥了。~s~
+	MCH2_FCAR = ~s~車子毀壞了。~s~
+	MCH2_FFDED = ~s~富蘭克林死了。~s~
+	MCH2_FMDED = ~s~麥可死了。~s~
+	MCH2_GMCSH = ~s~去~y~麥可家~s~。
+	MCH2_INT3HLP2 = ~s~從手機應用程式選單的右下角啟動µTrackifyµ追蹤程式。~s~
+	MCH2_INT3HLP3 = ~s~麥可的位置在 Trackify 追蹤程式上會標示為紅色光點。~s~
+	MCH2_INTRO2 = ~s~切換至富蘭克林。~s~
+	MCH2_INTRO3 = ~s~找出麥可的位置。~s~
+	MCH2_RESCUE = ~s~救~b~麥可~s~。
+	MCH2_THRWP = ~s~按 ~INPUT_CONTEXT~ 丟一把槍給麥可。~s~
+	MCH2_TIMER = ~s~時間~s~
+}

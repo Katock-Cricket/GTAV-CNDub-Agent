@@ -1,0 +1,39 @@
+﻿Version 2 30
+{
+	0x5C76D77E = Mocap Cutscene of Michael and Trevor entering the stadium. Then getting into the audition to see Tracey.
+	0x58A451F2 = 回到~b~車~s~上。
+	0x66C3858C = 貨車被放棄了。~s~
+	0x77FDA800 = 麥可的車卡住了。~s~
+	0x96444CDD = ~s~去~y~試鏡間~s~。
+	0x207678EF = 麥可的車子毀壞了。~s~
+	0xA46CE92E = ~s~弄輛載具。~s~
+	0xAF416224 = ~s~ 任務完成~s~
+	0xDAC0392D = 上~b~車~s~。
+	0xDB02B9A6 = 貨車被放棄了。~s~
+	0xEFDFBE4C = ~s~ 任務完成~s~
+	0xF42A08FF = 去找~r~雷茲羅~s~。
+	FAMILY4_FAIL_0 = 麥可死了。~s~
+	FAMILY4_FAIL_1 = 崔佛死了。~s~
+	FAMILY4_FAIL_2 = 崔西死了。~s~
+	FAMILY4_FAIL_3 = 雷茲羅死了。~s~
+	FAMILY4_FAIL_5 = 雷茲羅的車子毀壞了。~s~
+	FAMILY4_FAIL_6 = 雷茲羅逃走了。~r~
+	FAMILY4_FAIL_9 = 麥可被拋棄了。~s~
+	FAMILY4_FAIL_10 = 崔佛被拋棄了。~s~
+	FAMILY4_FAIL_11 = 試鏡中止了。~s~
+	FAMILY4_FAIL_12 = 試鏡被放棄了。~s~
+	FAMILY4_GOD_0 = 前往~y~花園銀行體育場~s~。
+	FAMILY4_GOD_1 = 上~b~貨車~s~。
+	FAMILY4_GOD_2 = 追~r~雷茲羅~s~。
+	FAMILY4_GOD_3 = 回到~b~貨車~s~上。
+	FAMILY4_GOD_4 = 貨車卡住了。~s~
+	FAMILY4_GOD_5 = 貨車遭到破壞。~s~
+	FAMILY4_GOD_8 = 回去找~b~崔佛~s~。
+	FAMILY4_GOD_11 = 追~r~雷茲羅~s~。
+	FAMILY4_GOD_13 = 進去。
+	FAMILY4_GOD_14 = ~s~回去找~b~麥可~s~。
+	FAMILY4_GOD_17 = 雷茲羅
+	FAMILY4_GOD_18 = ~s~等~b~麥可~s~。
+	FAMILY4_HELP_0 = ~s~按µ~INPUT_VEH_CIN_CAM~µ切換雷茲羅的鏡頭。
+	FAMILY4_HELP_1 = 按住µ~INPUT_VEH_HEADLIGHT~µ放開拖車。
+}

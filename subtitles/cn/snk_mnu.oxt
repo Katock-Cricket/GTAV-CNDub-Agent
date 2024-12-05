@@ -1,0 +1,30 @@
+﻿Version 2 30
+{
+	0x07B9E0D0 = 免費
+	0xC39FFD79 = 零食已加入您的物品清單。
+	SNK_AFFORD = 抱歉，您的現金不足。
+	SNK_BOUGHT = 已購買物品。
+	SNK_DRK1FU = 您不能再攜帶更多µEµ可樂。
+	SNK_DRK2FU = 您不能再攜帶更多啤士瓦舌。
+	SNK_FULL = 全滿
+	SNK_ITEM = 物品
+	SNK_ITEM1 = P's & Q's
+	SNK_ITEM1_D = 小孩跟毒蟲們都愛的糖果。
+	SNK_ITEM2 = 實力旺
+	SNK_ITEM2_D = 為你量身訂造的能量棒。
+	SNK_ITEM3 = 麥提來
+	SNK_ITEM3_D = 融心黑巧克力。
+	SNK_ITEM4 = 紅木香菸
+	SNK_ITEM4_D = 建造了美國的香菸。
+	SNK_ITEM5 = Eµ可樂
+	SNK_ITEM5_D = 有傳染性的可口汽水。
+	SNK_ITEM6 = 啤士瓦舌
+	SNK_ITEM6_D = 令巴伐利亞人打架的啤酒。
+	SNK_LIFT = 行竊
+	SNK_NEEDED = 生命值已經滿格。
+	SNK_SMOKFU = 您不能再帶更多香菸了。
+	SNK_SNK1FU = 您不能再攜帶更多µP's & Q's。
+	SNK_SNK2FU = 您不能再攜帶更多實力旺。
+	SNK_SNK3FU = 您不能再攜帶更多的麥提來。
+	SNK_SOUT = 此物品已售完。
+}

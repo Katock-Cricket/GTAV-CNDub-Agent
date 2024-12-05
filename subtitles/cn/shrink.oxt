@@ -1,0 +1,8 @@
+﻿Version 2 30
+{
+	SHRINK_ACCEPT = 接受建議
+	SHRINK_BROKE = 您不夠錢進行費藍德醫生的療程。
+	SHRINK_KILL_B = 殺掉~b~費藍德醫生~s~或放他走。
+	SHRINK_KILL_R = 殺掉~r~費藍德醫生~s~或放他走。
+	SHRINK_REJECT = 拒絕建議
+}

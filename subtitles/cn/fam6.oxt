@@ -1,0 +1,25 @@
+﻿Version 2 30
+{
+	FAM6_DHOUSE = 回~y~麥可家~s~。
+	FAM6_FAILACD = ~w~亞曼達的車毀壞了。
+	FAM6_FAILBMA = ~w~亞曼達被嚇跑了。
+	FAM6_FAILDB = ~w~任務失敗。
+	FAM6_FAILFD = ~w~法比恩死了。
+	FAM6_FAILLAZ = ~w~雷茲羅死了。
+	FAM6_FAM = ~s~回去找您的~b~家人~s~。
+	FAM6_FBMSMASH = ~w~µ你砸爛了冰的咖啡。
+	FAM6_FFAMILY = ~w~富蘭克林被丟下了。~s~
+	FAM6_PIERC0 = ~s~~INPUT_SCRIPT_RLEFT~µ在雷茲羅的眉毛打洞。~n~~INPUT_SCRIPT_RRIGHT~µ在雷茲羅的鼻子打洞。~n~~INPUT_SCRIPT_RDOWN~µ在雷茲羅的耳朵打洞。
+	FAM6_PIERC1 = ~s~~INPUT_SCRIPT_RLEFT~µ在雷茲羅的眉毛打洞。~n~~INPUT_SCRIPT_RRIGHT~µ在雷茲羅的鼻子打洞。
+	FAM6_PIERC2 = ~s~~INPUT_SCRIPT_RLEFT~µ在雷茲羅的眉毛打洞。~n~~INPUT_SCRIPT_RDOWN~µ在雷茲羅的耳朵打洞。
+	FAM6_PIERC3 = ~s~~INPUT_SCRIPT_RRIGHT~µ在雷茲羅的鼻子打洞。~n~~INPUT_SCRIPT_RDOWN~µ在雷茲羅的耳朵打洞。
+	FAM6_PIERC4 = ~s~~INPUT_SCRIPT_RLEFT~µ在雷茲羅的眉毛打洞。
+	FAM6_PIERC5 = ~s~~INPUT_SCRIPT_RRIGHT~µ在雷茲羅的鼻子打洞。
+	FAM6_PIERC6 = ~s~~INPUT_SCRIPT_RDOWN~µ在雷茲羅的耳朵打洞。
+	FAM6_SCIS = ~s~按µ~INPUT_SCRIPT_RDOWN~µ剪掉雷茲羅的馬尾。
+	FAM6_SHRINK = ~s~前往~y~費藍德醫生的診所~s~。
+	FAM6_TAT = ~s~將µ~INPUTGROUP_SCRIPT_RSTICK_ALL~µ往指示的方向移動，畫出刺青圖樣。
+	FAM6_TATCH = ~s~~INPUT_SCRIPT_RLEFT~µ在雷茲羅的胸口刺青。~n~~INPUT_SCRIPT_RRIGHT~µ在雷茲羅的背上刺青。
+	FAM6_TATTOO = ~s~去~y~刺青店~s~。
+	FAM6_YOGA = ~s~前往~y~冰的咖啡~s~。
+}

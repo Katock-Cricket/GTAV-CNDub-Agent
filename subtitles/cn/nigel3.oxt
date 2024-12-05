@@ -1,0 +1,27 @@
+﻿Version 2 30
+{
+	0x29A11C22 = 還沒解決艾爾，車子就被摧毀了。
+	N3BAIL = 離開。
+	N3DRIVE = 前往~y~鐵軌~s~。
+	N3EXIT = 下車。
+	N3FLEFT = 車子被放棄了。
+	N3FMISST = 車子沒有被破壞。
+	N3FTRUNK = 走到後車廂去放了艾爾．迪．拿坡里。
+	N3GETCAR = 上奈吉的~b~車~s~。
+	N3LEAVECAR = 回到~b~車子~s~。
+	N3LOSEWANT = 甩掉警察。
+	N3MRSTDEAD = 梭西爾女士死了。
+	N3MRSTHURT = 梭西爾女士受傷了。
+	N3NIGEDEAD = 奈吉死了。
+	N3NIGEHURT = 奈吉受傷了。
+	N3NORTH = 沿著~y~鐵軌~s~走。
+	N3NRCOP = 如果警察在附近，崔佛就無法釋放艾爾。
+	N3RAM = 把車子留在鐵軌上。
+	N3REL1 = 繼續前往目的地去殺死艾爾．迪．拿坡里，或者停車然後下車把他放了。
+	N3RTCAR = 回到~b~車上~s~。
+	N3SCARED = 奈吉和梭西爾女士受到驚嚇。
+	N3STUCK = 車子卡住了。
+	N3TRAINCAM = 按 ~INPUT_VEH_CIN_CAM~ 切換到火車視角。
+	N3TRUNK = 如果車子周圍有障礙物，崔佛就無法釋放艾爾。
+	N3WONKY = 崔佛無法在車子開在不平坦的路面時釋放艾爾。
+}

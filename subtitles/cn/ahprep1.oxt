@@ -1,0 +1,9 @@
+﻿Version 2 30
+{
+	AHP_DEADTRUCK = 消防車毀壞了。
+	AHP_DROPOFF = 前往~y~成衣工廠~s~。
+	AHP_GETBAKIN = 回到~b~消防車~s~上。
+	AHP_GETOUT = 下消防車。
+	AHP_LOSECOPS = 甩掉警察。
+	AHP_LOSTTRUCK = 消防車被放棄了。
+}

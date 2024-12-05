@@ -1,0 +1,12 @@
+﻿Version 2 30
+{
+	0x1B6D063E = 這輛車不適合。
+	0x6E88B346 = 找一輛車或機車。
+	0xA37F62E5 = 按µ~INPUT_FRONTEND_CANCEL~µ揍崔佛。
+	0xCD7B434E = 前往~y~油井~s~。
+	FIN1_CHASE = 追~r~崔佛~s~。
+	FIN1_DES = 殺掉~r~崔佛~s~。
+	FIN1_FAIL1 = ~w~崔佛逃走了。
+	FIN1_FAIL2 = ~w~富蘭克林的車子毀壞了。
+	FIN1_FAILDF = ~w~預設。
+}

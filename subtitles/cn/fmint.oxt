@@ -1,0 +1,19 @@
+﻿Version 2 30
+{
+	0x5F07855D = ~s~在µGTAµ線上模式中，只要差事觸發點中有足夠的玩家就位並按µ~INPUT_SPRINT~µ投票，差事就會開始。
+	0x1655CFD8 = ~s~離開武裝國度。
+	0x8884F988 = ~s~前往靶場。
+	GET_AMMU = ~s~前往武裝國度。
+	GET_GUN = ~s~買手槍。
+	HLP_CASHGEN = 想在µGTAµ線上模式中玩得有聲有色，現金是成功的關鍵，它可以用來購買房屋、載具，也能用來參加各種不同的活動。您可以從差事中賺取現金，或是在µSocialµClubµ中的商店購買µGTAµ遊戲幣。
+	HLP_CASHPSN = 想在µGTAµ線上模式中玩得有聲有色，現金是成功的關鍵，它可以用來購買房屋、載具，也能用來參加各種不同的活動。您可以從差事中賺取現金，或是在µPlayStation®Storeµ中購買µGTAµ遊戲幣。
+	HLP_FEED = 隨時注意雷達上方的快報，查看重要的線上訊息。
+	HLP_RNK1 = 您的等級會顯示在螢幕的上方。您可以按µ~INPUT_HUD_SPECIAL~µ來查看您的等級。
+	HLP_SOC1 = 登入µ~HUD_COLOUR_SOCIAL_CLUB~rockstargames.com/socialclubµ~s~來查看自己的進度並和其他玩家作比較。
+	HLP_SOC2 = 登入µ~HUD_COLOUR_SOCIAL_CLUB~rockstargames.com/socialclubµ~s~來加入幫會。您也可以查看自己的進度並和其他玩家作比較。
+	HLP_TAXI = ~s~您可以使用手機打電話叫計程車。
+	HLP_TAXI3 = 登入µ~HUD_COLOUR_SOCIAL_CLUB~rockstargames.com/socialclubµ~s~來加入µSocialµClubµ和幫會。您也可以查看自己的進度，與其他玩家作比較。
+	HLP_XP1 = 遊戲進行時您會獲得聲望值µ(RP)。完成差事和殺掉敵人時，聲望值就會提高。
+	HLP_XP2 = 隨著聲望值提高，您的等級也會提高。等級提高後就可以解鎖新的武器、裝備和技能。
+	LOSE_COP = ~s~甩掉警察。
+}

@@ -1,0 +1,25 @@
+﻿Version 2 30
+{
+	0x80EB326A = 瘋狂殺戮
+	CH_000 = 達成µ~1~µ次擊殺
+	CH_001 = 達成µ~1~µ個爆頭
+	CH_003 = 破壞µ~1~µ輛載具
+	CH_008 = 摧毀µ~1~µ台坦克
+	RAMPAGE = ~l~瘋狂殺戮
+	RO_RATE = 評價
+	RPASSED = ~y~完成
+	TR_FAIL = 崔佛消滅的目標數不足。
+	TR_HKILL = ~r~擊殺數
+	TR_HTIME = 時間
+	TR_RAMP1 = 瘋狂殺戮：鄉巴佬
+	TR_RAMP2 = 瘋狂殺戮：維戈斯幫
+	TR_RAMP3 = 瘋狂殺戮：巴勒幫
+	TR_RAMP4 = 瘋狂殺戮：軍隊
+	TR_RAMP5 = 瘋狂殺戮：潮客
+	TR_ROBJ1 = 解決µ~1~µ個~a~。
+	TR_RTGT1 = 鄉巴佬
+	TR_RTGT2 = 殺手潮男
+	TR_RTGT3 = 幫派成員
+	TR_RTGT4 = 幫派成員
+	TR_RTGT5 = 士兵
+}

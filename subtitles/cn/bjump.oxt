@@ -1,0 +1,35 @@
+﻿Version 2 30
+{
+	0x342AF5AC = 您要從起點再試一次嗎？
+	BJ_BLIP_CHK = 檢查點
+	BJ_BLIP_TGT = 目標
+	BJ_CONTINUE = 繼續
+	BJ_FAIL = 失敗
+	BJ_FAIL_01 = 降落得太遠了。
+	BJ_FAIL_02 = 此次跳傘被放棄。
+	BJ_FAIL_F = ~s~富蘭克林死了。~s~
+	BJ_FAIL_M = ~s~麥可死了。~s~
+	BJ_FAIL_T = ~s~崔佛死了。~s~
+	BJ_FALLHLP = 使用µ~INPUTGROUP_MOVE~µ來導引落下時的方向。~n~按µ~INPUT_PARACHUTE_DEPLOY~µ開啟降落傘。~n~按µ~INPUT_JUMP~µ重新跳傘。
+	BJ_MG_BOAT = 跳傘降落在~y~船~s~上。
+	BJ_MG_MTOBJ = 跳傘通過~y~檢查點~s~。
+	BJ_MG_STOBJ = 跳傘降落在 ~y~目標~s~上。
+	BJ_MG_TRAIN = 跳傘降落在~y~火車~s~上。
+	BJ_MISSED = ~s~錯過檢查點。
+	BJ_OBJ_JB = 從屋頂跳傘降落到~y~目標地點~s~。
+	BJ_OBJ_JCL = 從懸崖跳傘通過~y~檢查點~s~。
+	BJ_OBJ_JCR = 從起重機上跳傘降落到~y~貨車~s~上。
+	BJ_OBJ_JDB = 開車衝出屋頂並且跳傘降落到~y~目標地點~s~。
+	BJ_PARAHLP = 使用µ~INPUT_PARACHUTE_TURN_LR~µ來改變方向。~n~按住µ~INPUT_PARACHUTE_BRAKE_LEFT~µ或µ~INPUT_PARACHUTE_BRAKE_RIGHT~µ來急轉彎。~n~按住µ~INPUT_PARACHUTE_BRAKE_LEFT~µ+µ~INPUT_PARACHUTE_BRAKE_RIGHT~µ來精準地降落。~n~點按或按住µ~INPUT_VEH_CIN_CAM~µ可使用電影特效鏡頭。~n~按µ~INPUT_JUMP~µ重新跳傘。
+	BJ_PARAHLP_KM = 使用µ~INPUT_PARACHUTE_TURN_LR~µ來改變方向。~n~按住µ~INPUT_PARACHUTE_BRAKE_LEFT~µ或µ~INPUT_PARACHUTE_BRAKE_RIGHT~µ來急轉彎。~n~按住µ~INPUT_PARACHUTE_PRECISION_LANDING~µ來精確地降落。~n~點按或按住µ~INPUT_VEH_CIN_CAM~µ可使用電影特效鏡頭。~n~按µ~INPUT_JUMP~µ重新跳傘。
+	BJ_RETRY = 重玩
+	BJ_SC_ACC_RWD = 著陸獎勵
+	BJ_SC_ALLG_RWD = 檢查點全過獎勵
+	BJ_SC_GATES = 通過檢查點數
+	BJ_SC_GATE_RWD = 檢查點獎勵
+	BJ_SC_LAND_ACC = 著陸準確度
+	BJ_SC_PASS = 完成
+	BJ_SC_TOT_RWD = 總計
+	BJ_VEHHELP = 按 ~INPUT_VEH_EXIT~ 丟下載具。
+	BJ_VLOOKHLP = 使用µ~INPUTGROUP_LOOK~µ觀察四周。~n~按µ~INPUT_JUMP~µ跳傘。
+}

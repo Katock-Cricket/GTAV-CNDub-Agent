@@ -1,0 +1,46 @@
+﻿Version 2 30
+{
+	0x07BF1B30 = ~s~按下µ~INPUT_VEH_LOOK_BEHIND~µ往後看~s~。
+	0xA0DD144A = ~s~按 ~INPUT_FRONTEND_ACCEPT~ 買加裝物品和彈藥。
+	LEM1_ABBOTH = ~s~拉瑪和史崔奇被拋棄了。~s~
+	LEM1_ABLAMAR = ~s~拉瑪被拋棄了。~s~
+	LEM1_ABSTRETCH = ~s~史崔奇被拋棄了。~s~
+	LEM1_ACCSTAT1 = ~s~當您的射擊能力上升，你的射擊準度，最大彈匣容量，上彈速度和準星移動也會同時改善。
+	LEM1_ACCSTAT2 = ~s~成功擊中敵人會令射擊能力上升。做出爆頭以及在靶場練習可以更快提高射擊能力。
+	LEM1_ALLEYHELP = ~s~利用躲在暗巷裡、找遠離路邊的地方躲藏以及換車等方式，可以更容易躲避警察追捕。
+	LEM1_BACKSHOP = 回去~y~武裝國度~s~買件東西。
+	LEM1_BACKSHOP2 = 回去~y~武裝國度~s~，買加裝手電筒的泵動式霰彈槍。
+	LEM1_BACKSHOP3 = 回去~y~武裝國度~s~，為霰彈槍買加裝的手電筒。
+	LEM1_BACKVEH = ~s~回到~b~載具~s~上。
+	LEM1_BOTHDEAD = ~s~拉瑪和史崔奇死了。~s~
+	LEM1_BUYANY = 在店裡買件東西。
+	LEM1_BUYFLSH = 為泵動式霰彈槍買加裝的手電筒。
+	LEM1_BUYSHOT = 買支泵動式霰彈槍以及加裝的手電筒。
+	LEM1_FAILSHOP = ~s~武裝國度不准富蘭克林進入。~s~
+	LEM1_FINDCAR = ~s~找一輛四門載具。~s~
+	LEM1_FLAHELP = ~s~瞄準時按µ~INPUT_WEAPON_SPECIAL_TWO~µ可切換武器的手電筒。
+	LEM1_GOFRANKLIN = ~s~回~y~富蘭克林家~s~。
+	LEM1_GOGUN = ~s~前往~y~武裝國度~s~。
+	LEM1_GOLAD = ~s~逃離垃圾場。~s~
+	LEM1_GOMEET = ~s~前往~y~資源回收工廠~s~進行交易。
+	LEM1_GRENHELP1 = ~s~按住 ~INPUT_SELECT_WEAPON~，然後使用 ~INPUTGROUP_WHEEL~ 選擇手榴彈。~s~
+	LEM1_GRENHELP2 = ~s~按 ~INPUT_ATTACK~ 丟出手榴彈。~s~
+	LEM1_GRGUNHELP = ~s~在瞄準時按µ~INPUT_THROW_GRENADE~µ來投擲手榴彈。
+	LEM1_KILLSWAT = ~s~逃離資源回收工廠。~s~
+	LEM1_LEFTBOTH = ~s~回去找~b~拉瑪~s~和~b~史崔奇~s~。
+	LEM1_LEFTLEMAR = ~s~回去找~b~拉瑪~s~。
+	LEM1_LEFTMEET = ~s~不要放棄交易。~s~
+	LEM1_LEFTSTRET = ~s~回去找~b~史崔奇~s~。
+	LEM1_LEMDEAD = ~s~拉瑪死了。~s~
+	LEM1_MISSDEAL = ~s~錯過了交易。~s~
+	LEM1_NOMON = ~s~富蘭克林身上的錢不夠，無法買泵動式霰彈槍和加裝的手電筒。~s~
+	LEM1_SHOPOPEN = ~s~武裝國度各分店現已於 ~BLIP_GUN_SHOP~ 開放使用
+	LEM1_SPECHELP = ~s~試著用富蘭克林的特殊能力避開警察。同時按下 ~INPUT_SPECIAL_ABILITY~ + ~INPUT_SPECIAL_ABILITY_SECONDARY~ 來使用該特殊能力。
+	LEM1_SPECHELP_KM = ~s~試著用富蘭克林的特殊能力以躲避警察的追捕。按µ~INPUT_SPECIAL_ABILITY_PC~µ可啟用富蘭克林的特殊能力。
+	LEM1_STRETDEAD = ~s~史崔奇死了。~s~
+	LEM1_WAITBOTH = ~s~等~b~拉瑪~s~和~b~史崔奇~s~。
+	LEM1_WAITLEMAR = ~s~等~b~拉瑪~s~。
+	LEM1_WAITSTRET = ~s~等~b~史崔奇~s~。
+	LEM1_WEAPHELP1 = ~s~按住µ~INPUT_SELECT_WEAPON~µ開啟武器選單。
+	LEM1_WEAPHELP2 = ~s~使用µ~INPUTGROUP_WHEEL~µ選擇武器，然後放開µ~INPUT_SELECT_WEAPON~µ以裝備該武器。
+}

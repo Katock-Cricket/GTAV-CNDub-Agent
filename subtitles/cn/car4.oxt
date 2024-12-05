@@ -1,0 +1,22 @@
+﻿Version 2 30
+{
+	0x77535E52 = ~s~差事搞砸了。
+	CAR4_CDOOR = 進去裡面。
+	CAR4_CGAR = ~s~警察發現了車庫的位置。
+	CAR4_CLEFT = ~s~車子被放棄了。
+	CAR4_CUND = ~s~車子卡住了。
+	CAR4_DATTA = ~s~德凡遭到攻擊。
+	CAR4_DCAR = 將車送到~y~車庫~s~。
+	CAR4_DDEAD = ~s~德凡死了。
+	CAR4_EGIRL = 讓這女演員滾蛋。
+	CAR4_FAIL = ~s~任務失敗
+	CAR4_GGAR = ~s~女演員發現了車庫的位置。
+	CAR4_HALERT = 已經驚動片場保全。~s~
+	CAR4_HCARE = 按 ~INPUT_SCRIPT_RLEFT~ 查看紅色按鈕的功用。~s~
+	CAR4_HCARS = 按 ~INPUT_SCRIPT_LS~ 放下雞爪釘。
+	CAR4_HKO = 你可以打昏那個演員來搶走他的衣服。~s~
+	CAR4_LCAR = 找到車子。
+	CAR4_LSEC = 甩掉~r~保全~s~。
+	CAR4_SGAR = ~s~保全發現了車庫的位置。
+	CAR4_TMSTA = 找一位~r~演員~s~。
+}

@@ -1,0 +1,21 @@
+﻿Version 2 30
+{
+	BBS_05 = 回去找~b~棄保逃亡犯~s~。
+	BBS_APHEND = 逮捕~r~棄保逃亡的犯人~s~。
+	BBS_APHEND2 = 逮捕~b~棄保逃亡的犯人~s~。
+	BBS_APPSUS = 走向~r~棄保逃亡的犯人~s~。
+	BBS_APPSUS2 = 走向~b~棄保逃亡的犯人~s~。
+	BBS_BJ1 = ~w~雷夫．歐斯沃斯基~s~
+	BBS_BJ2 = ~w~拉瑞．塔普~s~
+	BBS_BJ3 = ~w~葛蘭．史柯維爾~s~
+	BBS_BJ4 = ~w~柯提斯．偉佛~s~
+	BBS_COPS = 甩掉警察。~s~
+	BBS_DROP = 帶著棄保逃亡犯到~y~茉德的所在地~s~。
+	BBS_F1 = ~w~棄保逃亡犯逃走了~s~。
+	BBS_F2 = ~w~茉德受到驚嚇。~s~
+	BBS_F3 = ~w~茉德死了。~s~
+	BBS_MP = 完成~s~
+	BBS_MPD = ~w~棄保逃亡犯已送達：~a~
+	BBS_MPK = ~w~棄保逃亡犯被殺了：~a~
+	BBS_VH1 = ~w~這輛車子不適合載送棄保逃亡犯。~s~
+}

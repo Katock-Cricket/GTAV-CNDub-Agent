@@ -1,0 +1,22 @@
+﻿Version 2 30
+{
+	0xADC05D72 = 去找~b~吉米．波士頓。
+	EPS6_01 = 與~b~湯姆~s~見面。
+	EPS6_02 = 將飛機送到~y~機場~s~。
+	EPS6_03 = 回到~b~飛機~s~上。
+	EPS6_04 = 飛機被放棄了。
+	EPS6_ATTACK = 吉米．波士頓遭到攻擊。
+	EPS6_BACKPL = 回到~b~飛機~s~上。
+	EPS6_BUDDYDEAD = 發生弟兄間暴力事件。
+	EPS6_BUDDYHURT = 發生弟兄間暴力事件。
+	EPS6_BUDDYSPOOK = 湯姆受到驚嚇。
+	EPS6_COPS = 甩掉警察。
+	EPS6_DEAD = 吉米．波士頓死了。
+	EPS6_FAIL = 飛機毀壞了。
+	EPS6_GETIN = 上~b~飛機~s~。
+	EPS6_GOBACK = 回去找~b~吉米．波士頓~s~。
+	EPS6_LEAVE = 留下飛機然後去找~b~吉米．波士頓~s~。
+	EPS6_LEFT = 機場被放棄了。
+	EPS6_SPOOK = 吉米．波士頓受到驚嚇。
+	EPS6_STICKYB = 飛機旁安置了個爆裂物。
+}

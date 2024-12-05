@@ -1,0 +1,11 @@
+﻿Version 2 30
+{
+	PRA_FFAR = 垃圾車被放棄了。
+	PRA_FSTUCK = 垃圾車卡住了。
+	PRA_FWRECK = 垃圾車毀壞了。
+	PRA_GOVAN = 偷~b~垃圾車~s~。
+	PRA_LEVAREA = 離開這個區域。
+	PRA_LEVVEH = 離開垃圾車。
+	PRA_RETVEH = 回到~b~垃圾車~s~上。
+	PRA_TAKBACK = 把垃圾車開去 ~y~FIB 會合點~s~。
+}

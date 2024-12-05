@@ -1,0 +1,29 @@
+﻿Version 2 30
+{
+	0xE705DAF9 = 按µ~INPUT_VEH_CIN_CAM~µ將鏡頭對準茉莉。
+	SOL3_GOD1 = ~s~撿起~g~膠卷~s~。
+	TRV4_CAR1 = ~s~進入載具。
+	TRV4_CHASE1 = ~s~追~b~茉莉~s~。
+	TRV4_CHASE2 = ~s~追~b~茉莉~s~。
+	TRV4_END1 = ~s~甩掉警察。
+	TRV4_FAIL1 = 茉莉逃走了。
+	TRV4_FAIL2 = 麥可飛進了禁航區。
+	TRV4_FAIL3 = 茉莉死了。
+	TRV4_FAIL4 = 偉德死了。
+	TRV4_FAIL5 = 弗洛伊德死了。
+	TRV4_FAIL6 = 麥可放棄了膠卷。
+	TRV4_GO1 = ~s~去~y~機場~s~找茉莉。
+	TRV4_HELP1 = 按µ~INPUT_VEH_CIN_CAM~µ切換到威索新聞的直升機鏡頭。
+	TRV4_HELP3 = 這個機場有禁航區，請改用其他載具。
+	TRV4_NEWS1 = 即時新聞
+	TRV4_NEWS2 = FBIµ的財政出現問題以致特權份子獲警方護送
+	TRV4_NEWS3 = 普通的洛聖都警察護送行動演變成飛車追逐
+	TRV4_NEWS4 = 機場內發生瘋狂飛車追逐
+	TRV4_NEWS5 = 警方引發的混亂導致數架飛機受困機場
+	TRV4_NEWS6 = 警方找到失竊的潛水艇和尚未精煉的鈾原料，所幸一切完好無缺
+	TRV4_NEWS7 = 饒舌歌手克雷「PG」傑克森在埃普西隆教孤兒院開幕時表示：「我不是埃普西隆教徒」
+	TRV4_NEWS8 = 中國後悔收購美國最後一個經濟支柱
+	TRV4_NEWS9 = 最新的電玩遊戲連最保守的政客都覺得無聊
+	TRV4_NEWS10 = 根據問卷調查，六個同性戀中有四個根本不想結婚
+	TRV4_WARN1 = ~b~茉莉~s~要逃走了。
+}

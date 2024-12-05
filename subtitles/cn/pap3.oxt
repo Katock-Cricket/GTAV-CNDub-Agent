@@ -1,0 +1,27 @@
+﻿Version 2 30
+{
+	P3BEVDEAD = 比佛利死了。
+	P3BEVHURT = 比佛利受傷了。
+	P3BEVSCARED = 比佛利受到驚嚇。
+	PAP3B_COPS = 甩掉警察。
+	PAP3_03 = 追蹤~b~波比~s~。
+	PAP3_08 = ~s~錯過拍照的機會。
+	PAP3_10 = 甩掉~r~保鏢~s~。
+	PAP3_ALERT = ~s~已經驚動保全。
+	PAP3_CON = 跟比佛利的~b~線人~s~見面。
+	PAP3_HELP1 = 使用µ~INPUT_PHONE~µ操作手機
+	PAP3_HELP2 = 使用µ~INPUTGROUP_CELLPHONE_NAVIGATE~µ選擇手機的相機功能
+	PAP3_HELP6 = 使用手機的相機拍照。
+	PAP3_HELP7 = 相片傳錯聯絡人了。把相片傳給比佛利。
+	PAP3_HELP8 = 把相片傳給比佛利。
+	PAP3_INJUR = 波比受傷了。
+	PAP3_INJUR2 = ~s~富蘭克林弄傷了公主。
+	PAP3_KILL1 = ~s~公主死了。
+	PAP3_KILL2 = 波比死了。
+	PAP3_KILL3 = ~s~線人死了。
+	PAP3_LOSTP = 富蘭克林跟丟波比了。
+	PAP3_POLIC = 富蘭克林已經驚動警察。
+	PAP3_POP = 傳給比佛利一張~b~波比~s~的相片。
+	PAP3_PRIN = 傳給比佛利一張~b~公主~s~的相片。
+	PAP3_THREAT = ~s~富蘭克林威脅了線人。
+}

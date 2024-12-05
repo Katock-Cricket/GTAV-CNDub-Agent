@@ -1,0 +1,14 @@
+﻿Version 2 30
+{
+	0xA48EE3C3 = 回到~y~商店~s~。
+	0xA162B84A = ~s~崔佛沒有前往商店。
+	N1C_CATCH = 抓住~b~戴克西~s~。
+	N1C_F_DOG = ~s~戴克西受傷了。
+	N1C_F_EXDOG = ~s~戴克西死了。
+	N1C_F_EXMOD = ~s~凱莉死了。
+	N1C_F_LOST = ~s~戴克西逃走了。
+	N1C_F_MOD = ~s~崔佛弄傷了凱莉。
+	N1C_INIT = 去找~b~凱莉~s~。
+	N1C_WRN_DOG = 跟上~b~戴克西~s~。
+	N1_C_F_THREAT = ~s~崔佛嚇到凱莉。
+}

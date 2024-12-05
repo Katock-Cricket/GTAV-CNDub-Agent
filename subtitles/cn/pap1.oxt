@@ -1,0 +1,21 @@
+﻿Version 2 30
+{
+	PAP1_01 = 跟~b~米蘭達的車子~s~並排開著。
+	PAP1_03 = 阻止~r~狗仔對手~s~。
+	PAP1_05 = 帶比佛利前往他下一個~y~跟拍地點~s~。
+	PAP1_06 = 回到~b~比佛利的機車~s~上。
+	PAP1_08 = 回去找~b~比佛利~s~。
+	PAP1_09 = 甩掉警察。~s~
+	PAP1_10 = 上~b~比佛利的機車~s~。
+	PAP1_F1 = ~w~米蘭達死了。~s~
+	PAP1_F2 = ~w~米蘭達逃走了。~s~
+	PAP1_F3 = ~w~比佛利的機車毀壞了。~s~
+	PAP1_F4 = ~w~比佛利死了。~s~
+	PAP1_F5 = ~w~狗仔對手逃走了。~s~
+	PAP1_F6 = ~w~比佛利被拋棄了。~s~
+	PAP1_F7 = ~w~富蘭克林攻擊了米蘭達。~s~
+	PAP1_F9 = ~w~比佛利受到驚嚇~s~。
+	PAP1_H1 = 開到狗仔對手旁好讓比佛利打倒他。~s~
+	PAP1_H2 = ~s~同時按µ~INPUT_SPECIAL_ABILITY~µ+µ~INPUT_SPECIAL_ABILITY_SECONDARY~µ使用富蘭克林的特殊能力。~s~
+	PAP1_H2_KM = ~s~按µ~INPUT_SPECIAL_ABILITY_PC~µ可啟用富蘭克林的特殊能力。~s~
+}

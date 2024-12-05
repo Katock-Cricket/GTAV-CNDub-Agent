@@ -1,0 +1,15 @@
+﻿Version 2 30
+{
+	0x27778C40 = ~s~下車。
+	0x54398DC1 = ~s~鬆開廂型車。
+	JHP2A_FCARGO = 貨物不見了。
+	JHP2A_FCARGO2 = 貨物被丟下了。
+	JHP2A_FGOTAWAY = 廂型車開走了。
+	JHP2A_FGOTAWAY2 = 廂型車跟車上的貨物被丟下了。
+	JHP2A_HLP1 = 按µ~INPUT_CONTEXT~µ放下箱子。
+	JHP2A_HLP2 = 開槍射開車門或摧毀廂型車以取得車內的貨物。
+	JHP2A_RTNBZ = 把毒氣彈送去~y~成衣工廠~s~。
+	JHP2A_RTNVAN = 把廂型車開去~y~成衣工廠~s~。
+	JHP2A_STEAL = 偷~b~廂型車~s~或是車上的貨物。
+	JHP2A_TAKEBZ = 偷一箱~g~毒氣彈~s~。
+}

@@ -1,0 +1,14 @@
+﻿Version 2 30
+{
+	0x42C842F0 = 載有胎刺的車輛已回應緊急求助電話前往支援。引開警察好迫使他們離開那輛車。
+	PR_AREAWARN = 回去偷~b~警用廂型車~s~。
+	PR_FLEFT = 離開了警察局。
+	PR_FLEFTV = 警用廂型車被放棄了。
+	PR_FSTUCK = 警用廂型車卡住了。
+	PR_FWRECK = 警用廂型車撞壞了。
+	PR_GOVEH = 偷~b~警用廂型車~s~。
+	PR_LEVVEH = 離開警用廂型車。
+	PR_RETVEH = 回到~b~警用廂型車~s~上。
+	PR_TAKBACK = 開警用廂型車去~y~藏身處~s~。
+	PR_VANWARN = 回到~b~警用廂型車~s~上。
+}

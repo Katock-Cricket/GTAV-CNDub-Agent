@@ -1,0 +1,9 @@
+﻿Version 2 30
+{
+	SOL2_FGOTAWAY = ~s~洛科逃走了。
+	SOL2_FSOLDEAD = ~s~所羅門死了。
+	SOL2_GOTOSTU = ~s~前往~y~所羅門的辦公室~s~。
+	SOL2_KILL = 殺掉~r~洛科~s~。
+	SOL2_LEAVEA = 離開這個區域。
+	SOL2_PHONE = 前往片場辦公室？
+}

@@ -1,0 +1,13 @@
+﻿Version 2 30
+{
+	0xF0EB3708 = ~s~剩餘時間~s~
+	PMDL_BCK = ~s~回到~b~廂型車~s~上。
+	PMDL_BCKT = ~s~回到~b~貨車~s~上。
+	PMDL_BTIM = ~s~在時間到之前把酒送去~y~酒吧~s~。
+	PMDL_DMG = ~s~損壞的貨物~s~
+	PMDL_LOC = ~s~開廂型車去~y~店~s~裡。
+	PMDL_OBJ = ~s~去開~b~廂型車~s~。
+	PMDL_REC = ~s~找回~b~廂型車~s~。
+	PMDL_TIM = ~s~在時間到之前開廂型車去~y~店~s~裡。
+	PMDL_TRUCK = ~s~上~b~貨車~s~。
+}
