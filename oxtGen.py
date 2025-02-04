@@ -72,9 +72,9 @@ def process_oxt(oxt_file, kv_map):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-xlsx', type=str, required=True)
-    parser.add_argument('-oxt', type=str, required=True)
-    parser.add_argument('-json', type=str, required=True)
+    parser.add_argument('-xlsx', type=str, default='fam3aud.xlsx')
+    parser.add_argument('-oxt', type=str, default='fam3aud.oxt')
+    # parser.add_argument('-json', type=str, required=True)
     args = parser.parse_args()
 
     xlsx_file = os.path.join(in_xlsx_root, args.xlsx)
@@ -83,7 +83,7 @@ if __name__ == "__main__":
     kv_map = read_map_from_xlsx(xlsx_file)
 
     # 2. 将kv_map保存为json文件
-    save_json(kv_map, args.json)
+    # save_json(kv_map, args.json)
 
     # 3. 处理oxt文件，替换内容
     process_oxt(args.oxt, kv_map)

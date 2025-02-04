@@ -24,8 +24,8 @@ def is_cutscene_label(label, cutscene_map):
     return False
 
 
-def is_single_audio(label, labels):
-    proposed_audio_key = label + "A"
+def is_single_audio(key, labels):
+    proposed_audio_key = key + "A"
     return proposed_audio_key in labels.keys()
 
 
@@ -36,19 +36,19 @@ def link_cn_audio(labels, cutscene_map):
         if is_chinese(value) and not key.startswith('0x'):
             cutscene_name = is_cutscene_label(key, cutscene_map)
             if cutscene_name:  # 过场动画音频
-                audio_value = cutscene_name
-                if audio_value not in ret:
-                    ret[audio_value] = []
-                ret[audio_value].append(value)
+                audio_filename = cutscene_name
+                if audio_filename not in ret:
+                    ret[audio_filename] = []
+                ret[audio_filename].append(value)
             elif is_single_audio(key, labels):  # 单独的音频
                 audio_key = key + "A"
-                audio_value = labels[audio_key] + '_01'
-                ret[audio_value] = value
+                audio_filename = labels[audio_key] + '_01'
+                ret[audio_filename] = value
             else:  # 多个音频
                 audio_key = '_'.join(key.split('_')[:-1]) + "A"
                 label_postfix = key.split('_')[-1]
-                audio_value = labels[audio_key] + '_' + label_postfix
-                ret[audio_value] = value
+                audio_filename = labels[audio_key] + '_' + label_postfix
+                ret[audio_filename] = value
 
     return ret
 
@@ -86,7 +86,7 @@ def link_sub_verion(audio_cnsim, sub_ver1, sub_ver2):
 
 
 # 生成xlsx表格
-def generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt_name, cutscene_names, chatbot):
+def generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt_name, cutscene_names, sfx_names, chatbot):
     import xlsxwriter
 
     xlsx_root = 'in_xlsx'
@@ -109,6 +109,13 @@ def generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt_name, cutscene_names, cha
     worksheet.set_row(1, 100)
 
     worksheet.write(0, 4, '非过场动画文件')
+    cell_format = workbook.add_format({'text_wrap': True, 'valign': 'vcenter'})
+    if sfx_names:
+        fill = ''
+        for sfx_name in sfx_names:
+            fill += sfx_name + '\n'
+        worksheet.write(1, 4, fill, cell_format)
+        worksheet.set_row(1, 100)
 
     header_format = workbook.add_format({'bold': True, 'bg_color': '#CCCCCC'})
     worksheet.write(3, 0, '音频文件')
@@ -134,7 +141,7 @@ def generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt_name, cutscene_names, cha
                 worksheet.write(row, col + 3, cn[i])
                 worksheet.write(row, col + 4, en[i])
                 if chatbot is not None:
-                    optimized_cnsim = chatbot.ask(cn[i], cnsim[i])
+                    optimized_cnsim = chatbot.ask(cn[i], cnsim[i], en[i])
                     worksheet.write(row, col + 5, optimized_cnsim)
                     print(optimized_cnsim)
                 row += 1
@@ -144,7 +151,7 @@ def generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt_name, cutscene_names, cha
             worksheet.write(row, col + 3, cn)
             worksheet.write(row, col + 4, en)
             if chatbot is not None:
-                optimized_cnsim = chatbot.ask(cn, cnsim)
+                optimized_cnsim = chatbot.ask(cn, cnsim, en)
                 worksheet.write(row, col + 5, optimized_cnsim)
                 print(optimized_cnsim)
             row += 1
@@ -154,17 +161,19 @@ def generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt_name, cutscene_names, cha
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-oxt', type=str, default='fam1aud.oxt', help='oxt file path')
-    parser.add_argument('-bot-opt', action='store_true', default=False, help='enable bot optimization')
+    parser.add_argument('-oxt', type=str, default='fam2aud.oxt', help='oxt file path')
+    parser.add_argument('-bot-opt', action='store_true', default=True, help='enable bot optimization')
     args = parser.parse_args()
 
     cutscene_flags_names_map = {
-        '_INT_': 'family_1_int_seq_mastered_only',
-        '_MCS2_': 'fam_1_mcs_2_mastered_only',
-        '_EXT2_': 'fam_1_ext_2_seq_mastered_only',
-        '_EXTALT2_': 'fam_1_ext_alt2_mastered_only',
-        '_EXTALT3_': 'fam_1_ext_alt3_mastered_only',
+        '_CUT5_': 'family_2_int_seq_mastered_only',
+        '_CUT7_': 'family_2_mcs_2_seq_mastered_only',
+        '_CUT8_': 'family_2_mcs_3_seq_mastered_only',
+        '_CUT6_': 'family_2_mcs_4_seq_mastered_only',
     }
+    # audio_prefix = ['LES1A', 'LES1B']
+    audio_prefix = None
+
     chatbot = None
     if args.bot_opt:
         chatbot = Chatbot(
@@ -175,10 +184,10 @@ if __name__ == '__main__':
         )
 
     # 读取oxt文件中的字典
-    labels = read_oxt(os.path.join('subtitles/label', args.oxt))
-    cn_sub = read_oxt(os.path.join('subtitles/cn', args.oxt))
-    cnsim_sub = read_oxt(os.path.join('subtitles/cnsim', args.oxt))
-    en_sub = read_oxt(os.path.join('subtitles/en', args.oxt), is_cn=False)
+    labels = read_oxt(os.path.join('subtitles/label', args.oxt), audio_prefix=audio_prefix)
+    cn_sub = read_oxt(os.path.join('subtitles/cn', args.oxt), audio_prefix=audio_prefix)
+    cnsim_sub = read_oxt(os.path.join('subtitles/cnsim', args.oxt), audio_prefix=audio_prefix)
+    en_sub = read_oxt(os.path.join('subtitles/en', args.oxt), is_cn=False, audio_prefix=audio_prefix)
 
     # 链接音频和台词
     audio_cnsim = link_cn_audio(labels, cutscene_flags_names_map)
@@ -192,4 +201,4 @@ if __name__ == '__main__':
     audio_cnsim = dict(sorted(audio_cnsim.items()))
     audio_en = dict(sorted(audio_en.items()))
 
-    generate_xlsx(audio_cn, audio_cnsim, audio_en, args.oxt, cutscene_flags_names_map.values(), chatbot)
+    generate_xlsx(audio_cn, audio_cnsim, audio_en, args.oxt, cutscene_flags_names_map.values(), audio_prefix, chatbot)

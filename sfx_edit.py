@@ -7,7 +7,7 @@ from pydub.silence import detect_silence
 from utils import *
 
 
-def split_audio(audio_file, count, silent_thr=-50, min_silence_len=3000):
+def split_audio(audio_file, count, silent_thr=-55, min_silence_len=2000):
     audio_file = os.path.join(in_audio_root, audio_file)
     audio = AudioSegment.from_file(audio_file)
     audio_list = []
@@ -22,7 +22,8 @@ def split_audio(audio_file, count, silent_thr=-50, min_silence_len=3000):
 
     # 检测静音区域，参数 min_silence_len 是静音最短持续时间（毫秒）,为该函数添加进度条
     print('Detecting silence regions...')
-    silent_regions = detect_silence(audio, min_silence_len=min_silence_len, silence_thresh=silent_thr)
+    silent_regions = detect_silence(audio, min_silence_len=min_silence_len, silence_thresh=silent_thr, seek_step=50)
+    print(f"Found {len(silent_regions) + 1} segments.")
 
     # 按静音区域分割音频
     for i in range(len(silent_regions) + 1):
@@ -52,14 +53,17 @@ def split_audio(audio_file, count, silent_thr=-50, min_silence_len=3000):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-in-audio', type=str, default='肯尼斯.wav', help='input raw audio file of one role')
-    parser.add_argument('-role', type=str, default='肯尼斯', help='role name')
-    parser.add_argument('-xlsx', type=str, default='arm3aud.xlsx', help='input xlsx file of dubbing')
+    parser.add_argument('-in-audio', type=str, default='莱斯特.wav', help='input raw audio file of one role')
+    parser.add_argument('-role', type=str, default='莱斯特', help='role name')
+    parser.add_argument('-xlsx', type=str, default='fam3aud.xlsx', help='input xlsx file of dubbing')
     args = parser.parse_args()
 
     xlsx_file = os.path.join(in_xlsx_root, args.xlsx)
 
     audio_sub_map = read_map_from_xlsx(xlsx_file, '音频文件', '中配台词', args.role)
+    print('Audio-Sub map for debug:---------------')
+    for idx, (audio_file, sub_text) in enumerate(audio_sub_map.items()):
+        print(idx, audio_file, sub_text)
 
     audio_list = split_audio(args.in_audio, len(audio_sub_map.keys()))
 

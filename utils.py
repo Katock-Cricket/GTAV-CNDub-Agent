@@ -9,6 +9,7 @@ ori_oxt_root = 'subtitles/cnsim'
 out_dir = 'out_oxt'
 in_audio_root = 'in_audio'
 out_sfx_root = 'out_sfx'
+common_punctuation = ['.', '!', '?', '。', '！', '？', '，', '、', '：', '；', '‘', '’', '“', '”', '"', "'", '(', ')', '[', ']', '{', '}', '<', '>', '—', '–', '…', '—', '‘', '’', '“', '”', '《', '》', '【', '】', '『', '』', '﹃', '﹄', '〔', '〕']
 
 
 # 中文检测
@@ -20,9 +21,16 @@ def is_chinese(text):
 
 
 # 从oxt文件中读取字典
-def read_oxt(oxt_file, is_cn=True):
+def read_oxt(oxt_file, is_cn=True, audio_prefix=None):
     ret = {}
-    prefix = os.path.basename(oxt_file).split('aud')[0].upper()
+    audio_prefix = [os.path.basename(oxt_file).split('aud')[0].upper()] if audio_prefix is None else audio_prefix
+
+    def is_audio(value):
+        for prefix in audio_prefix:
+            if value.startswith(prefix):
+                return True
+        return False
+
     sub_prefix = '~z~'
     with open(oxt_file, 'rb') as f:
         data = f.read().decode('utf-8')
@@ -32,10 +40,9 @@ def read_oxt(oxt_file, is_cn=True):
 
             key = key.strip().replace('\t', '').replace('\n', '').replace('\r', '')
             value = value.strip().replace('\t', '').replace('\n', '').replace('\r', '')
-
-            if value.startswith(sub_prefix) and (is_chinese(value) and is_cn or not is_cn):
+            if value.startswith(sub_prefix) and (is_chinese(value) and is_cn or not is_cn):  # 记录了字幕的项
                 ret[key] = value[len(sub_prefix):]
-            elif value.startswith(prefix):
+            elif is_audio(value):  # 记录了音频文件的项
                 ret[key] = value
 
     return ret
@@ -90,6 +97,10 @@ def read_map_from_xlsx(xlsx_file, key='原台词简中', value='中配台词', f
     kv_map = dict(zip(original_data, dub_data))
 
     for k, v in kv_map.items():
+        # 如果value的末尾没有中文或英文标点，则添加一个句号
+        if v[-1] not in common_punctuation:
+            kv_map[k] = v + '。'
+        # 去掉空值
         if pd.isna(v):
             kv_map[k] = k
 
@@ -105,8 +116,8 @@ class Chatbot:
         self.engine = engine
         self.sys_prompt = sys_prompt
 
-    def ask(self, cn, cnsim):
-        query = f"原台词(简体中文): {cn}\n原台词(繁体中文): {cnsim}\n请直接回复优化后的台词(简体中文):"
+    def ask(self, cn, cnsim ,en):
+        query = f"原台词(简体中文): {cn}\n原台词(繁体中文): {cnsim}\n原台词(英文): {en}\n请直接回复优化后的台词(简体中文):"
 
         completion = self.client.chat.completions.create(
             model=self.engine,
@@ -123,7 +134,7 @@ if __name__ == '__main__':
         api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
         base_url='https://api.chatanywhere.tech',
         engine='gpt-4o',
-        sys_prompt='你作为专业AI助手，现在要协助我完成台词润色。我们要为GTA5这个游戏重写中文台词，目标是将原本用于阅读的中文台词改写为更适合配音的中文台词。要求：语句长度与原本的差不多；语意与原本的一致；符合GTA5的剧情；符合中国大陆本土的配音腔调。接下来会给你每句台词的原本简体中文台词和繁体中文台词作为参考，你直接给出优化后的台词内容。'
+        sys_prompt='你作为专业AI助手，现在要协助我完成台词润色。我们要为GTA5这个游戏重写中文台词，目标是将原本用于阅读的中文台词改写为更适合配音的中文台词。要求：语句长度与原本的差不多；语意与原本的一致；符合GTA5的剧情（非常重要）；符合中国大陆本土的配音腔调。接下来会给你每句台词的原本简体中文台词、繁体中文台词和原英文台词作为参考，你直接给出优化后的台词内容。'
     )
 
     cn = '别叫我"老爸"，你个小混蛋。你最好祈祷它还能出海。'
