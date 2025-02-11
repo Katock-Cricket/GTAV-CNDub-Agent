@@ -53,9 +53,9 @@ def split_audio(audio_file, count, silent_thr=-55, min_silence_len=2000):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-in-audio', type=str, default='莱斯特.wav', help='input raw audio file of one role')
-    parser.add_argument('-role', type=str, default='莱斯特', help='role name')
-    parser.add_argument('-xlsx', type=str, default='fam3aud.xlsx', help='input xlsx file of dubbing')
+    parser.add_argument('-in-audio', type=str, default='麦克.wav', help='input raw audio file of one role')
+    parser.add_argument('-role', type=str, default='麦克', help='role name')
+    parser.add_argument('-xlsx', type=str, default='jhs1aud.xlsx', help='input xlsx file of dubbing')
     args = parser.parse_args()
 
     xlsx_file = os.path.join(in_xlsx_root, args.xlsx)

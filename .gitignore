@@ -4,5 +4,6 @@
 /out_sfx
 /out_oxt
 /in_audio
-/in_audio
 /in_xlsx
+*.pyc
+/sense-voice/ckpt/

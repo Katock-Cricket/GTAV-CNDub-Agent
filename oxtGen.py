@@ -72,8 +72,8 @@ def process_oxt(oxt_file, kv_map):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-xlsx', type=str, default='fam3aud.xlsx')
-    parser.add_argument('-oxt', type=str, default='fam3aud.oxt')
+    parser.add_argument('-xlsx', type=str, default='ls1aaud.xlsx')
+    parser.add_argument('-oxt', type=str, default='ls1aaud.oxt')
     # parser.add_argument('-json', type=str, required=True)
     args = parser.parse_args()
 
