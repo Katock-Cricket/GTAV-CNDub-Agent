@@ -141,7 +141,7 @@ def generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt_name, cutscene_names, sfx
                 worksheet.write(row, col + 3, cn[i])
                 worksheet.write(row, col + 4, en[i])
                 if chatbot is not None:
-                    optimized_cnsim = chatbot.ask(cn[i], cnsim[i], en[i])
+                    optimized_cnsim = chatbot.optimize(cn[i], cnsim[i], en[i])
                     worksheet.write(row, col + 5, optimized_cnsim)
                     print(optimized_cnsim)
                 row += 1
@@ -151,7 +151,7 @@ def generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt_name, cutscene_names, sfx
             worksheet.write(row, col + 3, cn)
             worksheet.write(row, col + 4, en)
             if chatbot is not None:
-                optimized_cnsim = chatbot.ask(cn, cnsim, en)
+                optimized_cnsim = chatbot.optimize(cn, cnsim, en)
                 worksheet.write(row, col + 5, optimized_cnsim)
                 print(optimized_cnsim)
             row += 1

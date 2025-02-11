@@ -7,3 +7,4 @@
 /in_xlsx
 *.pyc
 /sense-voice/ckpt/
+/sense_voice/ckpt

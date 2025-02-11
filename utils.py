@@ -2,14 +2,33 @@ import os
 
 import pandas as pd
 from openai import OpenAI
-
+from profanity_check import predict
 
 in_xlsx_root = 'in_xlsx'
 ori_oxt_root = 'subtitles/cnsim'
 out_dir = 'out_oxt'
 in_audio_root = 'in_audio'
 out_sfx_root = 'out_sfx'
-common_punctuation = ['.', '!', '?', '。', '！', '？', '，', '、', '：', '；', '‘', '’', '“', '”', '"', "'", '(', ')', '[', ']', '{', '}', '<', '>', '—', '–', '…', '—', '‘', '’', '“', '”', '《', '》', '【', '】', '『', '』', '﹃', '﹄', '〔', '〕']
+common_punctuation = ['.', '!', '?', '。', '！', '？', '，', '、', '：', '；', '‘', '’', '“', '”', '"', "'", '(', ')', '[',
+                      ']', '{', '}', '<', '>', '—', '–', '…', '—', '‘', '’', '“', '”', '《', '》', '【', '】', '『', '』',
+                      '﹃', '﹄', '〔', '〕']
+
+
+def censor_bad_words(sentence):
+    """
+    使用 profanity-check 库检测并屏蔽脏话。
+    将脏话单词的每个字母之间插入 "*"。
+    """
+    words = sentence.split()
+
+    for i in range(len(words)):
+        if predict([words[i]])[0]:
+            censored_word = '*'.join(words[i])
+            words[i] = censored_word
+
+    censored_sentence = ' '.join(words)
+
+    return censored_sentence
 
 
 # 中文检测
@@ -116,8 +135,20 @@ class Chatbot:
         self.engine = engine
         self.sys_prompt = sys_prompt
 
-    def ask(self, cn, cnsim ,en):
+    def optimize(self, cn, cnsim, en):
         query = f"原台词(简体中文): {cn}\n原台词(繁体中文): {cnsim}\n原台词(英文): {en}\n请直接回复优化后的台词(简体中文):"
+
+        completion = self.client.chat.completions.create(
+            model=self.engine,
+            messages=[
+                {"role": "system", "content": self.sys_prompt},
+                {"role": "user", "content": query},
+            ])
+
+        return completion.choices[0].message.content
+
+    def translate(self, group, file, emo, event, text):
+        query = f"语音组: {group}\n文件名: {file}\n推测情绪: {emo}\n包含事件: {event}\n语音识别结果: {text}\n请直接回复翻译后的台词(简体中文):"
 
         completion = self.client.chat.completions.create(
             model=self.engine,
@@ -134,9 +165,9 @@ if __name__ == '__main__':
         api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
         base_url='https://api.chatanywhere.tech',
         engine='gpt-4o',
-        sys_prompt='你作为专业AI助手，现在要协助我完成台词润色。我们要为GTA5这个游戏重写中文台词，目标是将原本用于阅读的中文台词改写为更适合配音的中文台词。要求：语句长度与原本的差不多；语意与原本的一致；符合GTA5的剧情（非常重要）；符合中国大陆本土的配音腔调。接下来会给你每句台词的原本简体中文台词、繁体中文台词和原英文台词作为参考，你直接给出优化后的台词内容。'
+        sys_prompt='你作为专业AI助手，现在要协助我完成台词润色。我们要为GTA这个游戏重写中文台词，目标是将原本用于阅读的中文台词改写为更适合配音的中文台词。要求：语句长度与原本的差不多；语意与原本的一致；符合GTA的风格；符合中国大陆本土的配音腔调。接下来会给你每句台词的原本简体中文台词、繁体中文台词和原英文台词作为参考，你直接给出优化后的台词内容。'
     )
 
     cn = '别叫我"老爸"，你个小混蛋。你最好祈祷它还能出海。'
     cnsim = '別叫我「老爸」，你這臭小子。你最好祈禱這船還可以在水上開。'
-    print(chatbot.ask(cn, cnsim))
+    print(chatbot.optimize(cn, cnsim))
