@@ -1,1 +1,1 @@
-from .inference_main import Sentence, rec_sentences
+from .inference_main import rec_sentences, Sentence

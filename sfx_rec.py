@@ -63,40 +63,44 @@ def xlsx_gen(sentences, xlsx_name, chatbot=None):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='识别无字幕的语音并形成中配台词表')
-    parser.add_argument('--audio-dir', type=str, default='in_audio/franklin_angry', help='语音文件目录')
-    parser.add_argument('--batch-size', type=int, default=4, help='每批处理的语音数')
+    parser.add_argument('--audio-dir', type=str, default=
+                          ['in_audio/franklin_2_normal']
+                        , help='语音文件目录')
+    parser.add_argument('--batch-size', type=int, default=1, help='每批处理的语音数')
     parser.add_argument('-bot-opt', action='store_true', default=True, help='enable bot optimization')
     parser.add_argument('--gen-xlsx-from-json', action='store_true', default=True,
                         help='generate xlsx file from json file')
 
     args = parser.parse_args()
 
-    # 获取路径的最后一层文件夹名作为xlsx文件名
-    xlsx_name = args.audio_dir.split('/')[-1]
+    for audio_dir in args.audio_dir:
+        print(f'开始识别语音文件：{audio_dir}')
 
-    chatbot = None
+        xlsx_name = audio_dir.split('/')[-1]
 
-    if args.bot_opt:
-        chatbot = Chatbot(
-            api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
-            base_url='https://api.chatanywhere.tech/v1',
-            engine='gemini-1.5-flash-latest',
-            sys_prompt='你协助我完成台词翻译。要为GTA5这个游戏的英文语音撰写中文台词，要求：语意与原本的一致；要符合GTA5的风格；对于脏话性质的原文，适度翻译为对应的中国脏话以加强口语性和生动感。要符合中国大陆本土的配音腔调。接下来会给你每句语音的英文台词(机器识别结果，可能存在谐音错误，需要鉴别)和一些标签(所属语音组、所属文件名、情绪推测、事件推测)作为情感因素参考，你根据这些进行推断，直接给出翻译后的中文台词。'
-        )
+        chatbot = None
 
-    if args.gen_xlsx_from_json:
-        import json
+        if args.bot_opt:
+            chatbot = Chatbot(
+                api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
+                base_url='https://api.chatanywhere.tech/v1',
+                engine='gemini-1.5-flash-latest',
+                sys_prompt='你协助我完成台词翻译。要为GTA5这个游戏的英文语音撰写中文台词，要求：语意与原本的一致；要符合GTA5的风格；对于你认为是脏话的原文，适度翻译为对应的中国脏话以加强口语性和生动感。要符合中国大陆本土的配音腔调。接下来会给你每句语音的英文台词(机器识别结果，可能存在谐音错误，需要鉴别)和一些标签(所属语音组、所属文件名、情绪推测、事件推测)作为情感因素参考，你根据这些进行推断，直接给出翻译后的中文台词。'
+            )
 
-        with open(f'{args.audio_dir}.json', 'r', encoding='utf-8') as f:
-            sentences = [Sentence(**sentence) for sentence in json.load(f)]
+        if args.gen_xlsx_from_json:
+            import json
+
+            with open(f'{audio_dir}.json', 'r', encoding='utf-8') as f:
+                sentences = [Sentence(**sentence) for sentence in json.load(f)]
+            xlsx_gen(sentences, xlsx_name, chatbot)
+            continue
+
+        sentences = rec_sentences(audio_dir, args.batch_size)
+
+        print(f'识别完成，共{len(sentences)}句。')
+
+        with open(f'{audio_dir}.json', 'w', encoding='utf-8') as f:
+            json.dump([sentence.__dict__ for sentence in sentences], f, ensure_ascii=False, indent=4)
+
         xlsx_gen(sentences, xlsx_name, chatbot)
-        exit()
-
-    sentences = rec_sentences(args.audio_dir, args.batch_size)
-
-    print(f'识别完成，共{len(sentences)}句。')
-
-    with open(f'{args.audio_dir}.json', 'w', encoding='utf-8') as f:
-        json.dump([sentence.__dict__ for sentence in sentences], f, ensure_ascii=False, indent=4)
-
-    xlsx_gen(sentences, xlsx_name, chatbot)

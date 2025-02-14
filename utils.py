@@ -1,4 +1,5 @@
 import os
+from time import sleep
 
 import pandas as pd
 from openai import OpenAI
@@ -138,24 +139,48 @@ class Chatbot:
     def optimize(self, cn, cnsim, en):
         query = f"原台词(简体中文): {cn}\n原台词(繁体中文): {cnsim}\n原台词(英文): {en}\n请直接回复优化后的台词(简体中文):"
 
-        completion = self.client.chat.completions.create(
-            model=self.engine,
-            messages=[
-                {"role": "system", "content": self.sys_prompt},
-                {"role": "user", "content": query},
-            ])
+        retry = 0
+        while retry < 10:
+            try:
+                completion = self.client.chat.completions.create(
+                    model=self.engine,
+                    messages=[
+                        {"role": "system", "content": self.sys_prompt},
+                        {"role": "user", "content": query},
+                    ])
+            except Exception as e:
+                print(f"优化失败，重试{retry + 1}次。 " + str(e))
+                retry += 1
+                sleep(4)
+                continue
+            break
+        if retry >= 10:
+            print("优化失败，请检查问题！")
+            return None
 
         return completion.choices[0].message.content
 
     def translate(self, group, file, emo, event, text):
         query = f"语音组: {group}\n文件名: {file}\n推测情绪: {emo}\n包含事件: {event}\n语音识别结果: {text}\n请直接回复翻译后的台词(简体中文):"
 
-        completion = self.client.chat.completions.create(
-            model=self.engine,
-            messages=[
-                {"role": "system", "content": self.sys_prompt},
-                {"role": "user", "content": query},
-            ])
+        retry = 0
+        while retry < 10:
+            try:
+                completion = self.client.chat.completions.create(
+                    model=self.engine,
+                    messages=[
+                        {"role": "system", "content": self.sys_prompt},
+                        {"role": "user", "content": query},
+                    ])
+            except Exception as e:
+                print(f"翻译失败，重试{retry+1}次。 " + str(e))
+                retry += 1
+                sleep(4)
+                continue
+            break
+        if retry >= 10:
+            print("翻译失败，请检查问题！")
+            return None
 
         return completion.choices[0].message.content
 

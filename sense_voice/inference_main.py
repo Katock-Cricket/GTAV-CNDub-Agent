@@ -7,7 +7,29 @@ import re
 
 from funasr import AutoModel
 
-from .tag_dict import emo_dict, event_dict
+
+emo_dict = {
+    "|HAPPY|": "HAPPY/高兴",
+    "|SAD|": "SAD/沮丧",
+    "|ANGRY|": "ANGRY/生气",
+    "|NEUTRAL|": "NEUTRAL/中性",
+    "|FEARFUL|": "FEARFUL/恐惧",
+    "|DISGUSTED|": "DISGUSTED/厌恶",
+    "|SURPRISED|": "SURPRISED/惊讶",
+    "|EMO_UNKNOWN|": "EMO_UNKNOWN/未知",
+}
+
+event_dict = {
+    "|BGM|": "BGM/背景音乐",
+    "|Speech|": "Speech/说话",
+    "|Applause|": "Applause/掌声",
+    "|Laughter|": "Laughter/笑声",
+    "|Cry|": "Cry/哭声",
+    "|Sneeze|": "Sneeze/打哈欠",
+    "|Breath|": "Breathe/呼吸",
+    "|Cough|": "Cough/咳嗽",
+    "|EVENT_UNKNOWN|": "EVENT_UNKNOWN/未知",
+}
 
 
 def construct_sentence_from_str(file, raw_str):
@@ -63,17 +85,15 @@ def get_audio_list(path):
     return audio_list
 
 
-model = AutoModel(
-    model="sense_voice/ckpt",
-    trust_remote_code=False,
-    disable_update=True,
-    device="cuda:0",
-    ban_emo_unk=True,
-    ncpu=1,
-)
 
+model = None
 
-def infer_main(audio_list, batch_size=1):
+# from .model import SenseVoiceSmall
+# model_dir = "sense_voice/ckpt"
+# m, kwargs = SenseVoiceSmall.from_pretrained(model=model_dir, device="cuda:0")
+# m.eval()
+
+def infer_main(audio_list, batch_size=64):
     batch_res = model.generate(
         input=audio_list,
         cache={},
@@ -81,13 +101,41 @@ def infer_main(audio_list, batch_size=1):
         use_itn=True,
         batch_size=batch_size,
     )
+    # batch_res = m.inference(
+    #     data_in=audio_list,
+    #     language="en",  # "zh", "en", "yue", "ja", "ko", "nospeech"
+    #     use_itn=True,
+    #     ban_emo_unk=True,
+    #     **kwargs,
+    # )
 
     return [construct_sentence_from_str(res['key'], res['text']) for res in batch_res]
 
 
-def rec_sentences(audio_dir, batch_size=8):
+def rec_sentences(audio_dir, batch_size=64):
+    global model
+    if model is None:
+        model = AutoModel(
+            model="sense_voice/ckpt",
+            trust_remote_code=True,
+            remote_code="sense_voice/model.py",
+            disable_update=True,
+            ban_emo_unk=True,
+            ncpu=1,
+        )
+
     audio_list = get_audio_list(audio_dir)
-    return infer_main(audio_list, batch_size)
+
+    # 打乱顺序
+    import random
+    random.shuffle(audio_list)
+
+    sentences = infer_main(audio_list, batch_size)
+
+    # 按文件名排序
+    sentences.sort(key=lambda x: x.get_file())
+
+    return sentences
 
 
 if __name__ == '__main__':
