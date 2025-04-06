@@ -1,4 +1,5 @@
 import os
+import re
 from time import sleep
 
 import pandas as pd
@@ -98,7 +99,7 @@ def read_map_from_xlsx(xlsx_file, key='原台词简中', value='中配台词', f
     # 定义一个过滤函数，检查行中是否包含指定的filter_role
     def row_filter(row):
         # 不是过滤模式
-        if filter_role is None:
+        if filter_role is None or filter_role == '':
             return True
         # 如果row的第一个元素（音频文件名）不存在大写字母，则也过滤掉（过场动画）
         if not any(c.isupper() for c in row.values[0]):
@@ -117,12 +118,16 @@ def read_map_from_xlsx(xlsx_file, key='原台词简中', value='中配台词', f
     kv_map = dict(zip(original_data, dub_data))
 
     for k, v in kv_map.items():
+        # 如果v是nan，则用k代替
+        if v is None or v == '' or pd.isna(v):
+            kv_map[k] = k
+            v = k
+        # 如果v中存在一对中英文括号，去掉括号及其内容，例如“AAAA（BBBB）CC(DD)CC” -> "AAAACCCC"
+        v = re.sub(r'[$\（][^)\）]*[$\）]', '', v)
+
         # 如果value的末尾没有中文或英文标点，则添加一个句号
         if v[-1] not in common_punctuation:
             kv_map[k] = v + '。'
-        # 去掉空值
-        if pd.isna(v):
-            kv_map[k] = k
 
     return kv_map
 

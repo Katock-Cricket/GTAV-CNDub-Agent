@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 
 from tqdm import tqdm
 
@@ -61,10 +62,57 @@ def xlsx_gen(sentences, xlsx_name, chatbot=None):
     workbook.close()
 
 
+def audio_rec(audio_dirs, xlsx_name_arg=None, json_path_arg=None, batch_size=1, bot_opt=True, gen_xlsx_from_json=True):
+    import json
+    for audio_dir in audio_dirs:
+        print(f'开始识别语音文件：{audio_dir}')
+
+        xlsx_name = os.path.basename(audio_dir) if xlsx_name_arg is None else xlsx_name_arg
+
+        chatbot = None
+
+        if bot_opt:
+            chatbot = Chatbot(
+                api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
+                base_url='https://api.chatanywhere.tech/v1',
+                engine='deepseek-v3',
+                sys_prompt='你协助我完成台词翻译。要为GTA5这个游戏的英文语音撰写中文台词，要求：语意与原本的一致；要符合GTA5的风格；对于你认为是脏话的原文，适度翻译为对应的中国脏话以加强口语性和生动感。要符合中国大陆本土的配音腔调。接下来会给你每句语音的英文台词(机器识别结果，可能存在谐音错误，需要鉴别)和一些标签(所属语音组、所属文件名、情绪推测、事件推测)作为情感因素参考，你根据这些进行推断，直接给出翻译后的中文台词，不需要任何的解释。'
+            )
+
+        json_path = f'{audio_dir}.json' if json_path_arg is None else json_path_arg
+
+        if gen_xlsx_from_json:
+            with open(json_path, 'r', encoding='utf-8') as f:
+                sentences = [Sentence(**sentence) for sentence in json.load(f)]
+            xlsx_gen(sentences, xlsx_name, chatbot)
+            continue
+
+        sentences = rec_sentences(audio_dir, batch_size)
+
+        print(f'识别完成，共{len(sentences)}句。')
+
+        with open(json_path, 'w', encoding='utf-8') as f:
+            json.dump([sentence.__dict__ for sentence in sentences], f, ensure_ascii=False, indent=4)
+        print(f'save rec result to {json_path}')
+
+        xlsx_gen(sentences, xlsx_name, chatbot)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='识别无字幕的语音并形成中配台词表')
     parser.add_argument('--audio-dir', type=str, default=
-                          ['in_audio/franklin_2_normal']
+    [
+        'brad',
+        'denise',
+        'jimmy_drunk',
+        'jimmy_normal',
+        'lamar_1_normal',
+        'lamar_2_normal',
+        'lamar_drunk',
+        'lester',
+        'simeon',
+        'tracey'
+    ]
                         , help='语音文件目录')
     parser.add_argument('--batch-size', type=int, default=1, help='每批处理的语音数')
     parser.add_argument('-bot-opt', action='store_true', default=True, help='enable bot optimization')
@@ -72,35 +120,9 @@ if __name__ == '__main__':
                         help='generate xlsx file from json file')
 
     args = parser.parse_args()
+    # 给args.audio_dir每个文件加上in_audio前缀
+    args.audio_dir = [os.path.join('in_audio', a) for a in args.audio_dir]
+    print(args.audio_dir)
 
-    for audio_dir in args.audio_dir:
-        print(f'开始识别语音文件：{audio_dir}')
-
-        xlsx_name = audio_dir.split('/')[-1]
-
-        chatbot = None
-
-        if args.bot_opt:
-            chatbot = Chatbot(
-                api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
-                base_url='https://api.chatanywhere.tech/v1',
-                engine='gemini-1.5-flash-latest',
-                sys_prompt='你协助我完成台词翻译。要为GTA5这个游戏的英文语音撰写中文台词，要求：语意与原本的一致；要符合GTA5的风格；对于你认为是脏话的原文，适度翻译为对应的中国脏话以加强口语性和生动感。要符合中国大陆本土的配音腔调。接下来会给你每句语音的英文台词(机器识别结果，可能存在谐音错误，需要鉴别)和一些标签(所属语音组、所属文件名、情绪推测、事件推测)作为情感因素参考，你根据这些进行推断，直接给出翻译后的中文台词。'
-            )
-
-        if args.gen_xlsx_from_json:
-            import json
-
-            with open(f'{audio_dir}.json', 'r', encoding='utf-8') as f:
-                sentences = [Sentence(**sentence) for sentence in json.load(f)]
-            xlsx_gen(sentences, xlsx_name, chatbot)
-            continue
-
-        sentences = rec_sentences(audio_dir, args.batch_size)
-
-        print(f'识别完成，共{len(sentences)}句。')
-
-        with open(f'{audio_dir}.json', 'w', encoding='utf-8') as f:
-            json.dump([sentence.__dict__ for sentence in sentences], f, ensure_ascii=False, indent=4)
-
-        xlsx_gen(sentences, xlsx_name, chatbot)
+    audio_rec(args.audio_dir, batch_size=args.batch_size, bot_opt=args.bot_opt,
+              gen_xlsx_from_json=args.gen_xlsx_from_json)

@@ -1,20 +1,10 @@
 import argparse
+import shutil
 
 from tqdm import tqdm
 
 from utils import *
-
-
-def get_mcs_num(label):
-    print(label)
-    if '_MCS_' in label:
-        return label.split('_')[2]
-    elif '_EXTALT' in label:
-        return label.split('_')[1].split('EXTALT')[1]
-    elif '_EXT' in label:
-        return label.split('_')[1].split('EXT')[1]
-    else:
-        return label.split('_')[1].split('MCS')[1]
+from sfx_rec import audio_rec
 
 
 def is_cutscene_label(label, cutscene_map):
@@ -159,17 +149,34 @@ def generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt_name, cutscene_names, sfx
     workbook.close()
 
 
+def get_diff(audio_list_with_sub, audio_list_all):
+    # 找出audio_list_all中有，但audio_list_with_sub中没有的音频，返回列表
+    diff_list = []
+    for audio in audio_list_all:
+        if audio not in audio_list_with_sub:
+            diff_list.append(audio)
+    return diff_list
+
+
+audio_root = 'in_audio'
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-oxt', type=str, default='fam2aud.oxt', help='oxt file path')
+    parser.add_argument('-oxt', type=str, nargs='+', default=['mgpsaud.oxt'], help='oxt file path')
     parser.add_argument('-bot-opt', action='store_true', default=True, help='enable bot optimization')
+    parser.add_argument('--audio-bank', type=str, default='mgps', help='audio bank directory')
+    parser.add_argument('--rec', action='store_true', default=True, help='enable audio recgition')
     args = parser.parse_args()
 
     cutscene_flags_names_map = {
-        '_CUT5_': 'family_2_int_seq_mastered_only',
-        '_CUT7_': 'family_2_mcs_2_seq_mastered_only',
-        '_CUT8_': 'family_2_mcs_3_seq_mastered_only',
-        '_CUT6_': 'family_2_mcs_4_seq_mastered_only',
+        '_INTRO_': 'pro_ig_1_sync_mastered_only',
+        '_TIE_': 'pro_mcs_1_mastered_only',
+        '_MCS2_': 'pro_mcs_2_mastered_only',
+        '_AMBUSH_': 'pro_mcs_3_pt1_mastered_only',
+        '_CHASE_': 'pro_mcs_5_seq_mastered_only',
+        '_GETAWAY_': 'pro_mcs_5_seq_mastered_only',
+        '_MCS5_': 'pro_mcs_6_seq_mastered_only',
+        '_INT_': 'pro_mcs_7_seq_mastered_only',
     }
     # audio_prefix = ['LES1A', 'LES1B']
     audio_prefix = None
@@ -179,26 +186,53 @@ if __name__ == '__main__':
         chatbot = Chatbot(
             api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
             base_url='https://api.chatanywhere.tech',
-            engine='gpt-4o',
-            sys_prompt='你作为专业AI助手，现在要协助我完成台词润色。我们要为GTA5这个游戏重写中文台词，目标是将原本用于阅读的中文台词改写为更适合配音的中文台词。要求：语句长度与原本的差不多；语意与原本的一致；符合GTA5的剧情；符合中国大陆本土的配音腔调。接下来会给你每句台词的原本简体中文台词和繁体中文台词作为参考，你直接给出优化后的台词内容。'
+            engine='deepseek-v3',
+            sys_prompt='你作为专业AI助手，现在要协助我完成台词润色。我们要为GTA5这个游戏重写中文台词，目标是将原本用于阅读的中文台词改写为更适合配音的中文台词。要求：语句长度与原本的差不多；语意与原本的一致；符合GTA5的剧情；符合中国大陆本土的配音腔调。接下来会给你每句台词的原本简体中文台词和繁体中文台词作为参考，你直接给出优化后的台词内容，不需要任何解释。'
         )
 
-    # 读取oxt文件中的字典
-    labels = read_oxt(os.path.join('subtitles/label', args.oxt), audio_prefix=audio_prefix)
-    cn_sub = read_oxt(os.path.join('subtitles/cn', args.oxt), audio_prefix=audio_prefix)
-    cnsim_sub = read_oxt(os.path.join('subtitles/cnsim', args.oxt), audio_prefix=audio_prefix)
-    en_sub = read_oxt(os.path.join('subtitles/en', args.oxt), is_cn=False, audio_prefix=audio_prefix)
+    for oxt in args.oxt:
+        # 读取oxt文件中的字典
+        labels = read_oxt(os.path.join('subtitles/label', oxt), is_cn=False, audio_prefix=audio_prefix)
+        cn_sub = read_oxt(os.path.join('subtitles/cn', oxt), is_cn=False, audio_prefix=audio_prefix)
+        cnsim_sub = read_oxt(os.path.join('subtitles/cnsim', oxt), is_cn=False, audio_prefix=audio_prefix)
+        en_sub = read_oxt(os.path.join('subtitles/en', oxt), is_cn=False, audio_prefix=audio_prefix)
 
-    # 链接音频和台词
-    audio_cnsim = link_cn_audio(labels, cutscene_flags_names_map)
+        # 链接音频和台词
+        audio_cnsim = link_cn_audio(labels, cutscene_flags_names_map)
 
-    # 链接音频和台词的其他版本
-    audio_cn = link_sub_verion(audio_cnsim, cn_sub, cnsim_sub)
-    audio_en = link_sub_verion(audio_cnsim, en_sub, cnsim_sub)
+        # 链接音频和台词的其他版本
+        audio_cn = link_sub_verion(audio_cnsim, cn_sub, cnsim_sub)
+        audio_en = link_sub_verion(audio_cnsim, en_sub, cnsim_sub)
 
-    # 按照key排序
-    audio_cn = dict(sorted(audio_cn.items()))
-    audio_cnsim = dict(sorted(audio_cnsim.items()))
-    audio_en = dict(sorted(audio_en.items()))
+        # 按照key排序
+        audio_cn = dict(sorted(audio_cn.items()))
+        audio_cnsim = dict(sorted(audio_cnsim.items()))
+        audio_en = dict(sorted(audio_en.items()))
 
-    generate_xlsx(audio_cn, audio_cnsim, audio_en, args.oxt, cutscene_flags_names_map.values(), audio_prefix, chatbot)
+        generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt, cutscene_flags_names_map.values(), audio_prefix, chatbot)
+
+        if args.rec:
+            print("Start audio_without_sub recognition...")
+            audio_dir = os.path.join(audio_root, args.audio_bank)
+
+            # 读取audio_dir下的wav文件名列表，不带后缀
+            audio_names_all = [os.path.splitext(os.path.basename(audio_file))[0] for audio_file in os.listdir(audio_dir)
+                               if audio_file.endswith('.wav')]
+
+            diff_list = get_diff(audio_cnsim.keys(), audio_names_all)
+
+            print("There are {} audio files without subtitles.".format(len(diff_list)))
+
+            diff_dir = os.path.join(audio_dir, 'without_sub')
+            if not os.path.exists(diff_dir):
+                os.makedirs(diff_dir)
+
+            for audio in diff_list:
+                a = os.path.join(audio_dir, audio + '.wav')
+                a_new = os.path.join(diff_dir, audio + '.wav')
+                shutil.copy(a, a_new)
+
+            xlsx_name = f'{oxt}_without_sub'
+            json_path = os.path.join(audio_root, f'{args.audio_bank}_without_sub.json')
+            audio_rec([diff_dir], xlsx_name_arg=xlsx_name, json_path_arg=json_path, batch_size=1, bot_opt=args.bot_opt,
+                      gen_xlsx_from_json=True)
