@@ -78,6 +78,8 @@ def link_sub_verion(audio_cnsim, sub_ver1, sub_ver2):
 # 生成xlsx表格
 def generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt_name, cutscene_names, sfx_names, chatbot):
     import xlsxwriter
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    import threading
 
     xlsx_root = 'in_xlsx'
     oxt_name = os.path.basename(oxt_name).split('.')[0]
@@ -113,40 +115,48 @@ def generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt_name, cutscene_names, sfx
     worksheet.write(3, 2, '原台词简中')
     worksheet.write(3, 3, '原台词繁中')
     worksheet.write(3, 4, '原台词英文')
-    worksheet.write(3, 5, 'GPT-4o优化')
+    worksheet.write(3, 5, 'AI优化')
     worksheet.write(3, 6, '中配台词')
     worksheet.set_row(3, cell_format=header_format)
     worksheet.set_column(2, 5, 70)
 
+    lock = threading.Lock()
     row = 4
-    col = 0
-    for (it1, it2, it3) in tqdm(zip(audio_cn.items(), audio_cnsim.items(), audio_en.items())):
-        audio, cn = it1
-        _, cnsim = it2
-        _, en = it3
-        if isinstance(cn, list):  # 如果cn是列表(过场动画音频)
-            for i in range(len(cn)):
-                worksheet.write(row, col, audio)
-                worksheet.write(row, col + 2, cnsim[i])
-                worksheet.write(row, col + 3, cn[i])
-                worksheet.write(row, col + 4, en[i])
-                if chatbot is not None:
-                    optimized_cnsim = chatbot.optimize(cn[i], cnsim[i], en[i])
-                    worksheet.write(row, col + 5, optimized_cnsim)
-                    print(optimized_cnsim)
+    data_rows = []
+
+    def process_item(audio, cn, cnsim, en, row_idx):
+        if chatbot is not None:
+            optimized_cnsim = chatbot.optimize(cn, cnsim, en)
+            return (row_idx, audio, cnsim, cn, en, optimized_cnsim)
+        return (row_idx, audio, cnsim, cn, en, None)
+
+    with ThreadPoolExecutor(max_workers=4) as executor:
+        futures = []
+        for (it1, it2, it3) in zip(audio_cn.items(), audio_cnsim.items(), audio_en.items()):
+            audio, cn = it1
+            _, cnsim = it2
+            _, en = it3
+            if isinstance(cn, list):
+                for i in range(len(cn)):
+                    futures.append(executor.submit(process_item, audio, cn[i], cnsim[i], en[i], row))
+                    row += 1
+            else:
+                futures.append(executor.submit(process_item, audio, cn, cnsim, en, row))
                 row += 1
-        else:
-            worksheet.write(row, col, audio)
-            worksheet.write(row, col + 2, cnsim)
-            worksheet.write(row, col + 3, cn)
-            worksheet.write(row, col + 4, en)
-            if chatbot is not None:
-                optimized_cnsim = chatbot.optimize(cn, cnsim, en)
-                worksheet.write(row, col + 5, optimized_cnsim)
-                print(optimized_cnsim)
-            row += 1
+
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing AI optimization"):
+            row_idx, audio, cnsim, cn, en, optimized_cnsim = future.result()
+            with lock:
+                worksheet.write(row_idx, 0, audio)
+                worksheet.write(row_idx, 2, cnsim)
+                worksheet.write(row_idx, 3, cn)
+                worksheet.write(row_idx, 4, en)
+                if optimized_cnsim is not None:
+                    worksheet.write(row_idx, 5, optimized_cnsim)
+                    print(optimized_cnsim)
 
     workbook.close()
+
 
 
 def get_diff(audio_list_with_sub, audio_list_all):

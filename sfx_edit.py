@@ -53,20 +53,22 @@ def split_audio(audio_file, count, silent_thr=-55, min_silence_len=2000):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-in-audio', type=str, default='崔佛.wav', help='input raw audio file of one role')
+    parser.add_argument('-in-audio', type=str, default='富兰克林愤怒.wav', help='input raw audio file of one role')
     parser.add_argument('-role', type=str, default='', help='role name')
-    parser.add_argument('-xlsx', type=str, default='proaud.xlsx', help='input xlsx file of dubbing')
+    parser.add_argument('-xlsx', type=str, default='富兰克林-愤怒-台词表.xlsx', help='input xlsx file of dubbing')
     args = parser.parse_args()
 
     xlsx_file = os.path.join(in_xlsx_root, args.xlsx)
 
-    if args.role == '':
-        args.role = os.path.basename(args.in_audio).split('.')[0]
-
-    audio_sub_map = read_map_from_xlsx(xlsx_file, '音频文件', '中配台词', args.role)
+    audio_sub_map = read_map_from_xlsx(xlsx_file, '音频文件', '中配台词',
+                                       args.role if args.role != os.path.basename(args.in_audio).split('.')[0] else
+                                       os.path.basename(args.in_audio).split('.')[0])
     print('Audio-Sub map for debug:---------------')
     for idx, (audio_file, sub_text) in enumerate(audio_sub_map.items()):
         print(idx, audio_file, sub_text)
+
+    if args.role == '':
+        args.role = os.path.basename(args.in_audio).split('.')[0]
 
     audio_list = split_audio(args.in_audio, len(audio_sub_map.keys()))
 
