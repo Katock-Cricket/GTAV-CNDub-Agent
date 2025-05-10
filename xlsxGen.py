@@ -172,10 +172,10 @@ audio_root = 'in_audio'
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-oxt', type=str, nargs='+', default=['mgpsaud.oxt'], help='oxt file path')
+    parser.add_argument('-oxt', type=str, nargs='+', default=['taxisau.oxt'], help='oxt file path')
     parser.add_argument('-bot-opt', action='store_true', default=True, help='enable bot optimization')
-    parser.add_argument('--audio-bank', type=str, default='mgps', help='audio bank directory')
-    parser.add_argument('--rec', action='store_true', default=True, help='enable audio recgition')
+    parser.add_argument('--audio-bank', type=str, default='taxis', help='audio bank directory')
+    parser.add_argument('--rec', action='store_true', default=False, help='enable audio recgition')
     args = parser.parse_args()
 
     cutscene_flags_names_map = {
@@ -188,8 +188,8 @@ if __name__ == '__main__':
         '_MCS5_': 'pro_mcs_6_seq_mastered_only',
         '_INT_': 'pro_mcs_7_seq_mastered_only',
     }
-    # audio_prefix = ['LES1A', 'LES1B']
-    audio_prefix = None
+    audio_prefix = ['TAXIS_']
+    # audio_prefix = None
 
     chatbot = None
     if args.bot_opt:

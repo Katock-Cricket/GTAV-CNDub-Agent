@@ -72,15 +72,15 @@ def process_oxt(oxt_file, kv_map):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-xlsx', type=str, default='proaud.xlsx')
-    parser.add_argument('-oxt', type=str, default='proaud.oxt')
+    parser.add_argument('-xlsx', type=str, default='mgpsaud.xlsx')
+    parser.add_argument('-oxt', type=str, default='mgpsaud.oxt')
     # parser.add_argument('-json', type=str, required=True)
     args = parser.parse_args()
 
     xlsx_file = os.path.join(in_xlsx_root, args.xlsx)
 
     # 1. 读取xlsx文件并生成kv_map
-    kv_map = read_map_from_xlsx(xlsx_file)
+    kv_map = read_map_from_xlsx(xlsx_file, value='中配台词')
 
     # 2. 将kv_map保存为json文件
     # save_json(kv_map, args.json)

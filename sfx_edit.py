@@ -51,13 +51,7 @@ def split_audio(audio_file, count, silent_thr=-55, min_silence_len=2000):
     return audio_list
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-in-audio', type=str, default='富兰克林愤怒.wav', help='input raw audio file of one role')
-    parser.add_argument('-role', type=str, default='', help='role name')
-    parser.add_argument('-xlsx', type=str, default='富兰克林-愤怒-台词表.xlsx', help='input xlsx file of dubbing')
-    args = parser.parse_args()
-
+def edit_sfx_by_xlsx(args):
     xlsx_file = os.path.join(in_xlsx_root, args.xlsx)
 
     audio_sub_map = read_map_from_xlsx(xlsx_file, '音频文件', '中配台词',
@@ -81,3 +75,37 @@ if __name__ == '__main__':
     for tmp_file, audio_name in zip(audio_list, audio_sub_map.keys()):
         output_file = os.path.join(out_sfx_root, args.role, f"{audio_name}.wav")
         os.rename(tmp_file, output_file)
+
+
+def edit_sfx_by_raw_audio(args):
+    args.overwrite_audio_dir = os.path.join(in_audio_root, args.overwrite_audio_dir)
+    overwrite_audio_files = sorted(
+        [os.path.join(args.overwrite_audio_dir, file) for file in os.listdir(args.overwrite_audio_dir) if
+         file.endswith('.wav')])
+    audio_list = split_audio(args.in_audio, len(overwrite_audio_files))
+    out_sfx_dir = os.path.basename(args.in_audio).split('.')[0]
+
+    if not os.path.exists(os.path.join(out_sfx_root, out_sfx_dir)):
+        os.makedirs(os.path.join(out_sfx_root, out_sfx_dir))
+    else:
+        for file in os.listdir(str(os.path.join(out_sfx_root, out_sfx_dir))):
+            os.remove(os.path.join(out_sfx_root, out_sfx_dir, file))
+
+    for tmp_file, audio_name in zip(audio_list, overwrite_audio_files):
+        output_file = os.path.join(out_sfx_root, out_sfx_dir, os.path.basename(audio_name))
+        os.rename(tmp_file, output_file)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-in-audio', type=str, default='阿曼达(重置)_已剪辑.wav', help='input raw audio file of one role')
+    parser.add_argument('-role', type=str, default='amanda', help='role name')
+    parser.add_argument('-xlsx', type=str, default='arm3aud.xlsx', help='input xlsx file of dubbing')
+    parser.add_argument('-overwrite', action='store_true', default=False, help='overwrite existing sfx files')
+    parser.add_argument('-overwrite-audio-dir', type=str, default='原文件', help='directly overwrite the these sfx files')
+    args = parser.parse_args()
+
+    if args.overwrite:
+        edit_sfx_by_raw_audio(args)
+    else:
+        edit_sfx_by_xlsx(args)

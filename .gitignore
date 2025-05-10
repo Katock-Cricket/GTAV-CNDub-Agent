@@ -8,3 +8,4 @@
 *.pyc
 /sense-voice/ckpt/
 /sense_voice/ckpt
+/in_xlsx
