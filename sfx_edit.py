@@ -78,10 +78,18 @@ def edit_sfx_by_xlsx(args):
 
 
 def edit_sfx_by_raw_audio(args):
+    def natural_sort_key(s):
+        """
+        生成自然排序的key函数
+        """
+        return [int(text) if text.isdigit() else text.lower()
+                for text in re.split('([0-9]+)', s)]
+
     args.overwrite_audio_dir = os.path.join(in_audio_root, args.overwrite_audio_dir)
     overwrite_audio_files = sorted(
         [os.path.join(args.overwrite_audio_dir, file) for file in os.listdir(args.overwrite_audio_dir) if
-         file.endswith('.wav')])
+         file.endswith('.wav')], key=natural_sort_key)
+    print(overwrite_audio_files)
     audio_list = split_audio(args.in_audio, len(overwrite_audio_files))
     out_sfx_dir = os.path.basename(args.in_audio).split('.')[0]
 
@@ -98,11 +106,11 @@ def edit_sfx_by_raw_audio(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-in-audio', type=str, default='阿曼达(重置)_已剪辑.wav', help='input raw audio file of one role')
-    parser.add_argument('-role', type=str, default='amanda', help='role name')
-    parser.add_argument('-xlsx', type=str, default='arm3aud.xlsx', help='input xlsx file of dubbing')
-    parser.add_argument('-overwrite', action='store_true', default=False, help='overwrite existing sfx files')
-    parser.add_argument('-overwrite-audio-dir', type=str, default='原文件', help='directly overwrite the these sfx files')
+    parser.add_argument('-in-audio', type=str, default='富兰克林受击5.wav', help='input raw audio file of one role')
+    parser.add_argument('-role', type=str, default='', help='role name')
+    parser.add_argument('-xlsx', type=str, default='富兰克林-醉酒-台词表.xlsx', help='input xlsx file of dubbing')
+    parser.add_argument('-overwrite', action='store_true', default=True, help='overwrite existing sfx files')
+    parser.add_argument('-overwrite-audio-dir', type=str, default='waveload_pain_franklin', help='directly overwrite the these sfx files')
     args = parser.parse_args()
 
     if args.overwrite:
