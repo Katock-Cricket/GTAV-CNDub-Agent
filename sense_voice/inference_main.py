@@ -126,14 +126,7 @@ def rec_sentences(audio_dir, batch_size=64):
 
     audio_list = get_audio_list(audio_dir)
 
-    # 打乱顺序
-    import random
-    random.shuffle(audio_list)
-
     sentences = infer_main(audio_list, batch_size)
-
-    # 按文件名排序
-    sentences.sort(key=lambda x: x.get_file())
 
     return sentences
 

@@ -10,6 +10,8 @@ from utils import Chatbot
 
 def xlsx_gen(sentences, xlsx_name, chatbot=None):
     import xlsxwriter
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    import threading
 
     xlsx_root = 'in_xlsx'
     xlsx_path = f'{xlsx_root}/{xlsx_name}.xlsx'
@@ -40,24 +42,35 @@ def xlsx_gen(sentences, xlsx_name, chatbot=None):
     worksheet.set_row(3, cell_format=header_format)
     worksheet.set_column(2, 5, 70)
 
+    lock = threading.Lock()
     row = 4
+    data_rows = []
 
-    for sentence in tqdm(sentences):
+    def process_sentence(sentence, row_idx):
         file_name = sentence.get_file()
         emo = sentence.get_emo()
         event = sentence.get_event()
         text_en = sentence.get_text()
 
-        worksheet.write(row, 0, file_name)
-        worksheet.write(row, 1, text_en)
-        print(sentence)
-
         if chatbot is not None:
             text_cn = chatbot.translate(xlsx_name, file_name, emo, event, text_en)
-            worksheet.write(row, 2, text_cn)
-            print(text_cn)
+            return (row_idx, file_name, text_en, text_cn)
+        return (row_idx, file_name, text_en, None)
 
-        row += 1
+    with ThreadPoolExecutor(max_workers=4) as executor:
+        futures = []
+        for sentence in sentences:
+            futures.append(executor.submit(process_sentence, sentence, row))
+            row += 1
+
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing translations"):
+            row_idx, file_name, text_en, text_cn = future.result()
+            with lock:
+                worksheet.write(row_idx, 0, file_name)
+                worksheet.write(row_idx, 1, text_en)
+                if text_cn is not None:
+                    worksheet.write(row_idx, 2, text_cn)
+                    print(text_cn)
 
     workbook.close()
 
@@ -102,16 +115,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='识别无字幕的语音并形成中配台词表')
     parser.add_argument('--audio-dir', type=str, default=
     [
-        'brad',
-        'denise',
-        'jimmy_drunk',
-        'jimmy_normal',
-        'lamar_1_normal',
-        'lamar_2_normal',
-        'lamar_drunk',
-        'lester',
-        'simeon',
-        'tracey'
+        # 'amanda_normal',
+        'amanda_drunk',
     ]
                         , help='语音文件目录')
     parser.add_argument('--batch-size', type=int, default=1, help='每批处理的语音数')
@@ -120,7 +125,6 @@ if __name__ == '__main__':
                         help='generate xlsx file from json file')
 
     args = parser.parse_args()
-    # 给args.audio_dir每个文件加上in_audio前缀
     args.audio_dir = [os.path.join('in_audio', a) for a in args.audio_dir]
     print(args.audio_dir)
 
