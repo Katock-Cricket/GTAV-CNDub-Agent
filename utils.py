@@ -2,6 +2,7 @@ import os
 import re
 from time import sleep
 
+import openpyxl
 import pandas as pd
 from openai import OpenAI
 from profanity_check import predict
@@ -14,6 +15,14 @@ out_sfx_root = 'out_sfx'
 common_punctuation = ['.', '!', '?', '。', '！', '？', '，', '、', '：', '；', '‘', '’', '“', '”', '"', "'", '(', ')', '[',
                       ']', '{', '}', '<', '>', '—', '–', '…', '—', '‘', '’', '“', '”', '《', '》', '【', '】', '『', '』',
                       '﹃', '﹄', '〔', '〕']
+
+
+def natural_sort_key(s):
+    """
+    生成自然排序的key函数
+    """
+    return [int(text) if text.isdigit() else text.lower()
+            for text in re.split('([0-9]+)', s)]
 
 
 def censor_bad_words(sentence):
@@ -141,8 +150,8 @@ class Chatbot:
         self.engine = engine
         self.sys_prompt = sys_prompt
 
-    def optimize(self, cn, cnsim, en):
-        query = f"原台词(简体中文): {cn}\n原台词(繁体中文): {cnsim}\n原台词(英文): {en}\n请直接回复优化后的台词(简体中文):"
+    def optimize(self, last_script, cur_script, next_script, temp=0.9):
+        query = f"上一句: {last_script}\n当前句: {cur_script}\n下一句: {next_script}\n请直接输出润色后的当前句的台词(简体中文):"
 
         retry = 0
         while retry < 10:
@@ -152,7 +161,8 @@ class Chatbot:
                     messages=[
                         {"role": "system", "content": self.sys_prompt},
                         {"role": "user", "content": query},
-                    ])
+                    ],
+                    temperature=temp)
             except Exception as e:
                 print(f"优化失败，重试{retry + 1}次。 " + str(e))
                 retry += 1
@@ -165,8 +175,8 @@ class Chatbot:
 
         return completion.choices[0].message.content
 
-    def translate(self, group, file, emo, event, text):
-        query = f"语音组: {group}\n文件名: {file}\n推测情绪: {emo}\n包含事件: {event}\n语音识别结果: {text}\n请直接回复翻译后的台词(简体中文):"
+    def translate(self, group, last_sentence, sentence, next_sentence, temp=0.9):
+        query = f"语音组: {group}\n上一句: {last_sentence}\n当前句: {sentence}\n下一句: {next_sentence}\n请直接回复当前句翻译后的台词(简体中文):"
 
         retry = 0
         while retry < 10:
@@ -176,9 +186,10 @@ class Chatbot:
                     messages=[
                         {"role": "system", "content": self.sys_prompt},
                         {"role": "user", "content": query},
-                    ])
+                    ],
+                    temperature=temp)
             except Exception as e:
-                print(f"翻译失败，重试{retry+1}次。 " + str(e))
+                print(f"翻译失败，重试{retry + 1}次。 " + str(e))
                 retry += 1
                 sleep(4)
                 continue
@@ -190,14 +201,60 @@ class Chatbot:
         return completion.choices[0].message.content
 
 
-if __name__ == '__main__':
-    chatbot = Chatbot(
-        api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
-        base_url='https://api.chatanywhere.tech',
-        engine='gpt-4o',
-        sys_prompt='你作为专业AI助手，现在要协助我完成台词润色。我们要为GTA这个游戏重写中文台词，目标是将原本用于阅读的中文台词改写为更适合配音的中文台词。要求：语句长度与原本的差不多；语意与原本的一致；符合GTA的风格；符合中国大陆本土的配音腔调。接下来会给你每句台词的原本简体中文台词、繁体中文台词和原英文台词作为参考，你直接给出优化后的台词内容。'
-    )
+def read_audio_script_from_xlsx(xlsx_path, audio_col='音频文件', script_col='AI翻译简中'):
+    """读取xlsx文件，找到音频文件和台词的对应关系, 返回字典
+    Args:
+        xlsx_path: xlsx文件路径
+        audio_col: 音频文件列名(默认'音频文件')
+        script_col: 台词文本列名(默认'AI翻译简中')
+    Returns:
+        dict: {音频文件名: 对应台词} 的字典
+    Raises:
+        ValueError: 如果找不到指定列名
+    """
+    # 加载工作簿
+    wb = openpyxl.load_workbook(xlsx_path)
+    sheet = wb.active
 
-    cn = '别叫我"老爸"，你个小混蛋。你最好祈祷它还能出海。'
-    cnsim = '別叫我「老爸」，你這臭小子。你最好祈禱這船還可以在水上開。'
-    print(chatbot.optimize(cn, cnsim))
+    # 初始化变量
+    header_row = None
+    audio_col_idx = None
+    script_col_idx = None
+
+    # 查找包含两个列名的行作为表头行
+    for row_idx, row in enumerate(sheet.iter_rows(), 1):
+        for cell in row:
+            if cell.value == audio_col:
+                audio_col_idx = cell.column
+            elif cell.value == script_col:
+                script_col_idx = cell.column
+
+        # 如果两个列都找到了，记录当前行号并停止搜索
+        if audio_col_idx and script_col_idx:
+            header_row = row_idx
+            break
+
+    # 检查是否找到列
+    if not (audio_col_idx and script_col_idx):
+        raise ValueError(f"未找到指定列: {audio_col} 或 {script_col}")
+
+    # 收集数据
+    result = {}
+    for row in sheet.iter_rows(min_row=header_row + 1):  # 从表头行下一行开始读取
+        audio_cell = row[audio_col_idx - 1]  # 列索引从1开始，列表从0开始
+        script_cell = row[script_col_idx - 1]
+
+        # 确保都有值且不是空字符串
+        if audio_cell.value and script_cell.value and str(audio_cell.value).strip() and str(script_cell.value).strip():
+            result[str(audio_cell.value).strip()] = str(script_cell.value).strip()
+
+    return result
+
+
+
+if __name__ == '__main__':
+    xlsx_path = 'in_xlsx/01_0_gtaiv_legacy_support.xlsx'
+    audio_col = '音频文件'
+    script_col = 'AI翻译简中'
+    result = read_audio_script_from_xlsx(xlsx_path, audio_col, script_col)
+    print(result)

@@ -3,8 +3,31 @@ import shutil
 
 from tqdm import tqdm
 
-from utils import *
 from sfx_rec import audio_rec
+from utils import *
+
+
+class Script:
+    def __init__(self, filename, cnsim, cn, en):
+        self.filename = filename
+        self.cnsim = cnsim
+        self.cn = cn
+        self.en = en
+
+    def get_filename(self):
+        return self.filename
+
+    def get_cnsim(self):
+        return self.cnsim
+
+    def get_cn(self):
+        return self.cn
+
+    def get_en(self):
+        return self.en
+
+    def __str__(self):
+        return f'音频文件名: {self.filename}，简体中文台词: {self.cn}，繁体中文台词: {self.cnsim}，英文台词: {self.en}'
 
 
 def is_cutscene_label(label, cutscene_map):
@@ -118,36 +141,54 @@ def generate_xlsx(audio_cn, audio_cnsim, audio_en, oxt_name, cutscene_names, sfx
     worksheet.write(3, 5, 'AI优化')
     worksheet.write(3, 6, '中配台词')
     worksheet.set_row(3, cell_format=header_format)
-    worksheet.set_column(2, 5, 70)
+    worksheet.set_column(0, 0, 15)
+    worksheet.set_column(1, 1, 10)
+    worksheet.set_column(2, 6, 37)
 
     lock = threading.Lock()
     row = 4
-    data_rows = []
 
-    def process_item(audio, cn, cnsim, en, row_idx):
+    def process_item(last_script: Script, cur_script: Script, next_script: Script, row_idx):
+        audio = cur_script.get_filename()
+        cnsim = cur_script.get_cnsim()
+        cn = cur_script.get_cn()
+        en = cur_script.get_en()
+
         if chatbot is not None:
-            optimized_cnsim = chatbot.optimize(cn, cnsim, en)
-            return (row_idx, audio, cnsim, cn, en, optimized_cnsim)
-        return (row_idx, audio, cnsim, cn, en, None)
+            optimized_cnsim = chatbot.optimize(last_script, cur_script, next_script)
+            return row_idx, audio, cnsim, cn, en, optimized_cnsim
+        return row_idx, audio, cnsim, cn, en, None
 
-    with ThreadPoolExecutor(max_workers=4) as executor:
+    with ThreadPoolExecutor(max_workers=12) as executor:
         futures = []
-        for (it1, it2, it3) in zip(audio_cn.items(), audio_cnsim.items(), audio_en.items()):
+
+        items = list(zip(audio_cn.items(), audio_cnsim.items(), audio_en.items()))
+
+        for i in range(len(items)):
+            it1, it2, it3 = items[i]
             audio, cn = it1
             _, cnsim = it2
             _, en = it3
+
             if isinstance(cn, list):
-                for i in range(len(cn)):
-                    futures.append(executor.submit(process_item, audio, cn[i], cnsim[i], en[i], row))
+                for j in range(len(cn)):
+                    cur_script = Script(audio, cnsim[j], cn[j], en[j])
+                    last_script = Script(audio, cnsim[j-1], cn[j-1], en[j-1]) if j > 0 else None
+                    next_script = Script(audio, cnsim[j+1], cn[j+1], en[j+1]) if j < len(cn)-1 else None
+                    futures.append(executor.submit(process_item, last_script, cur_script, next_script, row))
                     row += 1
             else:
-                futures.append(executor.submit(process_item, audio, cn, cnsim, en, row))
+                cur_script = Script(audio, cnsim, cn, en)
+                last_script = Script(items[i-1][0][0], items[i-1][1][1], items[i-1][0][1], items[i-1][2][1]) if i > 0 else None
+                next_script = Script(items[i+1][0][0], items[i+1][1][1], items[i+1][0][1], items[i+1][2][1]) if i < len(items)-1 else None
+                futures.append(executor.submit(process_item, last_script, cur_script, next_script, row))
                 row += 1
+
 
         for future in tqdm(as_completed(futures), total=len(futures), desc="Processing AI optimization"):
             row_idx, audio, cnsim, cn, en, optimized_cnsim = future.result()
             with lock:
-                worksheet.write(row_idx, 0, audio)
+                worksheet.write(row_idx, 0, audio.upper())
                 worksheet.write(row_idx, 2, cnsim)
                 worksheet.write(row_idx, 3, cn)
                 worksheet.write(row_idx, 4, en)
@@ -169,13 +210,22 @@ def get_diff(audio_list_with_sub, audio_list_all):
 
 
 audio_root = 'in_audio'
+prompt_template1 = '''
+你协助用户为GTA5这个游戏重写/润色中文台词，目标是将原本用于阅读的中文台词改写为更适合配音的中文台词。
+要求：语句长度与原本的差不多；语意与原本的一致；符合GTA5的剧情；符合中国大陆本土的口语化配音风格。
+接下来会给你每句台词的原本简体中文台词、繁体中文台词、原本的英文台词作为参考，
+以及提供这句语音前后的相邻语音内容作为参考，这些相邻内容有可能包含对话的背景信息，也有可能是其他角色的对话，但是也可能无关，请注意不要过分依赖这些内容。
+你直接给出优化后的台词内容，不需要任何解释。
+'''
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-oxt', type=str, nargs='+', default=['taxisau.oxt'], help='oxt file path')
-    parser.add_argument('-bot-opt', action='store_true', default=True, help='enable bot optimization')
-    parser.add_argument('--audio-bank', type=str, default='taxis', help='audio bank directory')
+    parser.add_argument('-oxt', type=str, nargs='+', default=['locaud.oxt'], help='oxt file path')
+    parser.add_argument('-bot-opt', action='store_true', default=False, help='enable bot optimization')
+
     parser.add_argument('--rec', action='store_true', default=False, help='enable audio recgition')
+    parser.add_argument('--audio-bank', type=str, default='loc', help='audio bank directory if audio recgition is enabled')
+
     args = parser.parse_args()
 
     cutscene_flags_names_map = {
@@ -188,7 +238,7 @@ if __name__ == '__main__':
         '_MCS5_': 'pro_mcs_6_seq_mastered_only',
         '_INT_': 'pro_mcs_7_seq_mastered_only',
     }
-    audio_prefix = ['TAXIS_']
+    audio_prefix = ['FpTM_']
     # audio_prefix = None
 
     chatbot = None
@@ -197,7 +247,7 @@ if __name__ == '__main__':
             api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
             base_url='https://api.chatanywhere.tech',
             engine='deepseek-v3',
-            sys_prompt='你作为专业AI助手，现在要协助我完成台词润色。我们要为GTA5这个游戏重写中文台词，目标是将原本用于阅读的中文台词改写为更适合配音的中文台词。要求：语句长度与原本的差不多；语意与原本的一致；符合GTA5的剧情；符合中国大陆本土的配音腔调。接下来会给你每句台词的原本简体中文台词和繁体中文台词作为参考，你直接给出优化后的台词内容，不需要任何解释。'
+            sys_prompt=''
         )
 
     for oxt in args.oxt:

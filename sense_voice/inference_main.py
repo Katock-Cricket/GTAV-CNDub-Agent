@@ -7,6 +7,7 @@ import re
 
 from funasr import AutoModel
 
+from utils import natural_sort_key
 
 emo_dict = {
     "|HAPPY|": "HAPPY/高兴",
@@ -69,7 +70,7 @@ class Sentence:
         self.text = text
 
     def __str__(self):
-        return f"{self.get_file()} {self.get_emo()} {self.get_event()} {self.get_text()}"
+        return f"文件名：{self.get_file()}，推测情感：{self.get_emo()}，推测事件：{self.get_event()}，文本识别结果：{self.get_text()}"
 
 
 def get_audio_list(path):
@@ -80,7 +81,7 @@ def get_audio_list(path):
         for file in files:
             if file.endswith('.wav'):
                 audio_list.append(os.path.join(root, file))
-
+    audio_list.sort(key=natural_sort_key)
     print(f"Find {len(audio_list)} audio files in {path}.")
     return audio_list
 
