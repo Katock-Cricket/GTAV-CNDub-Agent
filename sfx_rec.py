@@ -1,5 +1,7 @@
 import argparse
+import json
 import os
+from concurrent.futures import ThreadPoolExecutor
 
 from tqdm import tqdm
 
@@ -97,44 +99,58 @@ prompt_template2 = """
 """
 
 
-def audio_rec(audio_dirs, xlsx_name_arg=None, json_path_arg=None, batch_size=1, bot_opt=True, gen_xlsx_from_json=True):
-    import json
-    for audio_dir in audio_dirs:
-        print(f'开始识别语音文件：{audio_dir}')
+def process_an_audio_dir(audio_dir, xlsx_name_arg, json_path_arg, batch_size, ncpu, bot_opt, gen_xlsx_from_json):
+    print(f'开始识别语音文件：{audio_dir}')
 
-        xlsx_name = os.path.basename(audio_dir) if xlsx_name_arg is None else xlsx_name_arg
+    xlsx_name = os.path.basename(audio_dir) if xlsx_name_arg is None else xlsx_name_arg
 
-        chatbot = None
+    chatbot = None
 
-        if bot_opt:
-            chatbot = Chatbot(
-                api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
-                base_url='https://api.chatanywhere.tech/v1',
-                engine='deepseek-v3',
-                sys_prompt=prompt_template1,
-            )
+    if bot_opt:
+        chatbot = Chatbot(
+            api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
+            base_url='https://api.chatanywhere.tech/v1',
+            engine='deepseek-v3',
+            sys_prompt=prompt_template1,
+        )
 
-        json_path = f'{audio_dir}.json' if json_path_arg is None else json_path_arg
+    json_path = f'{audio_dir}.json' if json_path_arg is None else json_path_arg
 
-        if gen_xlsx_from_json:
-            with open(json_path, 'r', encoding='utf-8') as f:
-                sentences = [Sentence(**sentence) for sentence in json.load(f)]
-            xlsx_gen(sentences, xlsx_name, chatbot)
-            continue
-
-        if os.path.exists(json_path):
-            print(f'{json_path} 已存在，跳过')
-            continue
-
-        sentences = rec_sentences(audio_dir, batch_size)
-
-        print(f'识别完成，共{len(sentences)}句。')
-
-        with open(json_path, 'w', encoding='utf-8') as f:
-            json.dump([sentence.__dict__ for sentence in sentences], f, ensure_ascii=False, indent=4)
-        print(f'save rec result to {json_path}')
-
+    if gen_xlsx_from_json:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            sentences = [Sentence(**sentence) for sentence in json.load(f)]
         xlsx_gen(sentences, xlsx_name, chatbot)
+        return
+
+    if os.path.exists(json_path):
+        print(f'{json_path} 已存在，跳过')
+        return
+
+    sentences = rec_sentences(audio_dir, batch_size, ncpu)
+
+    print(f'识别完成，共{len(sentences)}句。')
+
+    with open(json_path, 'w', encoding='utf-8') as f:
+        json.dump([sentence.__dict__ for sentence in sentences], f, ensure_ascii=False, indent=4)
+    print(f'save rec result to {json_path}')
+
+    xlsx_gen(sentences, xlsx_name, chatbot)
+    print(f'save xlsx file to {xlsx_name}')
+
+
+def audio_rec(audio_dirs, xlsx_name_arg=None, json_path_arg=None, batch_size=1, ncpu=1, glob_ncpu=1, bot_opt=True,
+              gen_xlsx_from_json=True):
+    with ThreadPoolExecutor(max_workers=glob_ncpu) as executor:
+        executor.map(
+            process_an_audio_dir,
+            audio_dirs,
+            [xlsx_name_arg] * len(audio_dirs),
+            [json_path_arg] * len(audio_dirs),
+            [batch_size] * len(audio_dirs),
+            [ncpu] * len(audio_dirs),
+            [bot_opt] * len(audio_dirs),
+            [gen_xlsx_from_json] * len(audio_dirs)
+        )
 
 
 if __name__ == '__main__':
@@ -144,7 +160,9 @@ if __name__ == '__main__':
     ], help='语音文件目录')
     parser.add_argument('--root-audio-dir', type=str, default='S_FULL_AMB_F.rpf',
                         help='如果audio-dir非常多，则启用此参数，指定根目录自动扫描')
-    parser.add_argument('--batch-size', type=int, default=1, help='语音识别每批处理的语音数')
+    parser.add_argument('--batch-size', type=int, default=256, help='语音识别每批处理的语音数')
+    parser.add_argument('-ncpu', type=int, default=8, help='单个音频组识别的并行cpu数量')
+    parser.add_argument('-glob-ncpu', type=int, default=3, help='全局并行cpu数量')
     parser.add_argument('-bot-opt', action='store_true', default=False, help='enable bot optimization')
     parser.add_argument('--gen-xlsx-from-json', action='store_true', default=False,
                         help='generate xlsx file from json file')
@@ -159,5 +177,5 @@ if __name__ == '__main__':
         args.audio_dir = [os.path.join('in_audio', a) for a in args.audio_dir]
     print(args.audio_dir)
 
-    audio_rec(args.audio_dir, batch_size=args.batch_size, bot_opt=args.bot_opt,
+    audio_rec(args.audio_dir, batch_size=args.batch_size, ncpu=args.ncpu, glob_ncpu=args.glob_ncpu, bot_opt=args.bot_opt,
               gen_xlsx_from_json=args.gen_xlsx_from_json)

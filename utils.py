@@ -1,13 +1,10 @@
 import os
-import os
 import re
 from time import sleep
 
 import openpyxl
 import pandas as pd
-import py7zr
 from openai import OpenAI
-from profanity_check import predict
 
 in_xlsx_root = 'in_xlsx'
 ori_oxt_root = 'subtitles/cnsim'
@@ -25,23 +22,6 @@ def natural_sort_key(s):
     """
     return [int(text) if text.isdigit() else text.lower()
             for text in re.split('([0-9]+)', s)]
-
-
-def censor_bad_words(sentence):
-    """
-    使用 profanity-check 库检测并屏蔽脏话。
-    将脏话单词的每个字母之间插入 "*"。
-    """
-    words = sentence.split()
-
-    for i in range(len(words)):
-        if predict([words[i]])[0]:
-            censored_word = '*'.join(words[i])
-            words[i] = censored_word
-
-    censored_sentence = ' '.join(words)
-
-    return censored_sentence
 
 
 # 中文检测
@@ -257,7 +237,6 @@ def read_audio_script_from_xlsx(xlsx_path, audio_col='音频文件', script_col=
             result[str(audio_cell.value).strip()] = str(script_cell.value).strip()
 
     return result
-
 
 
 if __name__ == '__main__':

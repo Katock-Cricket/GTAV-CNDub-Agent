@@ -102,6 +102,7 @@ def infer_main(audio_list, batch_size=64):
         language="en",  # "zh", "en", "yue", "ja", "ko", "nospeech"
         use_itn=True,
         batch_size=batch_size,
+        batch_size_s=60
     )
     # batch_res = m.inference(
     #     data_in=audio_list,
@@ -114,7 +115,7 @@ def infer_main(audio_list, batch_size=64):
     return [construct_sentence_from_str(res['key'], res['text']) for res in batch_res]
 
 
-def rec_sentences(audio_dir, batch_size=64):
+def rec_sentences(audio_dir, batch_size=1, ncpu=1):
     global model
     if model is None:
         model = AutoModel(
@@ -123,7 +124,9 @@ def rec_sentences(audio_dir, batch_size=64):
             remote_code="sense_voice/model.py",
             disable_update=True,
             ban_emo_unk=True,
-            ncpu=1,
+            ncpu=ncpu,
+            device="cuda:0",
+            batch_size=batch_size,
         )
 
     audio_list = get_audio_list(audio_dir)
