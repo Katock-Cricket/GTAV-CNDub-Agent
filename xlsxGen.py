@@ -215,31 +215,24 @@ prompt_template1 = '''
 要求：语句长度与原本的差不多；语意与原本的一致；符合GTA5的剧情；符合中国大陆本土的口语化配音风格。
 接下来会给你每句台词的原本简体中文台词、繁体中文台词、原本的英文台词作为参考，
 以及提供这句语音前后的相邻语音内容作为参考，这些相邻内容有可能包含对话的背景信息，也有可能是其他角色的对话，但是也可能无关，请注意不要过分依赖这些内容。
-你直接给出优化后的台词内容，不需要任何解释。
+你直接给出优化后的台词内容，不需要任何解释，不要附加任何说明。
 '''
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-oxt', type=str, nargs='+', default=['locaud.oxt'], help='oxt file path')
-    parser.add_argument('-bot-opt', action='store_true', default=False, help='enable bot optimization')
+    parser.add_argument('-oxt', type=str, nargs='+', default=['pbmnaud.oxt'], help='oxt file path')
+    parser.add_argument('-bot-opt', action='store_true', default=True, help='enable bot optimization')
 
     parser.add_argument('--rec', action='store_true', default=False, help='enable audio recgition')
-    parser.add_argument('--audio-bank', type=str, default='loc', help='audio bank directory if audio recgition is enabled')
+    parser.add_argument('--audio-bank', type=str, default='pbmn', help='audio bank directory if audio recgition is enabled')
 
     args = parser.parse_args()
 
     cutscene_flags_names_map = {
         '_INTRO_': 'pro_ig_1_sync_mastered_only',
-        '_TIE_': 'pro_mcs_1_mastered_only',
-        '_MCS2_': 'pro_mcs_2_mastered_only',
-        '_AMBUSH_': 'pro_mcs_3_pt1_mastered_only',
-        '_CHASE_': 'pro_mcs_5_seq_mastered_only',
-        '_GETAWAY_': 'pro_mcs_5_seq_mastered_only',
-        '_MCS5_': 'pro_mcs_6_seq_mastered_only',
-        '_INT_': 'pro_mcs_7_seq_mastered_only',
     }
-    audio_prefix = ['FpTM_']
-    # audio_prefix = None
+    # audio_prefix = ['PBMN_']
+    audio_prefix = None
 
     chatbot = None
     if args.bot_opt:
@@ -247,7 +240,7 @@ if __name__ == '__main__':
             api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
             base_url='https://api.chatanywhere.tech',
             engine='deepseek-v3',
-            sys_prompt=''
+            sys_prompt=prompt_template1
         )
 
     for oxt in args.oxt:
@@ -256,6 +249,8 @@ if __name__ == '__main__':
         cn_sub = read_oxt(os.path.join('subtitles/cn', oxt), is_cn=False, audio_prefix=audio_prefix)
         cnsim_sub = read_oxt(os.path.join('subtitles/cnsim', oxt), is_cn=False, audio_prefix=audio_prefix)
         en_sub = read_oxt(os.path.join('subtitles/en', oxt), is_cn=False, audio_prefix=audio_prefix)
+
+        print(labels.values())
 
         # 链接音频和台词
         audio_cnsim = link_cn_audio(labels, cutscene_flags_names_map)

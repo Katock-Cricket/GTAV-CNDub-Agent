@@ -3,6 +3,7 @@
 # Copyright FunASR (https://github.com/FunAudioLLM/SenseVoice). All Rights Reserved.
 #  MIT License  (https://opensource.org/licenses/MIT)
 import argparse
+import os
 import re
 
 from funasr import AutoModel
@@ -128,6 +129,10 @@ def rec_sentences(audio_dir, batch_size=64):
     audio_list = get_audio_list(audio_dir)
 
     sentences = infer_main(audio_list, batch_size)
+
+    # sentences = []
+    # for audio_file in audio_list:
+    #     sentences.append(Sentence(os.path.basename(audio_file).split('.')[0], "", "", ""))
 
     return sentences
 

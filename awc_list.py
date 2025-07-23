@@ -85,4 +85,4 @@ def create_rpf_structure_xlsx(root_dir: str, xlsx_path: str):
 
 # 使用示例
 if __name__ == '__main__':
-    create_rpf_structure_xlsx('E:/ai/GTA5_Chinese/ori_file', './in_xlsx/awc_list.xlsx')
+    create_rpf_structure_xlsx('E:\\ai\\GTA5_Chinese\\friends', './in_xlsx/friends_list.xlsx')

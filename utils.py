@@ -1,9 +1,11 @@
 import os
+import os
 import re
 from time import sleep
 
 import openpyxl
 import pandas as pd
+import py7zr
 from openai import OpenAI
 from profanity_check import predict
 
@@ -53,6 +55,7 @@ def is_chinese(text):
 # 从oxt文件中读取字典
 def read_oxt(oxt_file, is_cn=True, audio_prefix=None):
     ret = {}
+    sub_prefix = ['~z~', '~t~']
     audio_prefix = [os.path.basename(oxt_file).split('aud')[0].upper()] if audio_prefix is None else audio_prefix
 
     def is_audio(value):
@@ -61,7 +64,12 @@ def read_oxt(oxt_file, is_cn=True, audio_prefix=None):
                 return True
         return False
 
-    sub_prefix = '~z~'
+    def starts_with_sub_prefix(value):
+        for prefix in sub_prefix:
+            if value.startswith(prefix):
+                return True
+        return False
+
     with open(oxt_file, 'rb') as f:
         data = f.read().decode('utf-8')
     for line in data.split('\n'):
@@ -70,8 +78,8 @@ def read_oxt(oxt_file, is_cn=True, audio_prefix=None):
 
             key = key.strip().replace('\t', '').replace('\n', '').replace('\r', '')
             value = value.strip().replace('\t', '').replace('\n', '').replace('\r', '')
-            if value.startswith(sub_prefix) and (is_chinese(value) and is_cn or not is_cn):  # 记录了字幕的项
-                ret[key] = value[len(sub_prefix):]
+            if starts_with_sub_prefix(value) and (is_chinese(value) and is_cn or not is_cn):  # 记录了字幕的项
+                ret[key] = value[3:]
             elif is_audio(value):  # 记录了音频文件的项
                 ret[key] = value
 
@@ -128,14 +136,14 @@ def read_map_from_xlsx(xlsx_file, key='原台词简中', value='中配台词', f
 
     for k, v in kv_map.items():
         # 如果v是nan，则用k代替
-        if v is None or v == '' or pd.isna(v):
+        if v is None or v == '' or pd.isna(v) or v.__len__() == 0:
             kv_map[k] = k
             v = k
         # 如果v中存在一对中英文括号，去掉括号及其内容，例如“AAAA（BBBB）CC(DD)CC” -> "AAAACCCC"
         v = re.sub(r'[$\（][^)\）]*[$\）]', '', v)
 
         # 如果value的末尾没有中文或英文标点，则添加一个句号
-        if v[-1] not in common_punctuation:
+        if v and v[-1] not in common_punctuation:
             kv_map[k] = v + '。'
 
     return kv_map

@@ -181,7 +181,7 @@ if __name__ == '__main__':
                         default=8000)
     parser.add_argument('--model_dir',
                         type=str,
-                        default='cosyvoice/pretrained_models/CosyVoice-300M',
+                        default='cosyvoice/pretrained_models/CosyVoice2-0.5B',
                         help='local path or modelscope repo id')
     args = parser.parse_args()
     try:

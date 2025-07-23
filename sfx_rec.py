@@ -1,5 +1,4 @@
 import argparse
-import json
 import os
 
 from tqdm import tqdm
@@ -83,13 +82,15 @@ def xlsx_gen(sentences, xlsx_name, chatbot=None):
 prompt_template1 = """
 你协助我完成台词翻译。要为GTA5这个游戏的英文语音撰写中文台词，
 要求：语意与原本的一致；要符合GTA5的风格；对于你认为是脏话的原文，适度翻译为对应的中国脏话以加强口语性和生动感。要符合中国大陆本土的口语化配音风格。
+本次翻译的语音属于游戏中各路NPC的语音。NPC的类型可能从音频文件名和语音识别结果中推断，
 接下来会给你每句语音的英文台词(机器识别结果，可能存在谐音错误，需要鉴别)和一些标签(所属语音组、所属文件名、情绪推测、事件推测)作为情感因素参考，
 以及提供这句语音前后的相邻语音内容作为参考，这些相邻内容有可能包含对话的背景信息，也有可能是其他角色的对话，但是也可能无关，请注意不要过分依赖这些内容。
 你根据这些进行推断，直接给出翻译后的中文台词，不需要任何的解释。
 """
 prompt_template2 = """
 你协助我完成台词翻译。要为GTA5这个游戏的英文语音撰写中文台词，
-要求：语意与原本的一致；本次翻译的语音属于通缉系统中的警方雷达通报，需要注意场景语境。要符合中国大陆本土的口语化配音风格。
+要求：语意与原本的一致；要符合中国大陆本土的口语化配音风格。
+本次翻译的语音属于通缉系统中的警方雷达通报，需要注意场景语境。
 接下来会给你每句语音的英文台词(机器识别结果，可能存在谐音错误，需要鉴别)和一些标签(所属语音组、所属文件名、情绪推测、事件推测)作为情感因素参考，
 以及提供这句语音前后的相邻语音内容作为参考，这些相邻内容有可能包含对话的背景信息，也有可能是其他角色的对话，但是也可能无关，请注意不要过分依赖这些内容。
 你根据这些进行推断，直接给出翻译后的中文台词，不需要任何的解释。
@@ -110,7 +111,7 @@ def audio_rec(audio_dirs, xlsx_name_arg=None, json_path_arg=None, batch_size=1, 
                 api_key='sk-TWeVsjufwEaotWqTJPVrDGXTR5GxeSmUUSmNj9Kd6IOgkVnt',
                 base_url='https://api.chatanywhere.tech/v1',
                 engine='deepseek-v3',
-                sys_prompt=prompt_template2,
+                sys_prompt=prompt_template1,
             )
 
         json_path = f'{audio_dir}.json' if json_path_arg is None else json_path_arg
@@ -138,16 +139,14 @@ def audio_rec(audio_dirs, xlsx_name_arg=None, json_path_arg=None, batch_size=1, 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='识别无字幕的语音并形成中配台词表')
-    parser.add_argument('--audio-dir', type=str, default=
-    [
+    parser.add_argument('--audio-dir', type=str, nargs='+', default=[
 
-    ]
-                        , help='语音文件目录')
-    parser.add_argument('--root-audio-dir', type=str, default='POLICE_SCANNER.rpf',
+    ], help='语音文件目录')
+    parser.add_argument('--root-audio-dir', type=str, default='S_FULL_AMB_F.rpf',
                         help='如果audio-dir非常多，则启用此参数，指定根目录自动扫描')
     parser.add_argument('--batch-size', type=int, default=1, help='语音识别每批处理的语音数')
-    parser.add_argument('-bot-opt', action='store_true', default=True, help='enable bot optimization')
-    parser.add_argument('--gen-xlsx-from-json', action='store_true', default=True,
+    parser.add_argument('-bot-opt', action='store_true', default=False, help='enable bot optimization')
+    parser.add_argument('--gen-xlsx-from-json', action='store_true', default=False,
                         help='generate xlsx file from json file')
 
     args = parser.parse_args()

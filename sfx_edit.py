@@ -53,18 +53,23 @@ def split_audio(audio_file, count, silent_thr=-55, min_silence_len=2000):
 
 def edit_sfx_by_xlsx(args):
     xlsx_file = os.path.join(in_xlsx_root, args.xlsx)
+    audio_list = []
+    if args.role == '':  # 不是任务台词表，不需要过滤角色
+        filter_role = None
+        args.role = os.path.basename(args.in_audio).split('.')[0]
+    else:  # 是任务台词表，需要过滤出本次剪辑的角色的音频
+        filter_role = args.role
 
-    audio_sub_map = read_map_from_xlsx(xlsx_file, '音频文件', '中配台词',
-                                       args.role if args.role != os.path.basename(args.in_audio).split('.')[0] else
-                                       os.path.basename(args.in_audio).split('.')[0])
+    audio_sub_map = read_map_from_xlsx(xlsx_file, '音频文件', '中配台词', filter_role)
     print('Audio-Sub map for debug:---------------')
     for idx, (audio_file, sub_text) in enumerate(audio_sub_map.items()):
         print(idx, audio_file, sub_text)
 
-    if args.role == '':
-        args.role = os.path.basename(args.in_audio).split('.')[0]
-
-    audio_list = split_audio(args.in_audio, len(audio_sub_map.keys()))
+    if os.path.isdir(os.path.join(in_audio_root, args.in_audio)):  # 音频已经按序号顺序剪好
+        audio_list = [os.path.join(in_audio_root, args.in_audio, file) for file in
+                      os.listdir(os.path.join(in_audio_root, args.in_audio))]
+    else:  # 音频未剪好，先分割
+        audio_list = split_audio(args.in_audio, len(audio_sub_map.keys()))
 
     if not os.path.exists(os.path.join(out_sfx_root, args.role)):
         os.makedirs(os.path.join(out_sfx_root, args.role))
@@ -99,11 +104,11 @@ def edit_sfx_by_raw_audio(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-in-audio', type=str, default='男_白_警察_2_已剪辑.wav', help='input raw audio file of one role')
+    parser.add_argument('-in-audio', type=str, default='男_白_特警_1_已剪辑', help='input raw audio file of one role')
     parser.add_argument('-role', type=str, default='', help='role name')
-    parser.add_argument('-xlsx', type=str, default='富兰克林-醉酒-台词表.xlsx', help='input xlsx file of dubbing')
-    parser.add_argument('-overwrite', action='store_true', default=True, help='overwrite existing sfx files')
-    parser.add_argument('-overwrite-audio-dir', type=str, default='s_m_y_cop_01_white_mini_02',
+    parser.add_argument('-xlsx', type=str, default='s_m_y_swat_01_white_full_01.xlsx', help='input xlsx file of dubbing')
+    parser.add_argument('-overwrite', action='store_true', default=False, help='overwrite existing sfx files')
+    parser.add_argument('-overwrite-audio-dir', type=str, default='丹尼斯_常态_已剪辑',
                         help='directly overwrite the these sfx files')
     args = parser.parse_args()
 

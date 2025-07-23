@@ -65,10 +65,14 @@ def process_oxt(oxt_file, kv_map):
         content = content.replace(f'~z~{orig}', f'~z~{dub}')
 
     # 将替换后的内容写回到文件
-    output_oxt = os.path.join(out_dir, oxt_file)
-    with open(output_oxt, 'w', encoding='utf-8') as file:
+    output_file_path = os.path.join(out_dir, oxt_file)
+    with open(output_file_path, 'w', encoding='utf-8') as file:
         file.write(content)
 
+
+def proc():
+    print(1)
+    pass
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
