@@ -1,4 +1,5 @@
 import argparse
+import logging
 import os
 import random
 import sys
@@ -15,27 +16,32 @@ from cosyvoice.utils.common import set_all_random_seed
 from cosyvoice.utils.file_utils import load_wav
 from utils import read_audio_script_from_xlsx
 
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.ERROR)
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append('cosyvoice/third_party/Matcha-TTS'.format(ROOT_DIR))
-prompt_sr = 24000
+prompt_sr = 16000
 max_val = 0.8
 
 
-def postprocess(speech, top_db=60, hop_length=220, win_length=440):
-    speech, _ = librosa.effects.trim(
-        speech, top_db=top_db,
-        frame_length=win_length,
-        hop_length=hop_length
-    )
-    if speech.abs().max() > max_val:
-        speech = speech / speech.abs().max() * max_val
-    speech = torch.concat([speech, torch.zeros(1, int(cosyvoice.sample_rate * 0.2))], dim=1)
-    return speech
-
-
 def dub_an_audio(cosyvoice, prompt_audio_path, target_text, out_audio_path):
+
+    def postprocess(speech, top_db=60, hop_length=220, win_length=440):
+        speech, _ = librosa.effects.trim(
+            speech, top_db=top_db,
+            frame_length=win_length,
+            hop_length=hop_length
+        )
+        if speech.abs().max() > max_val:
+            speech = speech / speech.abs().max() * max_val
+        speech = torch.concat([speech, torch.zeros(1, int(cosyvoice.sample_rate * 0.2))], dim=1)
+        return speech
+
     if not os.path.exists(prompt_audio_path):
         raise FileNotFoundError('prompt audio not found: {}'.format(prompt_audio_path))
+    if os.path.exists(out_audio_path):
+        print(f'AI dubbed Audio already exists: {out_audio_path}')
+        return
 
     # 如果prompt_audio音频的采样率低于prompt_sr，则先resample然后覆盖原文件（使用pydub）
     audio = AudioSegment.from_file(prompt_audio_path)
@@ -64,14 +70,15 @@ def dub_an_audio(cosyvoice, prompt_audio_path, target_text, out_audio_path):
             audio_per = AudioSegment.from_file(out_audio_path.replace('.wav', '_{}.wav'.format(i)))
             audio = audio.overlay(audio_per)
         audio.export(out_audio_path, format="wav")
-        for i in range(cut_num):  # 删除带序号的临时音频文件
+        for i in range(1, cut_num):  # 删除带序号的临时音频文件
             os.remove(out_audio_path.replace('.wav', '_{}.wav'.format(i)))
 
     print(f'Done dubbing {out_audio_path}')
 
 
-def process_a_audio_group(xlsx_path: str, in_audio_dir: str, out_audio_dir: str):
-    cosyvoice = CosyVoice2('cosyvoice/pretrained_models/CosyVoice2-0.5B')
+def process_a_audio_group(xlsx_path: str, in_audio_dir: str, out_audio_dir: str, cosyvoice: CosyVoice2 = None):
+    if cosyvoice is None:
+        cosyvoice = CosyVoice2('cosyvoice/pretrained_models/CosyVoice2-0.5B')
 
     # 读取音频脚本映射
     audio_cn_script_map = read_audio_script_from_xlsx(xlsx_path, audio_col='音频文件', script_col='AI翻译简中')
@@ -106,7 +113,7 @@ if __name__ == '__main__':
                         default=[],
                         help='xlsx(s) to be dubbed')
 
-    parser.add_argument('--ncpu', type=int, default=8,
+    parser.add_argument('--ncpu', type=int, default=1,
                         help='number of cpu to use')
 
     args = parser.parse_args()
@@ -115,7 +122,7 @@ if __name__ == '__main__':
         args.xlsx = [os.path.join(args.xlsx_root_dir, f) for f in os.listdir(args.xlsx_root_dir) if f.endswith('.xlsx')]
 
 
-    def process_xlsx(xlsx):
+    def process_xlsx(xlsx, cosyvoice=None):
         print(f'Processing xlsx: {xlsx}')
         in_audio_dir = os.path.join(args.in_audio_dirs_root, os.path.basename(xlsx).replace('.xlsx', ''))
         out_audio_dir = os.path.join(args.out_audio_dirs_root, os.path.basename(xlsx).replace('.xlsx', ''))
@@ -123,7 +130,15 @@ if __name__ == '__main__':
             os.makedirs(in_audio_dir)
         if not os.path.exists(out_audio_dir):
             os.makedirs(out_audio_dir)
-        process_a_audio_group(xlsx, in_audio_dir, out_audio_dir)
+        process_a_audio_group(xlsx, in_audio_dir, out_audio_dir, cosyvoice)
 
+
+    if args.ncpu == 1:  # 本地单线程处理
+        cosyvoice = CosyVoice2('cosyvoice/pretrained_models/CosyVoice2-0.5B')
+        for xlsx in args.xlsx:
+            process_xlsx(xlsx, cosyvoice)
+        exit(0)
+
+    # 多线程处理
     with ThreadPoolExecutor(max_workers=args.ncpu) as executor:
         executor.map(process_xlsx, args.xlsx)

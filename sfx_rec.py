@@ -2,20 +2,44 @@ import argparse
 import json
 import os
 from concurrent.futures import ThreadPoolExecutor
-
+import re
 from tqdm import tqdm
 
 from sense_voice.inference_main import rec_sentences, Sentence
 from utils import Chatbot
 
 
-def xlsx_gen(sentences, xlsx_name, chatbot=None):
+def postprocess_text(text):
+    # 1. 移除"翻译后的台词"、"翻译台词"、"翻译"等字样
+    text = text.replace("翻译后的台词", "").replace("翻译台词", "").replace("翻译", "")
+
+    # 2. 移除冒号（中文和英文）、双引号（中文和英文）
+    text = text.replace("：", "").replace(":", "").replace("“", "").replace("”", "").replace('"', '').replace("'", "")
+
+    # 3. 移除各种括号及括号内的内容
+    text = re.sub(r'[（(].*?[）)]', '', text)  # 中文括号和英文圆括号
+    text = re.sub(r'[【\[]].*?[】\]]', '', text)  # 中文方括号和英文方括号
+
+    return text.strip()  # 最后去除首尾空白字符
+
+
+def process_sentence(chatbot, xlsx_name, last_sentence, sentence, next_sentence, row_idx):
+    file_name = sentence.get_file()
+    text_en = sentence.get_text()
+
+    if chatbot is not None:
+        text_cn = chatbot.translate(xlsx_name, last_sentence, sentence, next_sentence)
+        text_cn = postprocess_text(text_cn)
+        return (row_idx, file_name, text_en, text_cn)
+    return (row_idx, file_name, text_en, None)
+
+
+def xlsx_gen(sentences, xlsx_name, xlsx_dir, chatbot=None):
     import xlsxwriter
     from concurrent.futures import ThreadPoolExecutor, as_completed
     import threading
 
-    xlsx_root = 'in_xlsx'
-    xlsx_path = f'{xlsx_root}/{xlsx_name}.xlsx'
+    xlsx_path = f'{xlsx_dir}/{xlsx_name}.xlsx'
     workbook = xlsxwriter.Workbook(xlsx_path)
     worksheet = workbook.add_worksheet()
 
@@ -48,20 +72,7 @@ def xlsx_gen(sentences, xlsx_name, chatbot=None):
     row = 4
     data_rows = []
 
-    def process_sentence(last_sentence, sentence, next_sentence, row_idx):
-        file_name = sentence.get_file()
-        emo = sentence.get_emo()
-        event = sentence.get_event()
-        text_en = sentence.get_text()
-
-        cur_sentence = (file_name, emo, event, text_en)
-
-        if chatbot is not None:
-            text_cn = chatbot.translate(xlsx_name, last_sentence, sentence, next_sentence)
-            return (row_idx, file_name, text_en, text_cn)
-        return (row_idx, file_name, text_en, None)
-
-    with ThreadPoolExecutor(max_workers=12) as executor:
+    with ThreadPoolExecutor(max_workers=16) as executor:
         futures = []
         for i, sentence in enumerate(sentences):
             last_sentence = sentences[i - 1] if i > 0 else None
@@ -99,7 +110,8 @@ prompt_template2 = """
 """
 
 
-def process_an_audio_dir(audio_dir, xlsx_name_arg, json_path_arg, batch_size, ncpu, bot_opt, gen_xlsx_from_json):
+def process_an_audio_dir(audio_dir, xlsx_dir, xlsx_name_arg, json_path_arg, batch_size, ncpu, bot_opt,
+                         gen_xlsx_from_json):
     print(f'开始识别语音文件：{audio_dir}')
 
     xlsx_name = os.path.basename(audio_dir) if xlsx_name_arg is None else xlsx_name_arg
@@ -119,7 +131,7 @@ def process_an_audio_dir(audio_dir, xlsx_name_arg, json_path_arg, batch_size, nc
     if gen_xlsx_from_json:
         with open(json_path, 'r', encoding='utf-8') as f:
             sentences = [Sentence(**sentence) for sentence in json.load(f)]
-        xlsx_gen(sentences, xlsx_name, chatbot)
+        xlsx_gen(sentences, xlsx_name, xlsx_dir, chatbot)
         return
 
     if os.path.exists(json_path):
@@ -134,16 +146,18 @@ def process_an_audio_dir(audio_dir, xlsx_name_arg, json_path_arg, batch_size, nc
         json.dump([sentence.__dict__ for sentence in sentences], f, ensure_ascii=False, indent=4)
     print(f'save rec result to {json_path}')
 
-    xlsx_gen(sentences, xlsx_name, chatbot)
+    xlsx_gen(sentences, xlsx_name, xlsx_dir, chatbot)
     print(f'save xlsx file to {xlsx_name}')
 
 
-def audio_rec(audio_dirs, xlsx_name_arg=None, json_path_arg=None, batch_size=1, ncpu=1, glob_ncpu=1, bot_opt=True,
+def audio_rec(audio_dirs, xlsx_dir, xlsx_name_arg=None, json_path_arg=None, batch_size=1, ncpu=1, glob_ncpu=1,
+              bot_opt=True,
               gen_xlsx_from_json=True):
     with ThreadPoolExecutor(max_workers=glob_ncpu) as executor:
         executor.map(
             process_an_audio_dir,
             audio_dirs,
+            [xlsx_dir] * len(audio_dirs),
             [xlsx_name_arg] * len(audio_dirs),
             [json_path_arg] * len(audio_dirs),
             [batch_size] * len(audio_dirs),
@@ -158,8 +172,9 @@ if __name__ == '__main__':
     parser.add_argument('--audio-dir', type=str, nargs='+', default=[
 
     ], help='语音文件目录')
-    parser.add_argument('--root-audio-dir', type=str, default='S_FULL_AMB_F.rpf',
+    parser.add_argument('--root-audio-dir', type=str, default='S_FULL_AMB_M.rpf',
                         help='如果audio-dir非常多，则启用此参数，指定根目录自动扫描')
+    parser.add_argument('--xlsx-dir', type=str, default='./in_xlsx', help='批量处理时输出xlsx根目录')
     parser.add_argument('--batch-size', type=int, default=256, help='语音识别每批处理的语音数')
     parser.add_argument('-ncpu', type=int, default=8, help='单个音频组识别的并行cpu数量')
     parser.add_argument('-glob-ncpu', type=int, default=3, help='全局并行cpu数量')
@@ -170,12 +185,18 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.audio_dir is None or len(args.audio_dir) == 0:
+        args.xlsx_dir = os.path.join(args.xlsx_dir, args.root_audio_dir)
+        if not os.path.exists(args.xlsx_dir):
+            os.makedirs(args.xlsx_dir)
+
         args.root_audio_dir = os.path.join('in_audio', args.root_audio_dir)
+
         args.audio_dir = [os.path.join(args.root_audio_dir, a) for a in os.listdir(args.root_audio_dir) if
                           os.path.isdir(os.path.join(args.root_audio_dir, a))]
     else:
         args.audio_dir = [os.path.join('in_audio', a) for a in args.audio_dir]
     print(args.audio_dir)
 
-    audio_rec(args.audio_dir, batch_size=args.batch_size, ncpu=args.ncpu, glob_ncpu=args.glob_ncpu, bot_opt=args.bot_opt,
+    audio_rec(args.audio_dir, args.xlsx_dir, batch_size=args.batch_size, ncpu=args.ncpu, glob_ncpu=args.glob_ncpu,
+              bot_opt=args.bot_opt,
               gen_xlsx_from_json=args.gen_xlsx_from_json)

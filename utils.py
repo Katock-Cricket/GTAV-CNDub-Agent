@@ -164,7 +164,7 @@ class Chatbot:
         return completion.choices[0].message.content
 
     def translate(self, group, last_sentence, sentence, next_sentence, temp=0.9):
-        query = f"语音组: {group}\n上一句: {last_sentence}\n当前句: {sentence}\n下一句: {next_sentence}\n请直接回复当前句翻译后的台词(简体中文):"
+        query = f"语音组: {group}\n上一句: {last_sentence}\n当前句: {sentence}\n下一句: {next_sentence}\n请直接回复当前句翻译后的台词(简体中文),不要附加任何说明标注。"
 
         retry = 0
         while retry < 10:
