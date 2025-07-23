@@ -9,31 +9,6 @@ from sense_voice.inference_main import rec_sentences, Sentence
 from utils import Chatbot
 
 
-def postprocess_text(text):
-    # 1. 移除"翻译后的台词"、"翻译台词"、"翻译"等字样
-    text = text.replace("翻译后的台词", "").replace("翻译台词", "").replace("翻译", "")
-
-    # 2. 移除冒号（中文和英文）、双引号（中文和英文）
-    text = text.replace("：", "").replace(":", "").replace("“", "").replace("”", "").replace('"', '').replace("'", "")
-
-    # 3. 移除各种括号及括号内的内容
-    text = re.sub(r'[（(].*?[）)]', '', text)  # 中文括号和英文圆括号
-    text = re.sub(r'[【\[]].*?[】\]]', '', text)  # 中文方括号和英文方括号
-
-    return text.strip()  # 最后去除首尾空白字符
-
-
-def process_sentence(chatbot, xlsx_name, last_sentence, sentence, next_sentence, row_idx):
-    file_name = sentence.get_file()
-    text_en = sentence.get_text()
-
-    if chatbot is not None:
-        text_cn = chatbot.translate(xlsx_name, last_sentence, sentence, next_sentence)
-        text_cn = postprocess_text(text_cn)
-        return (row_idx, file_name, text_en, text_cn)
-    return (row_idx, file_name, text_en, None)
-
-
 def xlsx_gen(sentences, xlsx_name, xlsx_dir, chatbot=None):
     import xlsxwriter
     from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -72,12 +47,34 @@ def xlsx_gen(sentences, xlsx_name, xlsx_dir, chatbot=None):
     row = 4
     data_rows = []
 
-    with ThreadPoolExecutor(max_workers=16) as executor:
+    def process_sentence(xlsx_name, last_sentence, sentence, next_sentence, row_idx):
+        file_name = sentence.get_file()
+        text_en = sentence.get_text()
+
+        if chatbot is not None:
+            text_cn = chatbot.translate(xlsx_name, last_sentence, sentence, next_sentence)
+            # 1. 移除"翻译后的台词"、"翻译台词"、"翻译"等字样
+            text_cn = text_cn.replace("翻译后的台词", "").replace("翻译台词", "").replace("翻译", "")
+
+            # 2. 移除冒号（中文和英文）、双引号（中文和英文）
+            text_cn = (text_cn.replace("：", "").replace(":", "")
+                       .replace("“", "").replace("”", "").replace('"', '').replace("'", ""))
+
+            # 3. 移除各种括号及括号内的内容
+            text_cn = re.sub(r'[（(].*?[）)]', '', text_cn)  # 中文括号和英文圆括号
+            text_cn = re.sub(r'[【\[]].*?[】\]]', '', text_cn)  # 中文方括号和英文方括号
+
+            text_cn = text_cn.strip()  # 最后去除首尾空白字符
+            return row_idx, file_name, text_en, text_cn
+
+        return row_idx, file_name, text_en, None
+
+    with ThreadPoolExecutor(max_workers=20) as executor:
         futures = []
         for i, sentence in enumerate(sentences):
             last_sentence = sentences[i - 1] if i > 0 else None
             next_sentence = sentences[i + 1] if i < len(sentences) - 1 else None
-            futures.append(executor.submit(process_sentence, last_sentence, sentence, next_sentence, row))
+            futures.append(executor.submit(process_sentence, chatbot, last_sentence, sentence, next_sentence, row))
             row += 1
 
         for future in tqdm(as_completed(futures), total=len(futures), desc="Processing translations"):
@@ -178,8 +175,8 @@ if __name__ == '__main__':
     parser.add_argument('--batch-size', type=int, default=256, help='语音识别每批处理的语音数')
     parser.add_argument('-ncpu', type=int, default=8, help='单个音频组识别的并行cpu数量')
     parser.add_argument('-glob-ncpu', type=int, default=3, help='全局并行cpu数量')
-    parser.add_argument('-bot-opt', action='store_true', default=False, help='enable bot optimization')
-    parser.add_argument('--gen-xlsx-from-json', action='store_true', default=False,
+    parser.add_argument('-bot-opt', action='store_true', default=True, help='enable bot optimization')
+    parser.add_argument('--gen-xlsx-from-json', action='store_true', default=True,
                         help='generate xlsx file from json file')
 
     args = parser.parse_args()
