@@ -112,17 +112,17 @@ def infer_main(model, audio_list, batch_size=64):
     return [construct_sentence_from_str(res['key'], res['text']) for res in batch_res]
 
 
-def rec_sentences(model, audio_dir, batch_size=1):
+def rec_sentences(model, audio_dir, batch_size, only_list=False):
 
     audio_list = get_audio_list(audio_dir)
 
-    sentences = infer_main(model, audio_list, batch_size)
+    if only_list:
+        sentences = []
+        for audio_file in audio_list:
+            sentences.append(Sentence(os.path.basename(audio_file).split('.')[0], "", "", ""))
+        return sentences
 
-    # sentences = []
-    # for audio_file in audio_list:
-    #     sentences.append(Sentence(os.path.basename(audio_file).split('.')[0], "", "", ""))
-
-    return sentences
+    return infer_main(model, audio_list, batch_size)
 
 
 if __name__ == '__main__':

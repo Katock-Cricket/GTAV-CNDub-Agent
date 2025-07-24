@@ -104,11 +104,11 @@ def edit_sfx_by_raw_audio(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-in-audio', type=str, default='男_白_特警_1_已剪辑', help='input raw audio file of one role')
+    parser.add_argument('-in-audio', type=str, default='男_白_警察_1_已剪辑', help='input raw audio file of one role')
     parser.add_argument('-role', type=str, default='', help='role name')
-    parser.add_argument('-xlsx', type=str, default='s_m_y_swat_01_white_full_01.xlsx', help='input xlsx file of dubbing')
+    parser.add_argument('-xlsx', type=str, default='s_m_y_cop_01_white_full_01.xlsx', help='input xlsx file of dubbing')
     parser.add_argument('-overwrite', action='store_true', default=False, help='overwrite existing sfx files')
-    parser.add_argument('-overwrite-audio-dir', type=str, default='丹尼斯_常态_已剪辑',
+    parser.add_argument('-overwrite-audio-dir', type=str, default='男_白_警察_1_已剪辑',
                         help='directly overwrite the these sfx files')
     args = parser.parse_args()
 
