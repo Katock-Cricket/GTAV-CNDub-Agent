@@ -1,8 +1,11 @@
 import argparse
 import json
 import os
-from concurrent.futures import ThreadPoolExecutor
 import re
+from concurrent.futures import ThreadPoolExecutor
+from threading import Lock
+
+from funasr import AutoModel
 from tqdm import tqdm
 
 from sense_voice.inference_main import rec_sentences, Sentence
@@ -107,8 +110,55 @@ prompt_template2 = """
 """
 
 
+class SVWrapper:
+    def __init__(self, model):
+        self.model = model
+        self.busy = False
+        self._lock = Lock()
+
+    def get_model(self):
+        with self._lock:
+            return self.model
+
+    def is_busy(self):
+        with self._lock:
+            return self.busy
+
+    def release_model(self):
+        with self._lock:
+            self.busy = False
+
+
+class ModelPool:
+    def __init__(self, glob_ncpu, ncpu, batch_size):
+        self.model_pool = []
+        for i in range(glob_ncpu):
+            self.model_pool.append(SVWrapper(AutoModel(
+                model="sense_voice/ckpt",
+                trust_remote_code=True,
+                remote_code="sense_voice/model.py",
+                disable_update=True,
+                ban_emo_unk=True,
+                ncpu=ncpu,
+                device="cuda:0",
+                batch_size=batch_size,
+            )))
+
+    def request_free_model(self) -> SVWrapper:
+        print('Requesting free model...')
+        while True:
+            for model in self.model_pool:
+                if not model.is_busy():
+                    model.busy = True
+                    return model
+
+model_pool = None
+
+
 def process_an_audio_dir(audio_dir, xlsx_dir, xlsx_name_arg, json_path_arg, batch_size, ncpu, bot_opt,
                          gen_xlsx_from_json):
+
+
     print(f'开始识别语音文件：{audio_dir}')
 
     xlsx_name = os.path.basename(audio_dir) if xlsx_name_arg is None else xlsx_name_arg
@@ -135,7 +185,9 @@ def process_an_audio_dir(audio_dir, xlsx_dir, xlsx_name_arg, json_path_arg, batc
         print(f'{json_path} 已存在，跳过')
         return
 
-    sentences = rec_sentences(audio_dir, batch_size, ncpu)
+    svw = model_pool.request_free_model()
+    sentences = rec_sentences(svw.get_model(), audio_dir, batch_size)
+    svw.release_model()
 
     print(f'识别完成，共{len(sentences)}句。')
 
@@ -169,7 +221,7 @@ if __name__ == '__main__':
     parser.add_argument('--audio-dir', type=str, nargs='+', default=[
 
     ], help='语音文件目录')
-    parser.add_argument('--root-audio-dir', type=str, default='S_FULL_AMB_M.rpf',
+    parser.add_argument('--root-audio-dir', type=str, default='S_MINI_GAN.rpf',
                         help='如果audio-dir非常多，则启用此参数，指定根目录自动扫描')
     parser.add_argument('--xlsx-dir', type=str, default='./in_xlsx', help='批量处理时输出xlsx根目录')
     parser.add_argument('--batch-size', type=int, default=256, help='语音识别每批处理的语音数')
@@ -193,6 +245,9 @@ if __name__ == '__main__':
     else:
         args.audio_dir = [os.path.join('in_audio', a) for a in args.audio_dir]
     print(args.audio_dir)
+
+
+    model_pool = ModelPool(args.glob_ncpu, args.ncpu, args.batch_size)
 
     audio_rec(args.audio_dir, args.xlsx_dir, batch_size=args.batch_size, ncpu=args.ncpu, glob_ncpu=args.glob_ncpu,
               bot_opt=args.bot_opt,

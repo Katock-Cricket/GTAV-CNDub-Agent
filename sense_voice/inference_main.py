@@ -87,15 +87,12 @@ def get_audio_list(path):
     return audio_list
 
 
-
-model = None
-
 # from .model import SenseVoiceSmall
 # model_dir = "sense_voice/ckpt"
 # m, kwargs = SenseVoiceSmall.from_pretrained(model=model_dir, device="cuda:0")
 # m.eval()
 
-def infer_main(audio_list, batch_size=64):
+def infer_main(model, audio_list, batch_size=64):
     batch_res = model.generate(
         input=audio_list,
         cache={},
@@ -115,23 +112,11 @@ def infer_main(audio_list, batch_size=64):
     return [construct_sentence_from_str(res['key'], res['text']) for res in batch_res]
 
 
-def rec_sentences(audio_dir, batch_size=1, ncpu=1):
-    global model
-    if model is None:
-        model = AutoModel(
-            model="sense_voice/ckpt",
-            trust_remote_code=True,
-            remote_code="sense_voice/model.py",
-            disable_update=True,
-            ban_emo_unk=True,
-            ncpu=ncpu,
-            device="cuda:0",
-            batch_size=batch_size,
-        )
+def rec_sentences(model, audio_dir, batch_size=1):
 
     audio_list = get_audio_list(audio_dir)
 
-    sentences = infer_main(audio_list, batch_size)
+    sentences = infer_main(model, audio_list, batch_size)
 
     # sentences = []
     # for audio_file in audio_list:
