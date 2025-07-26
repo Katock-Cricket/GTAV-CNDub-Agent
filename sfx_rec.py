@@ -221,14 +221,14 @@ if __name__ == '__main__':
     parser.add_argument('--audio-dir', type=str, nargs='+', default=[
 
     ], help='语音文件目录')
-    parser.add_argument('--root-audio-dir', type=str, default='S_FULL_SER.rpf',
+    parser.add_argument('--root-audio-dir', type=str, default='S_MINI_SER.rpf',
                         help='如果audio-dir非常多，则启用此参数，指定根目录自动扫描')
     parser.add_argument('--xlsx-dir', type=str, default='./in_xlsx', help='批量处理时输出xlsx根目录')
     parser.add_argument('--batch-size', type=int, default=256, help='语音识别每批处理的语音数')
     parser.add_argument('-ncpu', type=int, default=4, help='单个音频组识别的并行cpu数量')
-    parser.add_argument('-glob-ncpu', type=int, default=5, help='全局并行模型数量，总线程数等于glob_ncpu * ncpu')
-    parser.add_argument('-bot-opt', action='store_true', default=False, help='enable bot optimization')
-    parser.add_argument('--gen-xlsx-from-json', action='store_true', default=False,
+    parser.add_argument('-glob-ncpu', type=int, default=3, help='全局并行模型数量，总线程数等于glob_ncpu * ncpu')
+    parser.add_argument('-bot-opt', action='store_true', default=True, help='enable bot optimization')
+    parser.add_argument('--gen-xlsx-from-json', action='store_true', default=True,
                         help='generate xlsx file from json file')
 
     args = parser.parse_args()
@@ -246,7 +246,8 @@ if __name__ == '__main__':
         args.audio_dir = [os.path.join('in_audio', a) for a in args.audio_dir]
     print(args.audio_dir)
 
-    model_pool = ModelPool(args.glob_ncpu, args.ncpu, args.batch_size)
+    if not args.gen_xlsx_from_json:  # 如果直接从json生成xlsx，则不创建语音识别模型
+        model_pool = ModelPool(args.glob_ncpu, args.ncpu, args.batch_size)
 
     audio_rec(args.audio_dir, args.xlsx_dir, batch_size=args.batch_size, glob_ncpu=args.glob_ncpu, bot_opt=args.bot_opt,
               gen_xlsx_from_json=args.gen_xlsx_from_json)
